@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace OnlineShoppingWeb.Enities
 {
     public enum ProcessorType
@@ -31,12 +33,20 @@ namespace OnlineShoppingWeb.Enities
     public class Laptop : IProduct
     {
         public int LaptopId { get; set; }
+        [Required]
         public decimal price { get; set; }
+        [MaxLength(20)]
         public string Brand { get; set; }
+        [Display(Name = "Laptop Model")]
         public string LaptopModel { get; set; }
+        [Required]
+        [Display(Name = "Hard Drive Size")]
         public string HardDriveSize { get; set; }
+        [Required]
+        [Display(Name = "Screen Size")]
         public double ScreenSize { get; set; }
         public double AvgCustomerReview { get; set; }
+        [Display(Name = "Hard Drive Type")]
         public HardDriveType HardDrive { get; set; }
         public ProcessorType Processor { get; set; }
         public ConditionType Condition { get; set; }
