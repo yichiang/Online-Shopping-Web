@@ -3,5 +3,8 @@
   "name": "Onlineshoppingweb",
   "private": true,
   "devDependencies": {
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7"
   }
 }
