@@ -25,7 +25,7 @@ namespace OnlineShoppingWeb.Services
 
         public IEnumerable<IProduct> GetAll()
         {
-            return _context;
+            return _context.Laptops;
         }
 
         public IProduct GetLaptopById(int id)
