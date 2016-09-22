@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using OnlineShoppingWeb.Services;
 using OnlineShoppingWeb.Enities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace OnlineShoppingWeb
 {
@@ -34,6 +35,10 @@ namespace OnlineShoppingWeb
             services.AddEntityFramework()
                 .AddDbContext<ProductDbContext>(options =>
                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+
+            services.AddIdentity<User, IdentityRole>()
+                           .AddEntityFrameworkStores<ProductDbContext>()
+                           .AddDefaultTokenProviders();
             services.AddScoped<IProductData, SqlServerLaptopData>();
 
         }
@@ -41,6 +46,8 @@ namespace OnlineShoppingWeb
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+
+
             loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
@@ -54,7 +61,7 @@ namespace OnlineShoppingWeb
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseStaticFiles();
-
+            app.UseIdentity();
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("404 Not found");
