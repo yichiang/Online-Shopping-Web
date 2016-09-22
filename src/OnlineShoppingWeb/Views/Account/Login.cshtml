@@ -9,11 +9,13 @@
 <hr />
     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post))
     {
-    @Html.LabelFor(m => m.Username)
-    @Html.TextBoxFor(m => m.Username)
+        @Html.ValidationSummary()
 
-    @Html.LabelFor(m => m.Password)
-    @Html.PasswordFor(m => m.Password)
+        @Html.LabelFor(m => m.Username)
+        @Html.TextBoxFor(m => m.Username)
 
-    <input type="submit" value="Log in" class="btn btn-default" />
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+
+        <input type="submit" value="Log in" class="btn btn-default" />
 }
