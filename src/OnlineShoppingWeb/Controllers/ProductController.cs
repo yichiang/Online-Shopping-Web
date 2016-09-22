@@ -25,5 +25,17 @@ namespace OnlineShoppingWeb.Controllers
     
             return View(viewModel);
         }
+        [HttpGet]
+        public IActionResult CreateLaptop()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateLaptop(Laptop newLaptop)
+        {
+            _LaptopData.AddNewProduct(newLaptop);
+            return RedirectToAction("Index");
+        }
     }
 }
