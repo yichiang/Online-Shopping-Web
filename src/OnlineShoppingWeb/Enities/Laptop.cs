@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OnlineShoppingWeb.Enities
 {
@@ -29,9 +28,9 @@ namespace OnlineShoppingWeb.Enities
         Hybrid
     }
 
-
     public class Laptop : IProduct
     {
+        [Key]
         public int LaptopId { get; set; }
         [Required]
         [MaxLength(30)]

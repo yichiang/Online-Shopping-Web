@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineShoppingWeb.Enities;
-using OnlineShoppingWeb.Models;
 
 namespace OnlineShoppingWeb.Services
 {
@@ -25,7 +24,7 @@ namespace OnlineShoppingWeb.Services
 
         public IEnumerable<IProduct> GetAll()
         {
-            return _context.Laptops;
+            return _context.Laptops.ToList();
         }
 
         public IProduct GetLaptopById(int id)

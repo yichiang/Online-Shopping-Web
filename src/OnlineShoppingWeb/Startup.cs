@@ -10,8 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using OnlineShoppingWeb.Models;
 using OnlineShoppingWeb.Services;
+using OnlineShoppingWeb.Enities;
 
 namespace OnlineShoppingWeb
 {
@@ -31,7 +31,7 @@ namespace OnlineShoppingWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<IProductData, InMemoryLaptopData>();
+            services.AddScoped<IProductData, SqlServerLaptopData>();
             services.AddEntityFramework()
                 .AddDbContext<ProductDbContext>(options =>
                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
