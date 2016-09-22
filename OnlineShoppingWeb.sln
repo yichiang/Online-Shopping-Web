@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{855C4268-CA69-4609-A5C1-A2AEE09769F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3B41CD5-4B08-49E6-B863-66D43605C733}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OnlineShoppingWeb", "src\OnlineShoppingWeb\OnlineShoppingWeb.xproj", "{4C654259-5DE9-480F-AD03-D1202B1C9808}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C654259-5DE9-480F-AD03-D1202B1C9808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C654259-5DE9-480F-AD03-D1202B1C9808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C654259-5DE9-480F-AD03-D1202B1C9808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C654259-5DE9-480F-AD03-D1202B1C9808}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C654259-5DE9-480F-AD03-D1202B1C9808} = {855C4268-CA69-4609-A5C1-A2AEE09769F2}
+	EndGlobalSection
+EndGlobal
