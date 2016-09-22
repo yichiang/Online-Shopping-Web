@@ -46,7 +46,7 @@ namespace OnlineShoppingWeb
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-
+            app.UseIdentity();
 
             loggerFactory.AddConsole();
 
@@ -61,7 +61,7 @@ namespace OnlineShoppingWeb
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseStaticFiles();
-            app.UseIdentity();
+        
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("404 Not found");

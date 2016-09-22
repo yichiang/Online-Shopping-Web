@@ -30,11 +30,11 @@ namespace OnlineShoppingWeb.Controllers
             if (ModelState.IsValid)
             {
                 var user = new User { UserName = model.Username, Email = model.Email };
-                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Home");
                 }
                 else
                 {
