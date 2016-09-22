@@ -1,5 +1,8 @@
-﻿@using System.Security.Principal
-@using System.Security.Claims
+﻿@using Microsoft.AspNetCore.Identity
+@using OnlineShoppingWeb.Enities
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 <!DOCTYPE html>
 
 <html>
@@ -10,13 +13,13 @@
 <body>
 
     <div>
-    @if (User.Identity.IsAuthenticated)
+    @if (SignInManager.IsSignedIn(User))
     {
-        @*<div>@User.GetUserName()</div>*@
-        @using (Html.BeginForm("LoginOut", "Account", FormMethod.Post))
+        <div>@UserManager.GetUserName(User)</div>
+        @using (Html.BeginForm("Logout", "Account", FormMethod.Post))
         {
 
-            <input type="submit" value="LoginOut" />
+            <input type="submit" value="Logout" />
         }
     }
     else
@@ -24,7 +27,7 @@
         @*//linkText, actionName, controllerName, routeValues, htmlAttributes*@
 
         @Html.ActionLink("Login In", "Login","Account");
-        @Html.ActionLink("Login In", "Register", "Account");
+        @Html.ActionLink("Register", "Register", "Account");
 
     }
         </div>
