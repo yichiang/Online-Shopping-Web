@@ -8,10 +8,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
     <title>@ViewBag.Title</title>
 </head>
 <body>
-
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"> Shopping Website</a>
+            </div>
+        </div>
+    </nav>
     <div>
     @if (SignInManager.IsSignedIn(User))
     {
