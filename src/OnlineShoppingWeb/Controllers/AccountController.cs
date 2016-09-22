@@ -69,15 +69,23 @@ namespace OnlineShoppingWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, isPersistent: true, lockoutOnFailure: false);
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
-            }
-            else
-            {
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, isPersistent: model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index","Home");
+
+                    }
+                }
+            }      
                 return View();
-            }
         }
     }
 }
