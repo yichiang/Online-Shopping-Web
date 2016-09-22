@@ -1,6 +1,8 @@
 ﻿@model ProductPageViewModel
 <h1>It is product list</h1>
-@foreach(var laptop in Model.Laptops)
+@foreach (var laptop in Model.Laptops)
 {
-<h2>@laptop.price</h2>
+<h2>@laptop.Title</h2>
+
+<h2>@laptop.Price</h2>
 }

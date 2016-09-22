@@ -34,7 +34,9 @@ namespace OnlineShoppingWeb.Enities
     {
         public int LaptopId { get; set; }
         [Required]
-        public decimal price { get; set; }
+        [MaxLength(30)]
+        public string Title { get; set; }
+        public decimal Price { get; set; }
         [MaxLength(20)]
         public string Brand { get; set; }
         [Display(Name = "Laptop Model")]
