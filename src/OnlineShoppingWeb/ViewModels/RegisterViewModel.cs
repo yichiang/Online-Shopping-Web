@@ -8,7 +8,7 @@ namespace OnlineShoppingWeb.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required,MaxLength(100)]
         public string Username { get; set; }
 
         [Required]
@@ -20,8 +20,8 @@ namespace OnlineShoppingWeb.ViewModels
         public string Password { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
+        [DataType(DataType.Password),Compare("Password")]
         [Display(Name ="Confirm Password")]
-        public string ComfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 }
