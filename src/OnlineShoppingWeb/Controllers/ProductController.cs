@@ -34,7 +34,7 @@ namespace OnlineShoppingWeb.Controllers
         [HttpPost]
         public IActionResult CreateLaptop(Laptop newLaptop)
         {
-            _LaptopData.AddNewProduct(newLaptop);
+            //_LaptopData.AddNewProduct(newLaptop);
             return RedirectToAction("Index");
         }
     }
