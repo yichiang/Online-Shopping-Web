@@ -1,4 +1,5 @@
 ﻿@using System.Security.Principal
+@using System.Security.Claims
 <!DOCTYPE html>
 
 <html>
@@ -11,8 +12,12 @@
     <div>
     @if (User.Identity.IsAuthenticated)
     {
+        @*<div>@User.GetUserName()</div>*@
+        @using (Html.BeginForm("LoginOut", "Account", FormMethod.Post))
+        {
 
-
+            <input type="submit" value="LoginOut" />
+        }
     }
     else
     {
