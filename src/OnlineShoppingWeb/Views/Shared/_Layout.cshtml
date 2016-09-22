@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Principal
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -6,8 +7,25 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+
     <div>
-        @RenderBody()
-    </div>
-</body>
-</html>
+    @if (User.Identity.IsAuthenticated)
+    {
+
+
+    }
+    else
+    {
+        @*//linkText, actionName, controllerName, routeValues, htmlAttributes*@
+
+        @Html.ActionLink("Login In", "Login","Account");
+        @Html.ActionLink("Login In", "Register", "Account");
+
+    }
+        </div>
+
+        <div>
+            @RenderBody()
+        </div>
+    </body>
+    </html>
