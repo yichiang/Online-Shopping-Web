@@ -44,7 +44,7 @@ namespace OnlineShoppingWeb
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory)
         {
             app.UseIdentity();
 
@@ -54,13 +54,15 @@ namespace OnlineShoppingWeb
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseFileServer();
+            app.UseStaticFiles();
+            app.UseNodeModules(env);
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            app.UseStaticFiles();
         
             app.Run(async (context) =>
             {
