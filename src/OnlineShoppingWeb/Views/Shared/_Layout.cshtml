@@ -17,27 +17,27 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/"> Shopping Website</a>
             </div>
+            <div class="navbar navbar-nav navbar-right">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "navbar-form" }))
+                    {
+                        @UserManager.GetUserName(User)
+                        <input type="submit" value="Logout" />
+                    }
+                }
+                else
+                {
+                    @*//linkText, actionName, controllerName, routeValues, htmlAttributes*@
+
+                    @Html.ActionLink("Login In", "Login", "Account");
+                    @Html.ActionLink("Register", "Register", "Account");
+
+                }
+            </div>
         </div>
     </nav>
-    <div>
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <div>@UserManager.GetUserName(User)</div>
-        @using (Html.BeginForm("Logout", "Account", FormMethod.Post))
-        {
-
-            <input type="submit" value="Logout" />
-        }
-    }
-    else
-    {
-        @*//linkText, actionName, controllerName, routeValues, htmlAttributes*@
-
-        @Html.ActionLink("Login In", "Login","Account");
-        @Html.ActionLink("Register", "Register", "Account");
-
-    }
-        </div>
+    
 
         <div>
             @RenderBody()
