@@ -42,10 +42,23 @@
         <div>
             @RenderBody()
         </div>
-
+    <environment name="Development">
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script src="/node_modules/jquery-validation/dist/jquery.validate.js"></script>
     <script src="/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+    </environment>
 
-    </body>
+
+    <environment names="Staging, Production">
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.js"
+                asp-fallback-src="/node_modules/jquery/dist/jquery.js"
+                asp-fallback-test="window.jQuery"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.1/jquery.validate.js"
+                asp-fallback-src="/node_modules/jquery/dist/jquery.validate.js"
+                asp-fallback-test="window.jQuery & window.JQuery.Validator"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"
+                asp-fallback-src="/node_modules/jquery/dist/jquery.validate.unobtrusive.js"
+                asp-fallback-test="window.jQuery & window.JQuery.Validator && window.JQuery.Validator.Unobtrusive"></script>
+    <</environment>>
+</body>
     </html>
