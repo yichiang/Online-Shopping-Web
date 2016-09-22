@@ -1,0 +1,34 @@
+﻿<h1> Add New Product to our store</h1>
+
+@using OnlineShoppingWeb.Enities;
+@model Laptop
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.price)
+    @Html.TextBoxFor(model => model.price)
+
+    @Html.LabelFor(model => model.Brand)
+    @Html.TextBoxFor(model => model.Brand)
+
+    @Html.LabelFor(model => model.LaptopModel)
+    @Html.TextBoxFor(model => model.LaptopModel)
+
+    @Html.LabelFor(model => model.HardDriveSize)
+    @Html.TextBoxFor(model => model.HardDriveSize)
+
+    @Html.LabelFor(model => model.AvgCustomerReview)
+    @Html.TextBoxFor(model => model.AvgCustomerReview)
+
+    @Html.LabelFor(model => model.HardDrive)
+    @Html.DropDownListFor(model => model.HardDrive, Html.GetEnumSelectList(typeof(HardDriveType)))
+
+    @Html.LabelFor(model => model.Processor)
+    @Html.DropDownListFor(model => model.Processor, Html.GetEnumSelectList(typeof(ProcessorType)))
+
+
+    @Html.LabelFor(model => model.Condition)
+    @Html.DropDownListFor(model => model.Condition, Html.GetEnumSelectList(typeof(ConditionType)))
+
+    <input type="submit" value="Add New Laptop" />
+}

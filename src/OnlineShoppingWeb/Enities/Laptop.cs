@@ -33,7 +33,7 @@ namespace OnlineShoppingWeb.Enities
         public int LaptopId { get; set; }
         public decimal price { get; set; }
         public string Brand { get; set; }
-        public string Model { get; set; }
+        public string LaptopModel { get; set; }
         public string HardDriveSize { get; set; }
         public double ScreenSize { get; set; }
         public double AvgCustomerReview { get; set; }
