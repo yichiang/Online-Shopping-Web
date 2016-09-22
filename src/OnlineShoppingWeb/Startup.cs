@@ -31,10 +31,11 @@ namespace OnlineShoppingWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<IProductData, SqlServerLaptopData>();
             services.AddEntityFramework()
                 .AddDbContext<ProductDbContext>(options =>
                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddScoped<IProductData, SqlServerLaptopData>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

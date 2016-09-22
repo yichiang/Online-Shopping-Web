@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Services;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineShoppingWeb.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private IProductData _LaptopData;
@@ -18,6 +20,7 @@ namespace OnlineShoppingWeb.Controllers
             _LaptopData = LaptopData;
         }
         // GET: /<controller>/
+        [AllowAnonymous]
         public IActionResult Index()
         {
             ViewModels.ProductPageViewModel viewModel = new ViewModels.ProductPageViewModel();
@@ -26,12 +29,14 @@ namespace OnlineShoppingWeb.Controllers
             return View(viewModel);
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult CreateLaptop()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult CreateLaptop(Laptop newLaptop)
         {
             Console.WriteLine(newLaptop);
