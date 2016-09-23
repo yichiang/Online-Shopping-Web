@@ -28,6 +28,7 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpGet]
+        [Route("Department/CreateDepartment")]
         public IActionResult CreateDepartment()
         {
             return View();

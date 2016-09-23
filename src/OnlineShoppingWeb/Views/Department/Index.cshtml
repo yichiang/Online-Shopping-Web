@@ -2,7 +2,7 @@
 <h1>It is Department list</h1>
 @foreach (var department in Model.Departments)
 {
-    <h2>@department.Description</h2>
+    <h2> @department.DepartmentId @department.Description</h2>
 
 }
 @Html.ActionLink("Create New Department", "CreateDepartment", "Department");
