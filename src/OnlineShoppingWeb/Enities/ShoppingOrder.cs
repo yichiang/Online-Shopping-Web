@@ -14,11 +14,9 @@ namespace OnlineShoppingWeb.Enities
         public bool IsShipped { get; set; }
         public bool IsReceived { get; set; }
         public bool IsRequestReturn { get; set; }
-        //[Key]
-        public int ProductId { get; set; }
-        public virtual Laptop PurchasedProduct { get; set; }
-        //[Key]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
+   
+        public Laptop PurchasedProduct { get; set; }
+
+        public User User { get; set; }
     }
 }

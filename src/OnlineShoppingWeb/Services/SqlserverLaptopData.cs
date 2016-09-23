@@ -18,7 +18,6 @@ namespace OnlineShoppingWeb.Services
 
         public void AddNewProduct(IProduct newProduct)
         {
-            Console.WriteLine("ADD New LAptop");
             Laptop newLaptop = (Laptop)newProduct;
             _context.Add(newLaptop);
             _context.SaveChanges();

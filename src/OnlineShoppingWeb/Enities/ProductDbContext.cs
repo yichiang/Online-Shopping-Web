@@ -10,9 +10,9 @@ namespace OnlineShoppingWeb.Enities
     public class ProductDbContext : IdentityDbContext<User>
     {
         public DbSet<Laptop> Laptops { get; set; }
-        public DbSet<ShoppingOrder> ShoppingOrder { get; set; }
-        public DbSet<Department> Department { get; set; }
-        public DbSet<SubDepartment> SubDepartment { get; set; }
+        public DbSet<ShoppingOrder> ShoppingOrderd { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<SubDepartment> SubDepartments { get; set; }
 
         public ProductDbContext(DbContextOptions<ProductDbContext> options):base(options)
         {

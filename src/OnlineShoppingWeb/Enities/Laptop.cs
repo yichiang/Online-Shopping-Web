@@ -28,14 +28,8 @@ namespace OnlineShoppingWeb.Enities
         Hybrid
     }
  
-    public class Laptop : IProduct
+    public class Laptop : Product
     {
-        [Key]
-        public int ProductId { get; set; }
-        [Required]
-        [MaxLength(30)]
-        public string Title { get; set; }
-        public decimal Price { get; set; }
         [MaxLength(20)]
         public string Brand { get; set; }
         [Display(Name = "Laptop Model")]
@@ -46,7 +40,6 @@ namespace OnlineShoppingWeb.Enities
         [Required]
         [Display(Name = "Screen Size")]
         public double ScreenSize { get; set; }
-        public double AvgCustomerReview { get; set; }
         [Display(Name = "Hard Drive Type")]
         public HardDriveType HardDrive { get; set; }
         public ProcessorType Processor { get; set; }
