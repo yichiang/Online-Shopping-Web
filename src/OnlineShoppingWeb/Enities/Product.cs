@@ -1,9 +1,10 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineShoppingWeb.Enities
 {
+    [Table("Products")]
     public class Product: IProduct
     {
         [Key]

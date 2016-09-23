@@ -8,7 +8,7 @@
 {
     @Html.ValidationSummary()
 
-    @Html.HiddenFor(model => model.SubDepartment.Department, Model.DepartmentOfSub)
+    @Html.HiddenFor(model => model.SubDepartment.DepartmentId, Model.DepartmentOfSub.DepartmentId)
     @Html.LabelFor(model => model.SubDepartment.Description)
     @Html.TextBoxFor(model => model.SubDepartment.Description)
     @Html.ValidationMessageFor(model => model.SubDepartment.Description)

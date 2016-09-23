@@ -8,8 +8,8 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20160923201137_v2")]
-    partial class v2
+    [Migration("20160923201733_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -104,7 +104,7 @@ namespace OnlineShoppingWeb.Migrations
                 {
                     SubDepartmentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DepartmentId = table.Column<int>(nullable: true),
+                    DepartmentId = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -115,7 +115,7 @@ namespace OnlineShoppingWeb.Migrations
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
                         principalColumn: "DepartmentId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineShoppingWeb.Enities
 {
@@ -27,7 +28,7 @@ namespace OnlineShoppingWeb.Enities
         SSD,
         Hybrid
     }
- 
+    [Table("Laptops")]
     public class Laptop : Product
     {
         [MaxLength(20)]
