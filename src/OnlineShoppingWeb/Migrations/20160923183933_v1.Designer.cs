@@ -8,8 +8,8 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20160923160003_v6")]
-    partial class v6
+    [Migration("20160923183933_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -133,7 +133,7 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.HasKey("DepartmentId");
 
-                    b.ToTable("Department");
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.Laptop", b =>
@@ -203,7 +203,7 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ShoppingOrder");
+                    b.ToTable("ShoppingOrderd");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.SubDepartment", b =>
@@ -219,7 +219,7 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("SubDepartment");
+                    b.ToTable("SubDepartments");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.User", b =>

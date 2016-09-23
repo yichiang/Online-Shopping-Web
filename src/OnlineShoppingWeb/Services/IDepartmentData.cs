@@ -7,5 +7,7 @@ namespace OnlineShoppingWeb.Services
     {
         IEnumerable<Department> GetDepartments();
         void AddNewDepartment(Department newDepartment);
+        Department GetDepartmentById(int DepartmentId);
+        IEnumerable<SubDepartment> GetSubDepartmentByDepartmentId(int departmentId);
     }
 }

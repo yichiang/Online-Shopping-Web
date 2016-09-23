@@ -60,9 +60,17 @@ namespace OnlineShoppingWeb
             app.UseNodeModules(env);
             app.UseMvc(routes =>
             {
+ 
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    name: "User",
+                    template: "{controller}/{action}/{departmentId?}/{subDepartmentId?}/{productId?}",
+                    defaults: new { controller = "Department", action = "Index"}
+                );
+                routes.MapRoute(
+                    name: "Default",
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Home", action = "Index"}
+                );
             });
         
             app.Run(async (context) =>

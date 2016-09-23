@@ -46,5 +46,27 @@ namespace OnlineShoppingWeb.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult DepartmentofSubDepartment(int departmentId)
+        {
+            ViewModels.DepartmentViewModel viewModel = new ViewModels.DepartmentViewModel();
+            viewModel.SubDepartments = (IEnumerable<SubDepartment>)_DepartmentData.GetSubDepartmentByDepartmentId(departmentId);
+            viewModel.DepartmentOfSub= _DepartmentData.GetDepartmentById(departmentId);
+            return View(viewModel.SubDepartments.ToList());
+        }
+        [HttpGet]
+        public IActionResult AddSubDepartment(int departmentId)
+        {
+            ViewModels.DepartmentViewModel viewModel = new ViewModels.DepartmentViewModel();
+            viewModel.DepartmentOfSub = _DepartmentData.GetDepartmentById(departmentId);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddSubDepartment(SubDepartment newSubDepartment)
+        {
+            return View();
+        }
     }
 }

@@ -22,9 +22,20 @@ namespace OnlineShoppingWeb.Services
             _context.SaveChanges();
         }
 
+        public Department GetDepartmentById(int DepartmentId)
+        {
+            return _context.Departments.FirstOrDefault(department => department.DepartmentId == DepartmentId);
+        }
+
         public IEnumerable<Department> GetDepartments()
         {
             return _context.Departments.ToList();
         }
+
+        public IEnumerable<SubDepartment> GetSubDepartmentByDepartmentId(int DepartmentId)
+        {
+            return _context.SubDepartments.Where(subdepartment => subdepartment.Department.DepartmentId == DepartmentId).ToList();
+        }
+
     }
 }

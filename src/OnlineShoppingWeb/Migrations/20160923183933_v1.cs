@@ -38,26 +38,16 @@ namespace OnlineShoppingWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Laptops",
+                name: "Departments",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false)
+                    DepartmentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AvgCustomerReview = table.Column<double>(nullable: false),
-                    Brand = table.Column<string>(maxLength: 20, nullable: true),
-                    Condition = table.Column<int>(nullable: false),
-                    Department = table.Column<int>(nullable: false),
-                    HardDrive = table.Column<int>(nullable: false),
-                    HardDriveSize = table.Column<string>(nullable: false),
-                    LaptopModel = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
-                    Processor = table.Column<int>(nullable: false),
-                    ScreenSize = table.Column<double>(nullable: false),
-                    Title = table.Column<string>(maxLength: 30, nullable: false)
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Laptops", x => x.ProductId);
+                    table.PrimaryKey("PK_Departments", x => x.DepartmentId);
                 });
 
             migrationBuilder.CreateTable(
@@ -106,6 +96,26 @@ namespace OnlineShoppingWeb.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubDepartments",
+                columns: table => new
+                {
+                    SubDepartmentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DepartmentId = table.Column<int>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubDepartments", x => x.SubDepartmentId);
+                    table.ForeignKey(
+                        name: "FK_SubDepartments_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "DepartmentId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,7 +184,36 @@ namespace OnlineShoppingWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ShoppingOrder",
+                name: "Laptops",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AvgCustomerReview = table.Column<double>(nullable: false),
+                    Brand = table.Column<string>(maxLength: 20, nullable: true),
+                    Condition = table.Column<int>(nullable: false),
+                    HardDrive = table.Column<int>(nullable: false),
+                    HardDriveSize = table.Column<string>(nullable: false),
+                    LaptopModel = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(nullable: false),
+                    Processor = table.Column<int>(nullable: false),
+                    ScreenSize = table.Column<double>(nullable: false),
+                    SubDepartmentId = table.Column<int>(nullable: true),
+                    Title = table.Column<string>(maxLength: 30, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Laptops", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Laptops_SubDepartments_SubDepartmentId",
+                        column: x => x.SubDepartmentId,
+                        principalTable: "SubDepartments",
+                        principalColumn: "SubDepartmentId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingOrderd",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(nullable: false)
@@ -186,20 +225,20 @@ namespace OnlineShoppingWeb.Migrations
                     Notes = table.Column<string>(nullable: true),
                     OrderConfirmation = table.Column<string>(nullable: true),
                     Payment = table.Column<string>(nullable: true),
-                    ProductId = table.Column<int>(nullable: false),
+                    PurchasedProductProductId = table.Column<int>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingOrder", x => x.OrderId);
+                    table.PrimaryKey("PK_ShoppingOrderd", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_ShoppingOrder_Laptops_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_ShoppingOrderd_Laptops_PurchasedProductProductId",
+                        column: x => x.PurchasedProductProductId,
                         principalTable: "Laptops",
                         principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ShoppingOrder_AspNetUsers_UserId",
+                        name: "FK_ShoppingOrderd_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -237,14 +276,24 @@ namespace OnlineShoppingWeb.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingOrder_ProductId",
-                table: "ShoppingOrder",
-                column: "ProductId");
+                name: "IX_Laptops_SubDepartmentId",
+                table: "Laptops",
+                column: "SubDepartmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingOrder_UserId",
-                table: "ShoppingOrder",
+                name: "IX_ShoppingOrderd_PurchasedProductProductId",
+                table: "ShoppingOrderd",
+                column: "PurchasedProductProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingOrderd_UserId",
+                table: "ShoppingOrderd",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubDepartments_DepartmentId",
+                table: "SubDepartments",
+                column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -276,7 +325,7 @@ namespace OnlineShoppingWeb.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "ShoppingOrder");
+                name: "ShoppingOrderd");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -286,6 +335,12 @@ namespace OnlineShoppingWeb.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "SubDepartments");
+
+            migrationBuilder.DropTable(
+                name: "Departments");
         }
     }
 }
