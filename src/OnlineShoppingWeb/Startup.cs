@@ -61,11 +61,11 @@ namespace OnlineShoppingWeb
             app.UseMvc(routes =>
             {
  
-                routes.MapRoute(
-                    name: "User",
-                    template: "{controller}/{action}/{departmentId?}/{subDepartmentId?}/{productId?}",
-                    defaults: new { controller = "Department", action = "Index"}
-                );
+                //routes.MapRoute(
+                //    name: "User",
+                //    template: "{controller}/{action}/{departmentId?}/{subDepartmentId?}/{productId?}",
+                //    defaults: new { controller = "Department", action = "Index"}
+                //);
                 routes.MapRoute(
                     name: "Default",
                     template: "{controller}/{action}/{id?}",

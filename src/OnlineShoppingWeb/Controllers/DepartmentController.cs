@@ -48,6 +48,7 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpGet]
+        [Route("department/{departmentId}")]
         public IActionResult DepartmentofSubDepartment(int departmentId)
         {
             ViewModels.DepartmentViewModel viewModel = new ViewModels.DepartmentViewModel();
@@ -56,6 +57,7 @@ namespace OnlineShoppingWeb.Controllers
             return View(viewModel.SubDepartments.ToList());
         }
         [HttpGet]
+        [Route("department/{departmentId}/AddSubDepartment")]
         public IActionResult AddSubDepartment(int departmentId)
         {
             ViewModels.DepartmentViewModel viewModel = new ViewModels.DepartmentViewModel();
@@ -67,6 +69,13 @@ namespace OnlineShoppingWeb.Controllers
         public IActionResult AddSubDepartment(SubDepartment newSubDepartment)
         {
             return View();
+        }
+
+        [Route("department/{departmentId}/AddSubDepartment/{subDepartmentId}")]
+        public IActionResult allSubDepartmentProduct(int departmentId, int subdepartmentId)
+        {
+
+            return Content("I will create the list of products based on department soon");
         }
     }
 }
