@@ -49,13 +49,13 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpGet]
-        [Route("department/{departmentId}")]
+        [Route("Department/{departmentId}")]
         public IActionResult DepartmentofSubDepartment(int departmentId)
         {
             ViewModels.DepartmentViewModel viewModel = new ViewModels.DepartmentViewModel();
             viewModel.SubDepartments = (IEnumerable<SubDepartment>)_DepartmentData.GetSubDepartmentByDepartmentId(departmentId);
             viewModel.DepartmentOfSub= _DepartmentData.GetDepartmentById(departmentId);
-            return View(viewModel.SubDepartments.ToList());
+            return View(viewModel);
         }
         [HttpGet]
         [Route("department/{departmentId}/AddSubDepartment")]
