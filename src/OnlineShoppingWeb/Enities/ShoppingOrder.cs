@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShoppingWeb.Enities
 {
-    public class ShippingOrder
+    public class ShoppingOrder
     {
         public int OrderId { get; set; }
         public string OrderConfirmation { get; set; }
@@ -15,5 +15,9 @@ namespace OnlineShoppingWeb.Enities
         public bool IsShipped { get; set; }
         public bool IsReceived { get; set; }
         public bool IsRequestReturn { get; set; }
+        public int ProductId { get; set; }
+        public virtual Laptop Laptop { get; set; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

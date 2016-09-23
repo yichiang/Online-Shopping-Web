@@ -27,11 +27,12 @@ namespace OnlineShoppingWeb.Enities
         SSD,
         Hybrid
     }
-
-    public class Laptop : IProduct
+ 
+    public class Laptop : ElectronicsAndComputers
     {
         [Key]
-        public int LaptopId { get; set; }
+        public int ProductId { get; set; }
+        public string ProductType { get; set; }
         [Required]
         [MaxLength(30)]
         public string Title { get; set; }

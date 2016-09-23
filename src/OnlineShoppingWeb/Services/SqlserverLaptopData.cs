@@ -31,7 +31,7 @@ namespace OnlineShoppingWeb.Services
 
         public IProduct GetLaptopById(int id)
         {
-            return _context.Laptops.FirstOrDefault(computer => computer.LaptopId == id );
+            return _context.Laptops.FirstOrDefault(computer => computer.ProductId == id );
         }
     }
 }
