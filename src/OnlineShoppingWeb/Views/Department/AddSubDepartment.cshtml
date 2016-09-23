@@ -11,7 +11,7 @@
     @Html.HiddenFor(model => model.SubDepartment.Department, Model.DepartmentOfSub)
     @Html.LabelFor(model => model.SubDepartment.Description)
     @Html.TextBoxFor(model => model.SubDepartment.Description)
-    @Html.ValidationMessageFor(model => model.SubDepartmentDescription.Description)
+    @Html.ValidationMessageFor(model => model.SubDepartment.Description)
 
     <input type="submit" value="Add New Department" />
 }
