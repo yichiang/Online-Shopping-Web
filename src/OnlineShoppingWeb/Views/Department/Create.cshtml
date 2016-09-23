@@ -1,0 +1,14 @@
+﻿<h1> Add New Product to our store</h1>
+
+@using OnlineShoppingWeb.Enities;
+@model Department
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+    @Html.LabelFor(model => model.Description)
+    @Html.TextBoxFor(model => model.Description)
+    @Html.ValidationMessageFor(model => model.Description)
+
+    <input type="submit" value="Add New Department" />
+}
