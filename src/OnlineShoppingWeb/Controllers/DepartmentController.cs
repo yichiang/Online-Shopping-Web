@@ -69,12 +69,12 @@ namespace OnlineShoppingWeb.Controllers
 
         [HttpPost]
         [Route("department/{departmentId}/AddSubDepartment")]
-        public IActionResult AddSubDepartment(DepartmentViewModel newDepartmentViewModel)
+        public IActionResult AddSubDepartment(int departmentId,DepartmentViewModel newDepartmentViewModel)
         {
             if (ModelState.IsValid)
             {
                 _DepartmentData.AddNewSubDepartment(newDepartmentViewModel.SubDepartment);
-                return RedirectToAction("DepartmentofSubDepartment", new { departmentId = newDepartmentViewModel.DepartmentOfSub.DepartmentId});
+                return RedirectToAction("DepartmentofSubDepartment", new { departmentId = departmentId });
 
             }
             return View();
