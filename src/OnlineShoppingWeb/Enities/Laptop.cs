@@ -51,5 +51,8 @@ namespace OnlineShoppingWeb.Enities
         public HardDriveType HardDrive { get; set; }
         public ProcessorType Processor { get; set; }
         public ConditionType Condition { get; set; }
+
+        public SubDepartment SubDepartment { get; set; }
+
     }
 }
