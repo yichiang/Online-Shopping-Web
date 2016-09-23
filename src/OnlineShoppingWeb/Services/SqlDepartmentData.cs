@@ -22,6 +22,13 @@ namespace OnlineShoppingWeb.Services
             _context.SaveChanges();
         }
 
+        public void AddNewSubDepartment(SubDepartment newSubDepartment)
+        {
+            SubDepartment newSubDepart = (SubDepartment)newSubDepartment;
+            _context.Add(newSubDepart);
+            _context.SaveChanges();
+        }
+
         public Department GetDepartmentById(int DepartmentId)
         {
             return _context.Departments.FirstOrDefault(department => department.DepartmentId == DepartmentId);

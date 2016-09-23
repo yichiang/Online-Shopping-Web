@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.Services;
+using OnlineShoppingWeb.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -67,8 +68,15 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddSubDepartment(SubDepartment newSubDepartment)
+        [Route("department/{departmentId}/AddSubDepartment")]
+        public IActionResult AddSubDepartment(DepartmentViewModel newDepartmentViewModel)
         {
+            if (ModelState.IsValid)
+            {
+                _DepartmentData.AddNewSubDepartment(newDepartmentViewModel.SubDepartment);
+                return RedirectToAction("DepartmentofSubDepartment", new { departmentId = newDepartmentViewModel.DepartmentOfSub.DepartmentId});
+
+            }
             return View();
         }
 
