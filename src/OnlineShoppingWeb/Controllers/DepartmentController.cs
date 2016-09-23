@@ -71,13 +71,17 @@ namespace OnlineShoppingWeb.Controllers
         [Route("department/{departmentId}/AddSubDepartment")]
         public IActionResult AddSubDepartment(int departmentId,DepartmentViewModel newDepartmentViewModel)
         {
-            if (ModelState.IsValid)
+
+            if (!string.IsNullOrEmpty(newDepartmentViewModel.SubDepartment.Description))
             {
+                newDepartmentViewModel.SubDepartment.DepartmentId = departmentId;
+
                 _DepartmentData.AddNewSubDepartment(newDepartmentViewModel.SubDepartment);
-                return RedirectToAction("DepartmentofSubDepartment", new { departmentId = departmentId });
+               return RedirectToAction("DepartmentofSubDepartment", new { departmentId = departmentId });
 
             }
-            return View();
+
+            return Content("I will try to find a way to add to table ID "+ newDepartmentViewModel.SubDepartment.DepartmentId + "newDepartmentViewModel.SubDepartment Name" + newDepartmentViewModel.SubDepartment.Description);
         }
 
         [Route("department/{departmentId}/AddSubDepartment/{subDepartmentId}")]

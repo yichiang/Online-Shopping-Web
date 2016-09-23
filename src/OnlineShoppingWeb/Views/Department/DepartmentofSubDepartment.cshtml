@@ -2,9 +2,9 @@
 @using OnlineShoppingWeb.ViewModels;
 @model DepartmentViewModel
 <h1> Here is all list under @Model.DepartmentOfSub.Description </h1>
-@foreach(var model in Model.SubDepartments)
+@foreach(var sub in Model.SubDepartments)
 {
-    <h1>model.Description</h1>
+    <h1>@sub.SubDepartmentId  @sub.Description </h1>
 }
 
 @Html.ActionLink("Create New SubDepartment", "AddSubDepartment", "Department",new { departmentId = Model.DepartmentOfSub.DepartmentId });
