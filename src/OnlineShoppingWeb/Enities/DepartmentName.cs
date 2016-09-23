@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace OnlineShoppingWeb.Enities
 {
-    public class LaptopConfiguration
+    public class DepartmentName
     {
+        public int DepartmentId { get; set; }
+        public string DepartmentTitle { get; set; }
     }
 }

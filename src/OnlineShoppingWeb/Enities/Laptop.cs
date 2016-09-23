@@ -28,7 +28,7 @@ namespace OnlineShoppingWeb.Enities
         Hybrid
     }
  
-    public class Laptop : ElectronicsAndComputers
+    public class Laptop : IProduct
     {
         [Key]
         public int ProductId { get; set; }
