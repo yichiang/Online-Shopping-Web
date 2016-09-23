@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShoppingWeb.Enities
 {
-    public class LaptopConfiguration: EntityTypeConfiguration<Laptop>
+    public class LaptopConfiguration
     {
     }
 }
