@@ -125,7 +125,7 @@ namespace OnlineShoppingWeb.Migrations
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.Laptop", b =>
                 {
-                    b.Property<int>("LaptopId")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<double>("AvgCustomerReview");
@@ -134,6 +134,8 @@ namespace OnlineShoppingWeb.Migrations
                         .HasAnnotation("MaxLength", 20);
 
                     b.Property<int>("Condition");
+
+                    b.Property<int>("Department");
 
                     b.Property<int>("HardDrive");
 
@@ -152,9 +154,41 @@ namespace OnlineShoppingWeb.Migrations
                         .IsRequired()
                         .HasAnnotation("MaxLength", 30);
 
-                    b.HasKey("LaptopId");
+                    b.HasKey("ProductId");
 
                     b.ToTable("Laptops");
+                });
+
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Create_Date");
+
+                    b.Property<bool>("IsReceived");
+
+                    b.Property<bool>("IsRequestReturn");
+
+                    b.Property<bool>("IsShipped");
+
+                    b.Property<string>("Notes");
+
+                    b.Property<string>("OrderConfirmation");
+
+                    b.Property<string>("Payment");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingOrder");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.User", b =>
@@ -163,6 +197,8 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("Address");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -170,6 +206,8 @@ namespace OnlineShoppingWeb.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<DateTime>("JoinDate");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -241,6 +279,18 @@ namespace OnlineShoppingWeb.Migrations
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>
+                {
+                    b.HasOne("OnlineShoppingWeb.Enities.Laptop", "PurchasedProduct")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("OnlineShoppingWeb.Enities.User")
+                        .WithMany("ShoppingOrders")
+                        .HasForeignKey("UserId");
                 });
         }
     }

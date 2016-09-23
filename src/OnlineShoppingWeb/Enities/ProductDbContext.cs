@@ -10,6 +10,7 @@ namespace OnlineShoppingWeb.Enities
     public class ProductDbContext : IdentityDbContext<User>
     {
         public DbSet<Laptop> Laptops { get; set; }
+        public DbSet<ShoppingOrder> ShoppingOrder { get; set; }
 
         public ProductDbContext(DbContextOptions<ProductDbContext> options):base(options)
         {
@@ -18,6 +19,8 @@ namespace OnlineShoppingWeb.Enities
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            //builder.Entity<ShoppingOrder>().HasKey(x => new { x.ProductId, x.UserId });
+
         }
     }
 

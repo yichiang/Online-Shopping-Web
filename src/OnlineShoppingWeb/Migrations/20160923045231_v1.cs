@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace OnlineShoppingWeb.Migrations
 {
-    public partial class v2 : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,14 +38,39 @@ namespace OnlineShoppingWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Laptops",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AvgCustomerReview = table.Column<double>(nullable: false),
+                    Brand = table.Column<string>(maxLength: 20, nullable: true),
+                    Condition = table.Column<int>(nullable: false),
+                    Department = table.Column<int>(nullable: false),
+                    HardDrive = table.Column<int>(nullable: false),
+                    HardDriveSize = table.Column<string>(nullable: false),
+                    LaptopModel = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(nullable: false),
+                    Processor = table.Column<int>(nullable: false),
+                    ScreenSize = table.Column<double>(nullable: false),
+                    Title = table.Column<string>(maxLength: 30, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Laptops", x => x.ProductId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
+                    JoinDate = table.Column<DateTime>(nullable: false),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
@@ -148,6 +173,39 @@ namespace OnlineShoppingWeb.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ShoppingOrder",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Create_Date = table.Column<DateTime>(nullable: false),
+                    IsReceived = table.Column<bool>(nullable: false),
+                    IsRequestReturn = table.Column<bool>(nullable: false),
+                    IsShipped = table.Column<bool>(nullable: false),
+                    Notes = table.Column<string>(nullable: true),
+                    OrderConfirmation = table.Column<string>(nullable: true),
+                    Payment = table.Column<string>(nullable: true),
+                    ProductId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingOrder", x => x.OrderId);
+                    table.ForeignKey(
+                        name: "FK_ShoppingOrder_Laptops_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Laptops",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShoppingOrder_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
@@ -176,6 +234,16 @@ namespace OnlineShoppingWeb.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_UserId",
                 table: "AspNetUserRoles",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingOrder_ProductId",
+                table: "ShoppingOrder",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingOrder_UserId",
+                table: "ShoppingOrder",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -208,7 +276,13 @@ namespace OnlineShoppingWeb.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "ShoppingOrder");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Laptops");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
