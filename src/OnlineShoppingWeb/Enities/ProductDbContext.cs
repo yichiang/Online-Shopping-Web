@@ -11,6 +11,8 @@ namespace OnlineShoppingWeb.Enities
     {
         public DbSet<Laptop> Laptops { get; set; }
         public DbSet<ShoppingOrder> ShoppingOrder { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<SubDepartment> SubDepartment { get; set; }
 
         public ProductDbContext(DbContextOptions<ProductDbContext> options):base(options)
         {

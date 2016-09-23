@@ -8,9 +8,10 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160923153351_v3")]
+    partial class v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -123,18 +124,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.Department", b =>
-                {
-                    b.Property<int>("DepartmentId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description");
-
-                    b.HasKey("DepartmentId");
-
-                    b.ToTable("Department");
-                });
-
             modelBuilder.Entity("OnlineShoppingWeb.Enities.Laptop", b =>
                 {
                     b.Property<int>("ProductId")
@@ -210,13 +199,11 @@ namespace OnlineShoppingWeb.Migrations
                     b.Property<int>("SubDepartmentId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("DepartmentId");
+                    b.Property<int>("DepartmentId");
 
                     b.Property<string>("Description");
 
                     b.HasKey("SubDepartmentId");
-
-                    b.HasIndex("DepartmentId");
 
                     b.ToTable("SubDepartment");
                 });
@@ -328,13 +315,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.HasOne("OnlineShoppingWeb.Enities.User")
                         .WithMany("ShoppingOrders")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.SubDepartment", b =>
-                {
-                    b.HasOne("OnlineShoppingWeb.Enities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
                 });
         }
     }

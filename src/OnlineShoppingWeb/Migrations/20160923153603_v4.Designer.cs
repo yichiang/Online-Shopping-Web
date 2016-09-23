@@ -8,9 +8,10 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160923153603_v4")]
+    partial class v4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -210,13 +211,11 @@ namespace OnlineShoppingWeb.Migrations
                     b.Property<int>("SubDepartmentId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("DepartmentId");
+                    b.Property<int>("DepartmentId");
 
                     b.Property<string>("Description");
 
                     b.HasKey("SubDepartmentId");
-
-                    b.HasIndex("DepartmentId");
 
                     b.ToTable("SubDepartment");
                 });
@@ -328,13 +327,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.HasOne("OnlineShoppingWeb.Enities.User")
                         .WithMany("ShoppingOrders")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.SubDepartment", b =>
-                {
-                    b.HasOne("OnlineShoppingWeb.Enities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
                 });
         }
     }
