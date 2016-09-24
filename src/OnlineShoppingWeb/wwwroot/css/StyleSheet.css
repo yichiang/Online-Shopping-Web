@@ -45,6 +45,12 @@
     padding:1rem;
 }
 .font-page-text h1{
-
-
-    font-size: 2rem;}
+    font-size: 2rem;
+}
+.font-page-header{
+    height: 10vh;
+    text-align: center;
+    background-color: gainsboro;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
