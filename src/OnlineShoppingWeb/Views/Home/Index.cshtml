@@ -2,28 +2,31 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-md-6 own-column">
             <div class="font-page-image">
                 <img class="" src="https://static.pexels.com/photos/36428/book-read-relax-lilac-large.jpg" alt="" />
                 <div class="font-image-overlay">
                     <h2>Popular Book</h2>
                     We Have a varity of product
-                    <button class="btn">View Book</button>
+                    <button class="btn overlay-btn">View Books</button>
                 </div>
             </div>
+        </div>
+        <div class="col-md-6 own-column">
+            <div class="font-page-text">
+                <h1>Are you Look for something to make your life better</h1>
             </div>
-        <div class="col-xs-6">
-            <h1>A book is a dream that you hold in your hand.</h1>
-            <h3>Neil Gaiman</h3>
         </div>
     </div>
 
     <div class="row">
 
-        <div class="col-xs-6">
-            <h1>Are you Look for something to make your life better</h1>
+        <div class="col-md-6 own-column">
+            <div class="font-page-text">
+                <h1>Are you Look for something to make your life better</h1>
+            </div>
         </div>
-        <div class="col-xs-6">
+        <div class="col-md-6 own-column">
             <div class="font-page-image">
                 <img src="https://static.pexels.com/photos/173983/pexels-photo-173983-large.jpeg" alt="" />
                 <div class="font-image-overlay">
@@ -35,18 +38,26 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-md-6 hidden-xs">
             <div class="font-page-image">
                 <img class="" src="https://static.pexels.com/photos/425/apple-iphone-desk-office-large.jpg" alt="" />
-                    <div class="font-image-overlay">
-                        <h2>High Performence of Laptop</h2>
-                        We Have a varity of product
-                        <button class="btn">View Laptops</button>
-                    </div>
-                 </div>
+                <div class="font-image-overlay">
+                    <h2>High Performence of Laptop</h2>
+                    We Have a varity of product
+                    <button class="btn overlay-btn">
+                        @Html.ActionLink("View Laptops", "Index", "Department")
+                    </button>
+                </div>
             </div>
-        <div class="col-xs-6">
-            <h1>Are you Look for something to make your life better</h1>
+        </div>
+        <div class="col-md-6">
+            <div class="font-page-text">
+                <h1>Are you Look for something to make your life better. </h1>
+                <h1>Essential for everything you do</h1>
+                <h4>Lightweight, 14” laptop featuring Intel® processors</h4>
+                <h1>Limits are for pushing.</h1>
+                <h4>Power your game with advanced Intel® Core™ processors and the latest graphics.</h4>
+            </div>
         </div>
     </div>
 
