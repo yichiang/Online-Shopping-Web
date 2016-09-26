@@ -24,5 +24,10 @@ namespace OnlineShoppingWeb.Controllers.Api
         {
             return Json(_LaptopData.GetAll());
         }
+        [HttpPost("api/product")]
+        public IActionResult Post([FromBody] Product theLaptop)
+        {
+            return Json(theLaptop);
+        }
     }
 }
