@@ -31,7 +31,6 @@ namespace OnlineShoppingWeb.Controllers
             return View(viewModel);
         }
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult CreateLaptop()
         {
             ViewModels.ProductPageViewModel viewModel = new ViewModels.ProductPageViewModel();
@@ -40,7 +39,6 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public IActionResult CreateLaptop(ProductPageViewModel viewModel)
         {
             viewModel.Laptop.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Laptop.SubDepartment.SubDepartmentId);

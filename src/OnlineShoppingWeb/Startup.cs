@@ -45,6 +45,7 @@ namespace OnlineShoppingWeb
                 config.Password.RequireDigit = false;
                 config.Password.RequireLowercase = false;
                 config.Password.RequireUppercase = false;
+                config.Cookies.ApplicationCookie.LoginPath = "/Account/login";
             })
                            .AddEntityFrameworkStores<ProductDbContext>()
                            .AddDefaultTokenProviders();
