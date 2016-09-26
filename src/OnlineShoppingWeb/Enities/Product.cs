@@ -10,8 +10,10 @@ namespace OnlineShoppingWeb.Enities
         [Key]
         public int ProductId { get; set; }
         [Required]
-        [MaxLength(255)]
+        [StringLength(255, MinimumLength = 5)]
         public string Title { get; set; }
+        [Required]
+        [RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public decimal Price { get; set; }
         public double AvgCustomerReview { get; set; }
 

@@ -31,7 +31,7 @@ namespace OnlineShoppingWeb.Enities
     [Table("Laptops")]
     public class Laptop : Product
     {
-        [MaxLength(20)]
+        [StringLength(20,MinimumLength =5)]
         public string Brand { get; set; }
         [Display(Name = "Laptop Model")]
         public string LaptopModel { get; set; }
