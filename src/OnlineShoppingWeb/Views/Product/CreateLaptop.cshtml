@@ -6,42 +6,61 @@
 {
     @Html.ValidationSummary()
 
-    @Html.LabelFor(model => model.Title)
-    @Html.TextBoxFor(model => model.Title)
-    @Html.ValidationMessageFor(model => model.Title)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title)
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Title)
+    </div>
 
-    @Html.LabelFor(model => model.Price)
-    @Html.TextBoxFor(model => model.Price)
-    @Html.ValidationMessageFor(model => model.Price)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price)
+        @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Price)
+    </div>
 
-    @Html.LabelFor(model => model.Brand)
-    @Html.TextBoxFor(model => model.Brand)
-    @Html.ValidationMessageFor(model => model.Brand)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Brand)
+        @Html.TextBoxFor(model => model.Brand, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Brand)
+    </div>
+    <div class="form-group">
 
-    @Html.LabelFor(model => model.LaptopModel)
-    @Html.TextBoxFor(model => model.LaptopModel)
-    @Html.ValidationMessageFor(model => model.LaptopModel)
+        @Html.LabelFor(model => model.LaptopModel)
+        @Html.TextBoxFor(model => model.LaptopModel, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.LaptopModel)
+    </div>
 
-    @Html.LabelFor(model => model.HardDriveSize)
-    @Html.TextBoxFor(model => model.HardDriveSize)
-    @Html.ValidationMessageFor(model => model.HardDriveSize)
+    <div class="form-group">
+        @Html.LabelFor(model => model.HardDriveSize)
+        @Html.TextBoxFor(model => model.HardDriveSize, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.HardDriveSize)
+    </div>
 
-    @Html.LabelFor(model => model.AvgCustomerReview)
-    @Html.TextBoxFor(model => model.AvgCustomerReview)
-    @Html.ValidationMessageFor(model => model.AvgCustomerReview)
+    <div class="form-group">
+        @Html.LabelFor(model => model.AvgCustomerReview)
+        @Html.TextBoxFor(model => model.AvgCustomerReview, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.AvgCustomerReview)
+    </div>
 
-    @Html.LabelFor(model => model.HardDrive)
-    @Html.DropDownListFor(model => model.HardDrive, Html.GetEnumSelectList(typeof(HardDriveType)))
-    @Html.ValidationMessageFor(model => model.HardDrive)
+    <div class="form-group">
+        @Html.LabelFor(model => model.HardDrive)
+        @Html.DropDownListFor(model => model.HardDrive, Html.GetEnumSelectList(typeof(HardDriveType)))
+        @Html.ValidationMessageFor(model => model.HardDrive)
+    </div>
 
-    @Html.LabelFor(model => model.Processor)
-    @Html.DropDownListFor(model => model.Processor, Html.GetEnumSelectList(typeof(ProcessorType)))
-    @Html.ValidationMessageFor(model => model.Processor)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Processor)
+        @Html.DropDownListFor(model => model.Processor, Html.GetEnumSelectList(typeof(ProcessorType)))
+        @Html.ValidationMessageFor(model => model.Processor)
+    </div>
 
+    <div class="form-group">
+        @Html.LabelFor(model => model.Condition)
+        @Html.DropDownListFor(model => model.Condition, Html.GetEnumSelectList(typeof(ConditionType)))
+        @Html.ValidationMessageFor(model => model.Condition)
+    </div>
 
-    @Html.LabelFor(model => model.Condition)
-    @Html.DropDownListFor(model => model.Condition, Html.GetEnumSelectList(typeof(ConditionType)))
-    @Html.ValidationMessageFor(model => model.Condition)
-
-    <input type="submit" value="Add New Laptop" />
-}
+    <div class="form-group">
+        <input type="submit" value="Add New Laptop" />
+    </div>
+        }
