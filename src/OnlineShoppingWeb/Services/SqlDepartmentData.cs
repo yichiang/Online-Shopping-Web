@@ -43,6 +43,13 @@ namespace OnlineShoppingWeb.Services
         {
             return _context.SubDepartments.Where(subdepartment => subdepartment.Department.DepartmentId == DepartmentId).ToList();
         }
+        public IEnumerable<SubDepartment> GetAllSubDepartments() {
+            return _context.SubDepartments.ToList();
+        }
 
+        public SubDepartment GetSubDepartmentById(int SubDepartmentId)
+        {
+            return _context.SubDepartments.FirstOrDefault(subdepartment => subdepartment.SubDepartmentId == SubDepartmentId);
+        }
     }
 }

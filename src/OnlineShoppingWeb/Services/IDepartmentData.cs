@@ -9,6 +9,9 @@ namespace OnlineShoppingWeb.Services
         void AddNewSubDepartment(SubDepartment newSubDepartment);
         void AddNewDepartment(Department newDepartment);
         Department GetDepartmentById(int DepartmentId);
+        SubDepartment GetSubDepartmentById(int SubDepartmentId);
         IEnumerable<SubDepartment> GetSubDepartmentByDepartmentId(int departmentId);
+        IEnumerable<SubDepartment> GetAllSubDepartments();
+
     }
 }

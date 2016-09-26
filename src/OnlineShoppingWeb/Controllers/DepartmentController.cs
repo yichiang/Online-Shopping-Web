@@ -7,7 +7,6 @@ using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.Services;
 using OnlineShoppingWeb.ViewModels;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace OnlineShoppingWeb.Controllers
 {

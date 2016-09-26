@@ -14,10 +14,12 @@ namespace OnlineShoppingWeb.Controllers
     public class ProductController : Controller
     {
         private IProductData _LaptopData;
+        private IDepartmentData _DepartmentData;
 
-        public ProductController(IProductData LaptopData)
+        public ProductController(IProductData LaptopData, IDepartmentData DepartmentData)
         {
             _LaptopData = LaptopData;
+            _DepartmentData = DepartmentData;
         }
         // GET: /<controller>/
         [AllowAnonymous]
@@ -32,23 +34,25 @@ namespace OnlineShoppingWeb.Controllers
         [AllowAnonymous]
         public IActionResult CreateLaptop()
         {
-            return View();
+            ViewModels.ProductPageViewModel viewModel = new ViewModels.ProductPageViewModel();
+            viewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
+            return View(viewModel);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult CreateLaptop(Laptop newLaptop)
+        public IActionResult CreateLaptop(ProductPageViewModel viewModel)
         {
-            Console.WriteLine(newLaptop);
-            Console.WriteLine(ModelState.IsValid);
-
+            viewModel.Laptop.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Laptop.SubDepartment.SubDepartmentId);
             if (ModelState.IsValid)
             {
-                _LaptopData.AddNewProduct(newLaptop);
+                _LaptopData.AddNewProduct(viewModel.Laptop);
                 return RedirectToAction("Index");
 
             }
-            return View();
+            ViewModels.ProductPageViewModel newviewModel = new ViewModels.ProductPageViewModel();
+            newviewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
+            return View(newviewModel);
         }
     }
 }

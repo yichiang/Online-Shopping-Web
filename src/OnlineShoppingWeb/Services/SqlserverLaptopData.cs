@@ -32,5 +32,6 @@ namespace OnlineShoppingWeb.Services
         {
             return _context.Laptops.FirstOrDefault(computer => computer.ProductId == id );
         }
+       
     }
 }
