@@ -7,6 +7,6 @@ namespace OnlineShoppingWeb.Services
     public interface IProductData
     {
         IEnumerable<IProduct> GetAll();
-        void AddNewProduct(IProduct newProduct);
+        void AddNewProduct(Product newProduct);
     }
 }

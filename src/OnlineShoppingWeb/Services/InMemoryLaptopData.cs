@@ -18,7 +18,7 @@ namespace OnlineShoppingWeb.Services
         };
  
 
-        public void AddNewProduct(IProduct newProduct)
+        public void AddNewProduct(Product newProduct)
         {
             Laptop newLaptop = (Laptop) newProduct;
             newLaptop.ProductId = _allTestLaptop.Count+1;

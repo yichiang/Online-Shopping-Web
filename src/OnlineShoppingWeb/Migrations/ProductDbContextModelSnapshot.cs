@@ -213,8 +213,7 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<int>("DepartmentId");
 
-                    b.Property<string>("Description")
-                        .IsRequired();
+                    b.Property<string>("Description");
 
                     b.HasKey("SubDepartmentId");
 

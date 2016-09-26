@@ -8,7 +8,7 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20160923201733_v1")]
+    [Migration("20160926204925_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,11 +161,12 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<double>("ScreenSize");
 
-                    b.Property<int?>("SubDepartmentId");
+                    b.Property<int?>("SubDepartmentId")
+                        .IsRequired();
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 30);
+                        .HasAnnotation("MaxLength", 255);
 
                     b.HasKey("ProductId");
 
@@ -316,7 +317,8 @@ namespace OnlineShoppingWeb.Migrations
                 {
                     b.HasOne("OnlineShoppingWeb.Enities.SubDepartment", "SubDepartment")
                         .WithMany()
-                        .HasForeignKey("SubDepartmentId");
+                        .HasForeignKey("SubDepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>

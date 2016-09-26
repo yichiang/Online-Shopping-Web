@@ -198,8 +198,8 @@ namespace OnlineShoppingWeb.Migrations
                     Price = table.Column<decimal>(nullable: false),
                     Processor = table.Column<int>(nullable: false),
                     ScreenSize = table.Column<double>(nullable: false),
-                    SubDepartmentId = table.Column<int>(nullable: true),
-                    Title = table.Column<string>(maxLength: 30, nullable: false)
+                    SubDepartmentId = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -209,7 +209,7 @@ namespace OnlineShoppingWeb.Migrations
                         column: x => x.SubDepartmentId,
                         principalTable: "SubDepartments",
                         principalColumn: "SubDepartmentId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

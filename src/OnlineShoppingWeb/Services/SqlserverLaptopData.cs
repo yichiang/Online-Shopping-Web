@@ -16,7 +16,7 @@ namespace OnlineShoppingWeb.Services
             _context = context;
         }
 
-        public void AddNewProduct(IProduct newProduct)
+        public void AddNewProduct(Product newProduct)
         {
             Laptop newLaptop = (Laptop)newProduct;
             _context.Add(newLaptop);

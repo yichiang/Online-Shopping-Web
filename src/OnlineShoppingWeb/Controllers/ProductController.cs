@@ -46,6 +46,7 @@ namespace OnlineShoppingWeb.Controllers
             viewModel.Laptop.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Laptop.SubDepartment.SubDepartmentId);
             if (ModelState.IsValid)
             {
+                //Product newProduct = (Product) viewModel.Laptop;
                 _LaptopData.AddNewProduct(viewModel.Laptop);
                 return RedirectToAction("Index");
 
