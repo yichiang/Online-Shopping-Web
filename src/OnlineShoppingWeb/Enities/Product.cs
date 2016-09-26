@@ -10,7 +10,7 @@ namespace OnlineShoppingWeb.Enities
         [Key]
         public int ProductId { get; set; }
         [Required]
-        [MaxLength(30)]
+        [MaxLength(255)]
         public string Title { get; set; }
         public decimal Price { get; set; }
         public double AvgCustomerReview { get; set; }

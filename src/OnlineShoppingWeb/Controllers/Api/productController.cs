@@ -27,7 +27,12 @@ namespace OnlineShoppingWeb.Controllers.Api
         [HttpPost("api/product")]
         public IActionResult Post([FromBody] Product theLaptop)
         {
-            return Json(theLaptop);
+            if (ModelState.IsValid)
+            {
+                return Json(theLaptop);
+            }
+            return BadRequest(ModelState);
+
         }
     }
 }
