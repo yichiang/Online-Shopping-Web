@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.Services;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using AutoMapper;
 
 namespace OnlineShoppingWeb.Controllers.Api
 {
@@ -25,11 +20,12 @@ namespace OnlineShoppingWeb.Controllers.Api
             return Json(_LaptopData.GetAll());
         }
         [HttpPost("api/product")]
-        public IActionResult Post([FromBody] Product theLaptop)
+        public IActionResult Post([FromBody] Laptop theLaptop)
         {
             if (ModelState.IsValid)
             {
-                return Json(theLaptop);
+              var newLaptop = Mapper.Map<Laptop>(theLaptop);
+                return Json(newLaptop);
             }
             return BadRequest(ModelState);
 

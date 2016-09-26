@@ -14,6 +14,7 @@ using OnlineShoppingWeb.Services;
 using OnlineShoppingWeb.Enities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
+using AutoMapper;
 
 namespace OnlineShoppingWeb
 {
@@ -48,6 +49,7 @@ namespace OnlineShoppingWeb
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory)
         {
+            Mapper.Initialize(config => { config.CreateMap<IProduct, Laptop>().ReverseMap(); });
             app.UseIdentity();
 
             loggerFactory.AddConsole();

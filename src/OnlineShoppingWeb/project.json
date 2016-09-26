@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.AspNetCore.Mvc": "1.0.1",
+    "AutoMapper": "5.1.1",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview2-final",
