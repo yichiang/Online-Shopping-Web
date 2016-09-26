@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineShoppingWeb.Services;
 using OnlineShoppingWeb.Enities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace OnlineShoppingWeb
 {
@@ -31,7 +32,7 @@ namespace OnlineShoppingWeb
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(config => config.SerializerSettings.ContractResolver=new CamelCasePropertyNamesContractResolver());
             services.AddEntityFramework()
                 .AddDbContext<ProductDbContext>(options =>
                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
