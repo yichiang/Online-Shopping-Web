@@ -46,7 +46,5 @@ namespace OnlineShoppingWeb.Enities
         public ProcessorType Processor { get; set; }
         public ConditionType Condition { get; set; }
 
-        public SubDepartment SubDepartment { get; set; }
-
     }
 }

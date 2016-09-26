@@ -16,6 +16,8 @@ namespace OnlineShoppingWeb.Enities
         [RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public decimal Price { get; set; }
         public double AvgCustomerReview { get; set; }
+        [Required]
+        public SubDepartment SubDepartment { get; set; }
 
     }
 }
