@@ -38,7 +38,14 @@ namespace OnlineShoppingWeb
                 .AddDbContext<ProductDbContext>(options =>
                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(config =>
+            {
+                config.Password.RequiredLength = 6;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequireDigit = false;
+                config.Password.RequireLowercase = false;
+                config.Password.RequireUppercase = false;
+            })
                            .AddEntityFrameworkStores<ProductDbContext>()
                            .AddDefaultTokenProviders();
             services.AddScoped<IProductData, SqlServerLaptopData>();
