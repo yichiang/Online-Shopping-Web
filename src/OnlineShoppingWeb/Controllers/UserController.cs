@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineShoppingWeb.Controllers
 {
-    public class UserController1 : Controller
+    public class UserController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()

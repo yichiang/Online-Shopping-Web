@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
@@ -10,11 +11,13 @@ namespace OnlineShoppingWeb.Controllers
     {
         private SignInManager<User> _signInManager;
         private UserManager<User> _userManager;
+        private ProductDbContext _db;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ProductDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _db = db;
         }
         // GET: /<controller>/
         [HttpGet]
@@ -88,6 +91,34 @@ namespace OnlineShoppingWeb.Controllers
             }
             ModelState.AddModelError("", "Invalid Password Attemp");
                 return View(model);
+        }
+
+        // GET: /Roles/Create
+        public ActionResult CreateRole()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Roles/Create
+        [HttpPost]
+        public ActionResult CreateRole(FormCollection collection)
+        {
+
+            try
+            {
+                _db.Roles.Add(new Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole()
+                {
+                    Name = collection["RoleName"]
+                });
+                _db.SaveChanges();
+                ViewBag.ResultMessage = "Role created successfully !";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
