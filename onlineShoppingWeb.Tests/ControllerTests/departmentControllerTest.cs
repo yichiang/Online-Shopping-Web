@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Controllers;
 using OnlineShoppingWeb.Enities;
 using Xunit;
+using OnlineShoppingWeb.Services;
+using OnlineShoppingWeb.ViewModels;
+
 namespace onlineShoppingWeb.Tests.ControllerTests
 {   
     public class DepartmentControllerTest
@@ -11,8 +14,10 @@ namespace onlineShoppingWeb.Tests.ControllerTests
         [Fact]
         public void Get_ViewResult_Index_Test()
         {
+            DepartmentInMemoryData departmentdata = new DepartmentInMemoryData();
+            //IDepartmentData departmentInMemorydata = (IDepartmentData) departmentdata;
             //Arrange
-            DepartmentController controller = new DepartmentController(IDepartmentData DepartmentInMemoryData);
+            DepartmentController controller = new DepartmentController(departmentdata);
             IActionResult actionResult = controller.Index();
             ViewResult indexView = controller.Index() as ViewResult;
 
@@ -20,7 +25,7 @@ namespace onlineShoppingWeb.Tests.ControllerTests
             var result = indexView.ViewData.Model;
 
             //Assert
-            Assert.IsType<List<Department>>(result);
+            Assert.IsType<DepartmentViewModel>(result);
         }
     }
 }
