@@ -5,22 +5,22 @@ using OnlineShoppingWeb.Enities;
 using Xunit;
 namespace onlineShoppingWeb.Tests.ControllerTests
 {   
-    public class DepartmentControllerTest
+    public class HomeControllerTest
     {
  
         [Fact]
         public void Get_ViewResult_Index_Test()
         {
             //Arrange
-            DepartmentController controller = new DepartmentController(IDepartmentData DepartmentInMemoryData);
+            HomeController controller = new HomeController();
             IActionResult actionResult = controller.Index();
             ViewResult indexView = controller.Index() as ViewResult;
 
             //Act
-            var result = indexView.ViewData.Model;
+            var result = controller.Index();
 
             //Assert
-            Assert.IsType<List<Department>>(result);
+            Assert.IsType<ViewResult>(result);
         }
     }
 }
