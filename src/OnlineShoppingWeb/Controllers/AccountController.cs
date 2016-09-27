@@ -105,28 +105,6 @@ namespace OnlineShoppingWeb.Controllers
                 return View(model);
         }
 
-        // GET: /Roles/Create
-        public ActionResult CreateRole()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Roles/Create
-        [HttpPost]
-        public ActionResult CreateRole(FormCollection collection)
-        {
-
-            try
-            {
-              
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
         [HttpPost]
         [Route("user/delete/{id}")]
         public ActionResult DeleteUser(string id)

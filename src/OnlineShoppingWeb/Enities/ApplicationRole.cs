@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,5 +15,9 @@ namespace OnlineShoppingWeb.Enities
         public int Phone { get; set; }
         public string WorkTitle { get; set; }
 
+        public ApplicationRole(string name) :base(name)
+        {
+
+        }
     }
 }
