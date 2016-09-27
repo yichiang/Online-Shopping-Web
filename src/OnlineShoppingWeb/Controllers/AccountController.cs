@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OnlineShoppingWeb.Controllers
@@ -19,7 +20,18 @@ namespace OnlineShoppingWeb.Controllers
             _signInManager = signInManager;
             _db = db;
         }
-        // GET: /<controller>/
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AllUsers()
+        {
+            return View(_db.Users.ToList());
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -37,7 +49,7 @@ namespace OnlineShoppingWeb.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index","Home");
+                    return View("Index", "Account");
                 }
                 else
                 {
@@ -107,18 +119,33 @@ namespace OnlineShoppingWeb.Controllers
 
             try
             {
-                _db.Roles.Add(new Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole()
-                {
-                    Name = collection["RoleName"]
-                });
-                _db.SaveChanges();
-                ViewBag.ResultMessage = "Role created successfully !";
-                return RedirectToAction("CreateRole");
+              
+                return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
+        }
+        [HttpPost]
+        [Route("user/delete/{id}")]
+        public ActionResult DeleteUser(string id)
+        {
+
+            //Only SuperAdmin or Admin can delete users (Later when implement roles)
+
+            User appUser =  _db.Users.FirstOrDefault(user => user.Id == id);
+
+            if (appUser != null)
+            {
+                var result = _db.Users.Remove(appUser);
+
+                return Ok();
+
+            }
+
+            return NotFound();
+
         }
     }
 }

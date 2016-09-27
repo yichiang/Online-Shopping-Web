@@ -10,20 +10,6 @@ namespace OnlineShoppingWeb.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
@@ -35,6 +21,20 @@ namespace OnlineShoppingWeb.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 256, nullable: false),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,28 +184,29 @@ namespace OnlineShoppingWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Laptops",
+                name: "Products",
                 columns: table => new
                 {
                     ProductId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AvgCustomerReview = table.Column<double>(nullable: false),
-                    Brand = table.Column<string>(maxLength: 20, nullable: true),
-                    Condition = table.Column<int>(nullable: false),
-                    HardDrive = table.Column<int>(nullable: false),
-                    HardDriveSize = table.Column<string>(nullable: false),
-                    LaptopModel = table.Column<string>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
-                    Processor = table.Column<int>(nullable: false),
-                    ScreenSize = table.Column<double>(nullable: false),
                     SubDepartmentId = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(maxLength: 255, nullable: false)
+                    Title = table.Column<string>(maxLength: 255, nullable: false),
+                    Brand = table.Column<string>(maxLength: 20, nullable: true),
+                    Condition = table.Column<int>(nullable: true),
+                    HardDrive = table.Column<int>(nullable: true),
+                    HardDriveSize = table.Column<string>(nullable: true),
+                    LaptopModel = table.Column<string>(nullable: true),
+                    Processor = table.Column<int>(nullable: true),
+                    ScreenSize = table.Column<double>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Laptops", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_Laptops_SubDepartments_SubDepartmentId",
+                        name: "FK_Products_SubDepartments_SubDepartmentId",
                         column: x => x.SubDepartmentId,
                         principalTable: "SubDepartments",
                         principalColumn: "SubDepartmentId",
@@ -232,9 +233,9 @@ namespace OnlineShoppingWeb.Migrations
                 {
                     table.PrimaryKey("PK_ShoppingOrderd", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_ShoppingOrderd_Laptops_PurchasedProductProductId",
+                        name: "FK_ShoppingOrderd_Products_PurchasedProductProductId",
                         column: x => x.PurchasedProductProductId,
-                        principalTable: "Laptops",
+                        principalTable: "Products",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -244,11 +245,6 @@ namespace OnlineShoppingWeb.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles",
-                column: "NormalizedName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -276,8 +272,13 @@ namespace OnlineShoppingWeb.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Laptops_SubDepartmentId",
-                table: "Laptops",
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_SubDepartmentId",
+                table: "Products",
                 column: "SubDepartmentId");
 
             migrationBuilder.CreateIndex(
@@ -331,7 +332,7 @@ namespace OnlineShoppingWeb.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Laptops");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
