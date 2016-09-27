@@ -8,9 +8,10 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160927161112_v3")]
+    partial class v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -135,17 +136,30 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.Product", b =>
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.Laptop", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<double>("AvgCustomerReview");
 
-                    b.Property<string>("Discriminator")
+                    b.Property<string>("Brand")
+                        .HasAnnotation("MaxLength", 20);
+
+                    b.Property<int>("Condition");
+
+                    b.Property<int>("HardDrive");
+
+                    b.Property<string>("HardDriveSize")
                         .IsRequired();
 
+                    b.Property<string>("LaptopModel");
+
                     b.Property<decimal>("Price");
+
+                    b.Property<int>("Processor");
+
+                    b.Property<double>("ScreenSize");
 
                     b.Property<int>("SubDepartmentId");
 
@@ -157,9 +171,7 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.HasIndex("SubDepartmentId");
 
-                    b.ToTable("Products");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
+                    b.ToTable("Laptops");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>
@@ -263,31 +275,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.Laptop", b =>
-                {
-                    b.HasBaseType("OnlineShoppingWeb.Enities.Product");
-
-                    b.Property<string>("Brand")
-                        .HasAnnotation("MaxLength", 20);
-
-                    b.Property<int>("Condition");
-
-                    b.Property<int>("HardDrive");
-
-                    b.Property<string>("HardDriveSize")
-                        .IsRequired();
-
-                    b.Property<string>("LaptopModel");
-
-                    b.Property<int>("Processor");
-
-                    b.Property<double>("ScreenSize");
-
-                    b.ToTable("Laptops");
-
-                    b.HasDiscriminator().HasValue("Laptop");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
@@ -325,10 +312,10 @@ namespace OnlineShoppingWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.Product", b =>
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.Laptop", b =>
                 {
                     b.HasOne("OnlineShoppingWeb.Enities.SubDepartment", "SubDepartment")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("SubDepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -347,7 +334,7 @@ namespace OnlineShoppingWeb.Migrations
             modelBuilder.Entity("OnlineShoppingWeb.Enities.SubDepartment", b =>
                 {
                     b.HasOne("OnlineShoppingWeb.Enities.Department", "Department")
-                        .WithMany("SubDepartments")
+                        .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

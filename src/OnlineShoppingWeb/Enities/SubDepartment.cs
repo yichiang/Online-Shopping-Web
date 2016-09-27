@@ -17,5 +17,8 @@ namespace OnlineShoppingWeb.Enities
         [Required]
         public int DepartmentId { get; set; }
         public virtual Department Department { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
+
     }
 }

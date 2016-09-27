@@ -113,7 +113,7 @@ namespace OnlineShoppingWeb.Controllers
                 });
                 _db.SaveChanges();
                 ViewBag.ResultMessage = "Role created successfully !";
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateRole");
             }
             catch
             {
