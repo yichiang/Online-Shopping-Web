@@ -17,7 +17,8 @@ namespace OnlineShoppingWeb.Enities
         public decimal Price { get; set; }
         public double AvgCustomerReview { get; set; }
         [Required]
-        public SubDepartment SubDepartment { get; set; }
+        public int SubDepartmentId { get; set; }
+        public virtual SubDepartment SubDepartment { get; set; }
 
     }
 }

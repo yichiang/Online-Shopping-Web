@@ -41,7 +41,7 @@ namespace OnlineShoppingWeb.Controllers
         [HttpPost]
         public IActionResult CreateLaptop(ProductPageViewModel viewModel)
         {
-            viewModel.Laptop.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Laptop.SubDepartment.SubDepartmentId);
+            viewModel.Laptop.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Laptop.SubDepartmentId);
             if (ModelState.IsValid)
             {
                 //Product newProduct = (Product) viewModel.Laptop;

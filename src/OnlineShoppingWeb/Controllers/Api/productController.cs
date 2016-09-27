@@ -8,7 +8,6 @@ namespace OnlineShoppingWeb.Controllers.Api
     public class ProductController : Controller
     {
         private IProductData _LaptopData;
-
         public ProductController(IProductData LaptopData)
         {
             _LaptopData = LaptopData;

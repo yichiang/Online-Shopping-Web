@@ -62,7 +62,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Laptop.SubDepartment)
-        @Html.DropDownListFor(model => model.Laptop.SubDepartment.SubDepartmentId, Model.SubDepartments.Select(x => new SelectListItem { Text = x.SubDepartmentId.ToString()+x.Description, Value = x.SubDepartmentId.ToString() }))
+        @Html.DropDownListFor(model => model.Laptop.SubDepartmentId, Model.SubDepartments.Select(x => new SelectListItem { Text = x.SubDepartmentId.ToString()+x.Description, Value = x.SubDepartmentId.ToString() }))
         @Html.ValidationMessageFor(model => model.Laptop.SubDepartment)
     </div>
 
