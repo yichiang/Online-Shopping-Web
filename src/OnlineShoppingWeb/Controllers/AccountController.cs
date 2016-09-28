@@ -45,7 +45,8 @@ namespace OnlineShoppingWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-           
+
+            model.RoleNames = _db.Roles.Select(x => x.Name).ToList();
             if (ModelState.IsValid)
             {
                 var user = new User { UserName = model.Username, Email = model.Email };
@@ -65,7 +66,7 @@ namespace OnlineShoppingWeb.Controllers
                 }
             }
             
-           return View();
+           return View(model);
          
         }
 
