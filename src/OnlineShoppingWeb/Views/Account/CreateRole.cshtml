@@ -1,4 +1,5 @@
-﻿
+﻿@model Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole
+
 @{
     ViewBag.Title = "Create";
 }
@@ -15,7 +16,7 @@
         Role name
     </div>
     <p>
-        @Html.TextBox("RoleName")
+        @Html.TextBox("Name")
     </p>
     <input type="submit" value="Save" />
 }

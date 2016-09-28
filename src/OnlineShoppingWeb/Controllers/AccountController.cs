@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
@@ -125,5 +126,27 @@ namespace OnlineShoppingWeb.Controllers
             return NotFound();
 
         }
+        [HttpGet]
+        [Route("account/createRole")]
+        public ActionResult CreateRole()
+        {
+            var Role = new IdentityRole();
+            return View(Role);
+        }
+
+        /// <summary>
+        /// Create a New Role
+        /// </summary>
+        /// <param name="Role"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("account/createRole")]
+        public ActionResult CreateRole(IdentityRole Role)
+        {
+            _db.Roles.Add(Role);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
