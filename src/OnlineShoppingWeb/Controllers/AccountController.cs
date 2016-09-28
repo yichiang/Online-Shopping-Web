@@ -56,9 +56,14 @@ namespace OnlineShoppingWeb.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //await this._userManager.AddToRoleAsync(user, model.RoleName);
-
                     await _signInManager.SignInAsync(user, false);
+                    IdentityUserRole<string> newUserRole = new IdentityUserRole<string>();
+                    newUserRole.RoleId = role.Id;
+                    newUserRole.UserId = user.Id;
+                    //_db.UserRoles.Add(newUserRole);
+                    //await _userManager.AddToRoleAsync(user, model.RoleName);
+                    user.Roles.Add(newUserRole);
+                    _db.SaveChanges();
                     return View("Index", "Account");
                 }
                 else
