@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Enities;
@@ -162,5 +163,46 @@ namespace OnlineShoppingWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: /Account/ForgotPassword
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("account/ForgotPassword")]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        // POST: /Account/ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [Route("account/ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByNameAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                {
+                    return View("ForgotPasswordConfirmation", model);
+                }
+            }
+            return View(model);
+        }
+
+        
+        // POST: /Account/ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [Route("account/ForgotPasswordConfirmation")]
+        public IActionResult ForgotPasswordConfirmation(ForgotPasswordViewModel model)
+        {
+            if (model.ComfirmationCode.Trim().ToLower()=="temp")
+            {
+                return Content("Please creating new password. I still develop it");
+            }
+            return View(model);
+        }
     }
 }
