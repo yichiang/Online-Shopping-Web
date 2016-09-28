@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,5 +24,8 @@ namespace OnlineShoppingWeb.ViewModels
         [DataType(DataType.Password),Compare("Password")]
         [Display(Name ="Confirm Password")]
         public string ConfirmPassword { get; set; }
+        public string RoleName { get; set; }
+        public List<string> RoleNames { get; set; }
+
     }
 }

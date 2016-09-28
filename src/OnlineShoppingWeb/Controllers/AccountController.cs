@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
 using System.Linq;
@@ -36,7 +37,9 @@ namespace OnlineShoppingWeb.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            RegisterViewModel model = new RegisterViewModel();
+            model.RoleNames = _db.Roles.Select(x =>x.Name).ToList();
+            return View(model);
         }
 
         [HttpPost]
@@ -49,6 +52,7 @@ namespace OnlineShoppingWeb.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, model.RoleName);
                     await _signInManager.SignInAsync(user, false);
                     return View("Index", "Account");
                 }

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Register";
+
 }
 
 @model RegisterViewModel
@@ -25,5 +26,6 @@
     @Html.LabelFor(m => m.ConfirmPassword)
     @Html.PasswordFor(m => m.ConfirmPassword)
 
+    @Html.DropDownListFor(model => model.RoleName, Model.RoleNames.Select(x => new SelectListItem { Text = x, Value = x }))
     <input type="submit" value="Register" />
 }
