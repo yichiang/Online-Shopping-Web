@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,12 +15,15 @@ namespace OnlineShoppingWeb.Controllers
     {
         private SignInManager<User> _signInManager;
         private UserManager<User> _userManager;
+        private RoleManager<IdentityRole> _roleManager;
+
         private ProductDbContext _db;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ProductDbContext db)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ProductDbContext db, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _db = db;
         }
 
@@ -47,13 +51,16 @@ namespace OnlineShoppingWeb.Controllers
         {
 
             model.RoleNames = _db.Roles.Select(x => x.Name).ToList();
+            var role = _db.Roles.FirstOrDefault(x => x.Name== model.RoleName);
+            var foundRole = await _roleManager.FindByIdAsync(role.Id);
+
             if (ModelState.IsValid)
             {
                 var user = new User { UserName = model.Username, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, model.RoleName);
+                    //var resultAddNewRole = await _userManager.AddToRoleAsync(user, foundRole.Name);
                     await _signInManager.SignInAsync(user, false);
                     return View("Index", "Account");
                 }
