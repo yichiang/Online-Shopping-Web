@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace OnlineShoppingWeb.Controllers
 {
     public class AccountController : Controller
@@ -60,7 +56,8 @@ namespace OnlineShoppingWeb.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //var resultAddNewRole = await _userManager.AddToRoleAsync(user, foundRole.Name);
+                    //await this._userManager.AddToRoleAsync(user, model.RoleName);
+
                     await _signInManager.SignInAsync(user, false);
                     return View("Index", "Account");
                 }
