@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
 namespace OnlineShoppingWeb.Enities
 {
     public enum ProcessorType
@@ -45,6 +46,5 @@ namespace OnlineShoppingWeb.Enities
         public HardDriveType HardDrive { get; set; }
         public ProcessorType Processor { get; set; }
         public ConditionType Condition { get; set; }
-
     }
 }

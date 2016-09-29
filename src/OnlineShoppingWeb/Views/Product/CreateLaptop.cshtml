@@ -3,7 +3,7 @@
 @using OnlineShoppingWeb.ViewModels;
 @using OnlineShoppingWeb.Enities;
 @model ProductPageViewModel
-@using (Html.BeginForm())
+@using (Html.BeginForm("CreateLaptop", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary()
 
