@@ -25,12 +25,22 @@ namespace OnlineShoppingWeb.Services
             _allTestLaptop.Add(newLaptop);
         }
 
-        public IEnumerable<IProduct> GetAll()
+        public void DeleteProduct(int ProductId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product FindProductById(int ProductId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Product> GetAll()
         {
             return _allTestLaptop;
         }
 
-        public IEnumerable<IProduct> GetProductsbySubDepartment(int SubDepartmentId)
+        public IEnumerable<Product> GetProductsbySubDepartment(int SubDepartmentId)
         {
             throw new NotImplementedException();
         }

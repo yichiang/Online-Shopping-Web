@@ -4,6 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineShoppingWeb.Enities
 {
+    public enum ConditionType
+    {
+        unKnown,
+        New,
+        Used,
+        Refurbished
+    }
+
     [Table("Products")]
     public class Product: IProduct
     {
@@ -19,6 +27,6 @@ namespace OnlineShoppingWeb.Enities
         [Required]
         public int SubDepartmentId { get; set; }
         public virtual SubDepartment SubDepartment { get; set; }
-
+        public ConditionType Condition { get; set; }
     }
 }

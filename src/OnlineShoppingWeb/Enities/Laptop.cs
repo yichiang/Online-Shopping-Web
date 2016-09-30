@@ -17,13 +17,6 @@ namespace OnlineShoppingWeb.Enities
 
     }
 
-    public enum ConditionType
-    {
-        unKnown,
-        New,
-        Used,
-        Refurbished
-    }
 
     public enum HardDriveType
     {
@@ -49,7 +42,7 @@ namespace OnlineShoppingWeb.Enities
         [Display(Name = "Hard Drive Type")]
         public HardDriveType HardDrive { get; set; }
         public ProcessorType Processor { get; set; }
-        public ConditionType Condition { get; set; }
+
         //public virtual ICollection<HttpPostedFileBase> LaptopFiles { get; set; }
 
     }

@@ -18,24 +18,35 @@ namespace OnlineShoppingWeb.Services
 
         public void AddNewProduct(Product newProduct)
         {
-            Laptop newLaptop = (Laptop)newProduct;
-            _context.Add(newLaptop);
+            _context.Add(newProduct);
             _context.SaveChanges();
         }
 
-        public IEnumerable<IProduct> GetAll()
+        public void DeleteProduct(int ProductId)
         {
-            return _context.Laptops.ToList();
+            
+            _context.Remove(this.FindProductById(ProductId));
+            _context.SaveChanges();
+        }
+
+        public Product FindProductById(int ProductId)
+        {
+            return _context.Products.FirstOrDefault(computer => computer.ProductId == ProductId);
+        }
+
+        public IEnumerable<Product> GetAll()
+        {
+            return _context.Products.ToList();
         }
 
         public IProduct GetLaptopById(int id)
         {
-            return _context.Laptops.FirstOrDefault(computer => computer.ProductId == id );
+            return _context.Products.FirstOrDefault(computer => computer.ProductId == id );
         }
 
-        public IEnumerable<IProduct> GetProductsbySubDepartment(int SubDepartmentId)
+        public IEnumerable<Product> GetProductsbySubDepartment(int SubDepartmentId)
         {
-            return _context.Laptops.Where(computer => computer.SubDepartmentId== SubDepartmentId);
+            return _context.Products.Where(computer => computer.SubDepartmentId== SubDepartmentId);
         }
     }
 }

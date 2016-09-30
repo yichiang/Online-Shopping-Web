@@ -8,9 +8,10 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160930212134_v7")]
+    partial class v7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -142,8 +143,6 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<double>("AvgCustomerReview");
 
-                    b.Property<int>("Condition");
-
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
@@ -272,6 +271,8 @@ namespace OnlineShoppingWeb.Migrations
                     b.Property<string>("Brand")
                         .HasAnnotation("MaxLength", 20);
 
+                    b.Property<int>("Condition");
+
                     b.Property<int>("HardDrive");
 
                     b.Property<string>("HardDriveSize")
@@ -286,22 +287,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("Laptops");
 
                     b.HasDiscriminator().HasValue("Laptop");
-                });
-
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.Phone", b =>
-                {
-                    b.HasBaseType("OnlineShoppingWeb.Enities.Product");
-
-                    b.Property<string>("Brand")
-                        .HasAnnotation("MaxLength", 20);
-
-                    b.Property<string>("Carrier");
-
-                    b.Property<double>("ScreenSize");
-
-                    b.ToTable("Products");
-
-                    b.HasDiscriminator().HasValue("Phone");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

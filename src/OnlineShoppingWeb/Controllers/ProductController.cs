@@ -17,13 +17,13 @@ namespace OnlineShoppingWeb.Controllers
     [Authorize]
     public class ProductController : Controller
     {
-        private IProductData _LaptopData;
+        private IProductData _ProductData;
         private IDepartmentData _DepartmentData;
         private IHostingEnvironment _env;
 
         public ProductController(IProductData LaptopData, IDepartmentData DepartmentData, IHostingEnvironment env)
         {
-            _LaptopData = LaptopData;
+            _ProductData = LaptopData;
             _DepartmentData = DepartmentData;
             _env = env;
         }
@@ -32,7 +32,7 @@ namespace OnlineShoppingWeb.Controllers
         public IActionResult Index()
         {
             ViewModels.ProductPageViewModel viewModel = new ViewModels.ProductPageViewModel();
-            viewModel.Laptops = (IEnumerable<Laptop>) _LaptopData.GetAll();
+            viewModel.Products = _ProductData.GetAll();
     
             return View(viewModel);
         }
@@ -51,7 +51,7 @@ namespace OnlineShoppingWeb.Controllers
             if (ModelState.IsValid)
             {
                 //Product newProduct = (Product) viewModel.Laptop;
-                _LaptopData.AddNewProduct(viewModel.Laptop);
+                _ProductData.AddNewProduct(viewModel.Laptop);
                 return RedirectToAction("Index");
 
             }
@@ -59,6 +59,18 @@ namespace OnlineShoppingWeb.Controllers
             newviewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(newviewModel);
         }
+
+        [HttpPost]
+        [Route("product/DeleteProduct/{ProductId}")]
+        public IActionResult DeleteProduct(int ProductId)
+        {
+            _ProductData.DeleteProduct(ProductId);
+ 
+            return RedirectToAction("Index");
+
+        }
+
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult UploadFile()
@@ -79,13 +91,37 @@ namespace OnlineShoppingWeb.Controllers
                 {
                     using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
                     {
-                        //await file.CopyToAsync(fileStream);
+                        await file.CopyToAsync(fileStream);
                         file.CopyTo(fileStream);
 
                     }
                 }
             }
             return View();
+        }
+
+        //Phone
+        [HttpGet]
+        public IActionResult CreatePhone()
+        {
+            ViewModels.ProductPageViewModel viewModel = new ViewModels.ProductPageViewModel();
+            viewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult CreatePhone(ProductPageViewModel viewModel)
+        {
+            viewModel.Phone.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Phone.SubDepartmentId);
+            if (ModelState.IsValid)
+            {
+                _ProductData.AddNewProduct(viewModel.Phone);
+                return RedirectToAction("Index");
+
+            }
+            ViewModels.ProductPageViewModel newviewModel = new ViewModels.ProductPageViewModel();
+            newviewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
+            return View(newviewModel);
         }
     }
 }

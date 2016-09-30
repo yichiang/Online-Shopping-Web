@@ -8,9 +8,10 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160930213330_v8")]
+    partial class v8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -294,8 +295,6 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<string>("Brand")
                         .HasAnnotation("MaxLength", 20);
-
-                    b.Property<string>("Carrier");
 
                     b.Property<double>("ScreenSize");
 
