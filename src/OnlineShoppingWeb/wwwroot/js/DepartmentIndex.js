@@ -1,11 +1,11 @@
 ﻿$(document).ready(function () {
     $(".editFormForDepartment").addClass("hideAction");
     $(".editButtonForDepartment").click(function () {
-        if ($(".editFormForDepartment").hasClass("hideAction")) {
-            $(".editFormForDepartment").removeClass("hideAction");
+        if ($(this).next().hasClass("hideAction")) {
+            $(this).next().removeClass("hideAction");
 
         } else {
-            $(".editFormForDepartment").addClass("hideAction");
+            $(this).next().addClass("hideAction");
         }
     });
 });
