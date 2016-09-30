@@ -80,8 +80,6 @@ namespace OnlineShoppingWeb.Controllers
                     using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
                     {
                         //await file.CopyToAsync(fileStream);
-                        //file.SaveAs(uploads);
-
                         file.CopyTo(fileStream);
 
                     }

@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
+
 namespace OnlineShoppingWeb.Enities
 {
     public enum ProcessorType
@@ -46,5 +49,7 @@ namespace OnlineShoppingWeb.Enities
         public HardDriveType HardDrive { get; set; }
         public ProcessorType Processor { get; set; }
         public ConditionType Condition { get; set; }
+        //public virtual ICollection<HttpPostedFileBase> LaptopFiles { get; set; }
+
     }
 }
