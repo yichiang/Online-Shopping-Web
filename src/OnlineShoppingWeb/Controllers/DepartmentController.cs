@@ -13,10 +13,12 @@ namespace OnlineShoppingWeb.Controllers
     public class DepartmentController : Controller
     {
         private IDepartmentData _DepartmentData;
+        private IProductData _ProductData;
 
-        public DepartmentController(IDepartmentData DepartmentData)
+        public DepartmentController(IDepartmentData DepartmentData, IProductData ProductData)
         {
             _DepartmentData = DepartmentData;
+            _ProductData = ProductData;
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -83,11 +85,10 @@ namespace OnlineShoppingWeb.Controllers
             return Content("I will try to find a way to add to table ID "+ newDepartmentViewModel.SubDepartment.DepartmentId + "newDepartmentViewModel.SubDepartment Name" + newDepartmentViewModel.SubDepartment.Description);
         }
 
-        [Route("department/{departmentId}/AddSubDepartment/{subDepartmentId}")]
+        [Route("department/{departmentId}/allSubDepartmentProduct/{subDepartmentId}")]
         public IActionResult allSubDepartmentProduct(int departmentId, int subdepartmentId)
         {
-
-            return Content("I will create the list of products based on department soon");
+            return View(_ProductData.GetProductsbySubDepartment(subdepartmentId));
         }
 
         [HttpPost]

@@ -8,5 +8,6 @@ namespace OnlineShoppingWeb.Services
     {
         IEnumerable<IProduct> GetAll();
         void AddNewProduct(Product newProduct);
+        IEnumerable<IProduct> GetProductsbySubDepartment(int SubDepartmentId);
     }
 }

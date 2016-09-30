@@ -29,5 +29,10 @@ namespace OnlineShoppingWeb.Services
         {
             return _allTestLaptop;
         }
+
+        public IEnumerable<IProduct> GetProductsbySubDepartment(int SubDepartmentId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

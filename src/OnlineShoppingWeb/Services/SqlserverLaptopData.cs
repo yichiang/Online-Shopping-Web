@@ -32,6 +32,10 @@ namespace OnlineShoppingWeb.Services
         {
             return _context.Laptops.FirstOrDefault(computer => computer.ProductId == id );
         }
-       
+
+        public IEnumerable<IProduct> GetProductsbySubDepartment(int SubDepartmentId)
+        {
+            return _context.Laptops.Where(computer => computer.SubDepartmentId== SubDepartmentId);
+        }
     }
 }
