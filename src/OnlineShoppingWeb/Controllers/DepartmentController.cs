@@ -91,13 +91,13 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpPost]
-        [Route("department/EditDepartment")]
-        public IActionResult EditDepartment(DepartmentViewModel departmentViewModel)
+        [Route("department/EditDepartment/{departmentId}")]
+        public IActionResult EditDepartment(int departmentId,DepartmentViewModel departmentViewModel)
         {
 
             if (!string.IsNullOrEmpty(departmentViewModel.Department.Description))
             {
-
+                departmentViewModel.Department.DepartmentId =departmentId;
                 _DepartmentData.EditDepartment(departmentViewModel.Department);
                 return RedirectToAction("Index", "Department");
 
