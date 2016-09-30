@@ -3,7 +3,7 @@
 <h1>It is Department list</h1>
 @foreach (var department in Model.Departments)
 {
-    <h2>@Html.ActionLink(@department.Description, "DepartmentofSubDepartment", "Department", new { departmentId = @department.DepartmentId }) | @Html.ActionLink("Delete", "DepartmentofSubDepartment", "Department", new { departmentId = @department.DepartmentId }) </h2>
+    <h2>@Html.ActionLink(@department.Description, "DepartmentofSubDepartment", "Department", new { departmentId = @department.DepartmentId })  </h2>
 
     <button class="editButtonForDepartment" >Edit</button>
 
@@ -12,7 +12,11 @@
         <input name="Department.Description" class="form-control" type="text" value="@department.Description" />
         <input type="submit" value="EditDepartment" />
     </form>
-    }
+
+    <form action="/Department/DeleteDepartment/@department.DepartmentId" method="post" class="">
+        <input type="submit" value="Delete" />
+    </form>
+}
 
  @Html.ActionLink("Create New Department", "CreateDepartment", "Department")
 @section ownScript{

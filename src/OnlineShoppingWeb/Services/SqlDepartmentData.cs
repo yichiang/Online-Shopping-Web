@@ -74,8 +74,10 @@ namespace OnlineShoppingWeb.Services
             Department department = this.GetDepartmentById(DepartmentId);
             IEnumerable<SubDepartment> subs = this.GetSubDepartmentByDepartmentId(DepartmentId);
             _context.Remove(department);
-            _context.Remove(subs);
-
+            foreach( var sub in subs)
+            {
+                _context.Remove(sub);
+            }
             _context.SaveChanges();
         }
 
