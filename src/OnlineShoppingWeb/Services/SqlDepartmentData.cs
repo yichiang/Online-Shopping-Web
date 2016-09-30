@@ -60,5 +60,13 @@ namespace OnlineShoppingWeb.Services
 
             _context.SaveChanges();
         }
+
+        public void EditSubDepartment(SubDepartment editSubDepartment)
+        {
+            var oldSubDepartment = this.GetSubDepartmentById(editSubDepartment.SubDepartmentId);
+            oldSubDepartment.Description = editSubDepartment.Description;
+
+            _context.SaveChanges();
+        }
     }
 }

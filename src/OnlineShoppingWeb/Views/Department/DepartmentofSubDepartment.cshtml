@@ -4,10 +4,17 @@
 <h1> Here is all list under @Model.DepartmentOfSub.Description </h1>
 @foreach (var sub in Model.SubDepartments)
 {
-    @*<h2>@Html.ActionLink(sub.Description, "DepartmentofSubDepartment", "Department", new { departmentId = Model.DepartmentOfSub.DepartmentId, subDepartmentId= sub.SubDepartmentId })</h2>*@
 
-   
+
     <h1><a href="/department/@Model.DepartmentOfSub.DepartmentId/AddSubDepartment/@sub.SubDepartmentId">@sub.Description</a></h1>
+    <button class="editButtonForDepartment">Edit</button>
+
+    <form action="/Department/EditSubDepartment/@sub.SubDepartmentId" method="post" class="editFormForDepartment">
+        <input type="hidden" name="SubDepartment.DepartmentId" value="@Model.DepartmentOfSub.DepartmentId" />
+        <input type="hidden" name="SubDepartment.SubDepartmentId" value="@sub.SubDepartmentId" />
+        <input name="SubDepartment.Description" class="form-control" type="text" value="@sub.Description" />
+        <input type="submit" value="EditSubDepartment" />
+    </form>
 }
 
 @Html.ActionLink("Create New SubDepartment", "AddSubDepartment", "Department",new { departmentId = Model.DepartmentOfSub.DepartmentId });

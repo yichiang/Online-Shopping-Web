@@ -13,5 +13,6 @@ namespace OnlineShoppingWeb.Services
         IEnumerable<SubDepartment> GetSubDepartmentByDepartmentId(int departmentId);
         IEnumerable<SubDepartment> GetAllSubDepartments();
         void EditDepartment(Department editDepartment);
+        void EditSubDepartment(SubDepartment editSubDepartment);
     }
 }

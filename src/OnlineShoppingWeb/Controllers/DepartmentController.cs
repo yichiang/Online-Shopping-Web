@@ -105,5 +105,23 @@ namespace OnlineShoppingWeb.Controllers
 
             return Content("I will try to find a way to add to table ID " + departmentViewModel.Department.DepartmentId + "New Name Name" + departmentViewModel.Department.Description);
         }
+
+
+        [HttpPost]
+        [Route("department/EditSubDepartment/{subDepartmentId}")]
+        public IActionResult EditSubDepartment(int subDepartmentId, DepartmentViewModel departmentViewModel)
+        {
+
+            if (!string.IsNullOrEmpty(departmentViewModel.SubDepartment.Description))
+            {
+                departmentViewModel.SubDepartment.SubDepartmentId = subDepartmentId;
+                _DepartmentData.EditSubDepartment(departmentViewModel.SubDepartment);
+                return RedirectToAction("DepartmentofSubDepartment", "Department",new { departmentId = departmentViewModel.SubDepartment.DepartmentId });
+
+            }
+
+            return Content("I will try to find a way to add to table ID " + departmentViewModel.Department.DepartmentId + "New Name Name" + departmentViewModel.Department.Description);
+        }
     }
-}
+  }
+
