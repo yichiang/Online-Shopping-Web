@@ -35,6 +35,16 @@ namespace OnlineShoppingWeb.Services
             throw new NotImplementedException();
         }
 
+        public void DeleteDepartment(int DepartmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteSubDepartment(int SubDepartmentId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void EditDepartment(Department editDepartment)
         {
             throw new NotImplementedException();

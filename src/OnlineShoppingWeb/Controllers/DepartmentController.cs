@@ -105,6 +105,21 @@ namespace OnlineShoppingWeb.Controllers
 
             return Content("I will try to find a way to add to table ID " + departmentViewModel.Department.DepartmentId + "New Name Name" + departmentViewModel.Department.Description);
         }
+        [HttpPost]
+        [Route("department/deleteDepartment/{departmentId}")]
+        public IActionResult DeleteDepartment(int departmentId)
+        {
+            _DepartmentData.DeleteDepartment(departmentId);
+                return RedirectToAction("Index", "Department"); 
+        }
+        [HttpPost]
+        [Route("department/deleteSubDepartment/{subDepartmentId}")]
+        public IActionResult DeleteSubDepartment(int subDepartmentId, int DepartmentId)
+        {
+
+            _DepartmentData.DeleteSubDepartment(subDepartmentId);
+            return RedirectToAction("DepartmentofSubDepartment", "Department", new { departmentId = DepartmentId });
+        }
 
 
         [HttpPost]

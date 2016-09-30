@@ -68,5 +68,22 @@ namespace OnlineShoppingWeb.Services
 
             _context.SaveChanges();
         }
+
+        public void DeleteDepartment(int DepartmentId)
+        {
+            Department department = this.GetDepartmentById(DepartmentId);
+            IEnumerable<SubDepartment> subs = this.GetSubDepartmentByDepartmentId(DepartmentId);
+            _context.Remove(department);
+            _context.Remove(subs);
+
+            _context.SaveChanges();
+        }
+
+        public void DeleteSubDepartment(int SubDepartmentId)
+        {
+            SubDepartment sub = this.GetSubDepartmentById(SubDepartmentId);
+            _context.Remove(sub);
+            _context.SaveChanges();
+        }
     }
 }

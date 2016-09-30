@@ -13,7 +13,12 @@
         <input type="hidden" name="SubDepartment.DepartmentId" value="@Model.DepartmentOfSub.DepartmentId" />
         <input type="hidden" name="SubDepartment.SubDepartmentId" value="@sub.SubDepartmentId" />
         <input name="SubDepartment.Description" class="form-control" type="text" value="@sub.Description" />
-        <input type="submit" value="EditSubDepartment" />
+        <input type="submit" value="Edit" />
+    </form>
+
+    <form action="/Department/deleteSubDepartment/@sub.SubDepartmentId" method="post" class="">
+        <input type="hidden" name="DepartmentId" value="@Model.DepartmentOfSub.DepartmentId" />
+        <input type="submit" value="Delete" />
     </form>
 }
 
