@@ -35,6 +35,11 @@ namespace OnlineShoppingWeb.Services
             throw new NotImplementedException();
         }
 
+        public void EditDepartment(Department editDepartment)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<SubDepartment> GetAllSubDepartments()
         {
             return _allSubDepartment;

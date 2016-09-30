@@ -89,5 +89,21 @@ namespace OnlineShoppingWeb.Controllers
 
             return Content("I will create the list of products based on department soon");
         }
+
+        [HttpPost]
+        [Route("department/EditDepartment")]
+        public IActionResult EditDepartment(DepartmentViewModel departmentViewModel)
+        {
+
+            if (!string.IsNullOrEmpty(departmentViewModel.Department.Description))
+            {
+
+                _DepartmentData.EditDepartment(departmentViewModel.Department);
+                return RedirectToAction("Index", "Department");
+
+            }
+
+            return Content("I will try to find a way to add to table ID " + departmentViewModel.Department.DepartmentId + "New Name Name" + departmentViewModel.Department.Description);
+        }
     }
 }

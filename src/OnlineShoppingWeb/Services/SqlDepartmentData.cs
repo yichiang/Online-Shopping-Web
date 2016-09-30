@@ -1,4 +1,5 @@
-﻿using OnlineShoppingWeb.Enities;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineShoppingWeb.Enities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,14 @@ namespace OnlineShoppingWeb.Services
         public SubDepartment GetSubDepartmentById(int SubDepartmentId)
         {
             return _context.SubDepartments.FirstOrDefault(subdepartment => subdepartment.SubDepartmentId == SubDepartmentId);
+        }
+
+        public void EditDepartment(Department editDepartment)
+        {
+            var oldDepartment =this.GetDepartmentById(editDepartment.DepartmentId);
+            oldDepartment.Description = editDepartment.Description;
+
+            _context.SaveChanges();
         }
     }
 }
