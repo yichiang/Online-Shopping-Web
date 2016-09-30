@@ -1,14 +1,13 @@
-﻿@using OnlineShoppingWeb.Enities
-@using System.Collections.Generic
-
+﻿
 @model DepartmentViewModel
 <h1>It is Department list</h1>
 @foreach (var department in Model.Departments)
 {
-    <h2>@Html.ActionLink(@department.Description, "DepartmentofSubDepartment", "Department", new { departmentId = @department.DepartmentId }) |@Html.ActionLink("Edit", "DepartmentofSubDepartment", "Department", new { departmentId = @department.DepartmentId })| @Html.ActionLink("Delete", "DepartmentofSubDepartment", "Department", new { departmentId = @department.DepartmentId }) </h2>
+    <h2>@Html.ActionLink(@department.Description, "DepartmentofSubDepartment", "Department", new { departmentId = @department.DepartmentId }) | @Html.ActionLink("Delete", "DepartmentofSubDepartment", "Department", new { departmentId = @department.DepartmentId }) </h2>
 
+    <button class="editButtonForDepartment" >Edit</button>
 
-    <form action="/Department/EditDepartment/@department.DepartmentId" method="post">
+    <form action="/Department/EditDepartment/@department.DepartmentId" method="post" class="editFormForDepartment">
         <input type="hidden" name="Department.DepartmentId" value="@department.DepartmentId" />
         <input name="Department.Description" class="form-control" type="text" value="@department.Description" />
         <input type="submit" value="EditDepartment" />
@@ -16,3 +15,6 @@
     }
 
  @Html.ActionLink("Create New Department", "CreateDepartment", "Department")
+@section ownScript{
+    <script src="/js/DepartmentIndex.js"></script>
+}

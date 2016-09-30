@@ -1,7 +1,9 @@
 ﻿body{
     font-family: 'Source Sans Pro', sans-serif;
 }
-
+.hideAction{
+    display:none;
+}
 
 .font-image-overlay{
     width:100%;
