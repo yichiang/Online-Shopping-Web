@@ -15,9 +15,10 @@ namespace onlineShoppingWeb.Tests.ControllerTests
         public void Get_ViewResult_Index_Test()
         {
             DepartmentInMemoryData departmentdata = new DepartmentInMemoryData();
+            InMemoryLaptopData LaptopData = new InMemoryLaptopData();
             //IDepartmentData departmentInMemorydata = (IDepartmentData) departmentdata;
             //Arrange
-            DepartmentController controller = new DepartmentController(departmentdata);
+            DepartmentController controller = new DepartmentController(departmentdata, LaptopData);
             IActionResult actionResult = controller.Index();
             ViewResult indexView = controller.Index() as ViewResult;
 
@@ -26,6 +27,25 @@ namespace onlineShoppingWeb.Tests.ControllerTests
 
             //Assert
             Assert.IsType<DepartmentViewModel>(result);
+        }
+
+        [Fact]
+        public void Get_CreateDepartment()
+        {
+            DepartmentInMemoryData departmentdata = new DepartmentInMemoryData();
+            InMemoryLaptopData LaptopData = new InMemoryLaptopData();
+            //IDepartmentData departmentInMemorydata = (IDepartmentData) departmentdata;
+            //Arrange
+            DepartmentController controller = new DepartmentController(departmentdata, LaptopData);
+            IActionResult actionResult = controller.CreateDepartment();
+            ViewResult indexView = controller.CreateDepartment() as ViewResult;
+
+            //Act
+            var result = indexView.ViewData.Model;
+
+            //Assert
+            Assert.True(result== null);
+
         }
     }
 }
