@@ -47,7 +47,29 @@ namespace onlineShoppingWeb.Tests.ControllerTests
             Assert.True(result== null);
 
         }
+        [Fact]
+        public void Post_CreateDepartment_Test()
+        {
+            // Arrange
+            DepartmentInMemoryData departmentdata = new DepartmentInMemoryData();
+            InMemoryLaptopData LaptopData = new InMemoryLaptopData();
+            //IDepartmentData departmentInMemorydata = (IDepartmentData) departmentdata;
+            //Arrange
+            DepartmentController departmentController = new DepartmentController(departmentdata, LaptopData);
+            Department testDepartment = new Department();
+            testDepartment.Description = "test item";
+            testDepartment.DepartmentId = 1;
 
+            // Act
+            departmentController.CreateDepartment(testDepartment);
+            ViewResult indexView = new DepartmentController(departmentdata, LaptopData).CreateDepartment() as ViewResult;
+            var collection = indexView.ViewData.Model as IEnumerable<Department>;
+
+            // Assert
+            //Assert.Contains<Department>(testDepartment, collection);
+            Assert.True(collection == null);
+
+        }
         [Fact]
         public void Get_ViewResult_DepartmentofSubDepartment_Test()
         {
