@@ -42,7 +42,7 @@ namespace OnlineShoppingWeb.Services
 
         public IEnumerable<Product> GetProductsbySubDepartment(int SubDepartmentId)
         {
-            throw new NotImplementedException();
+            return _allTestLaptop.Where(n => n.SubDepartmentId == SubDepartmentId).ToList();
         }
     }
 }
