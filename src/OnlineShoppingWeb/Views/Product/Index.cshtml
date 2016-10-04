@@ -58,8 +58,8 @@
                     }
                     <th>$ @product.Price</th>
                     <th>@product.SubDepartmentId</th>
-                    <th>@product.AvgCustomerReview</th>
-
+                    <th>@Html.Partial("_StarReview", product.AvgCustomerReview)</th>
+                    
                     <th>Edit</th>
                     <th>
                         <form action="/Product/DeleteProduct/@product.ProductId" method="post" class="">
