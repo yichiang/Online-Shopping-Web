@@ -1,6 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using OnlineShoppingWeb.Enities
-
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 <!DOCTYPE html>
@@ -43,6 +42,7 @@
 
         <div class="container">
             @RenderBody()
+            @await Component.InvokeAsync("ShoppingCart")
         </div>
     <environment name="Development">
     <script src="/node_modules/jquery/dist/jquery.js"></script>

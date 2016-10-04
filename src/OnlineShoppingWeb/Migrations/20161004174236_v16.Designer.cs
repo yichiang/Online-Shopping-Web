@@ -8,9 +8,10 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161004174236_v16")]
+    partial class v16
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -173,13 +174,15 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<int>("ProductId");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.HasKey("ShoppingCartId");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("ShoppingCart");
                 });
@@ -205,13 +208,15 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<int>("ProductId");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.HasKey("OrderId");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("ShoppingOrder");
                 });
@@ -378,7 +383,7 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.HasOne("OnlineShoppingWeb.Enities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>
@@ -390,7 +395,7 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.HasOne("OnlineShoppingWeb.Enities.User", "User")
                         .WithMany("ShoppingOrders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.SubDepartment", b =>

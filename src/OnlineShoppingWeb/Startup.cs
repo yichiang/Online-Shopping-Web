@@ -50,6 +50,7 @@ namespace OnlineShoppingWeb
                            .AddEntityFrameworkStores<ProductDbContext>()
                            .AddDefaultTokenProviders();
             services.AddScoped<IProductData, SqlServerLaptopData>();
+            services.AddScoped<IShoppingCartData, ShoppingCartSqlData>();
 
             services.AddScoped<IDepartmentData, SqlDepartmentData>();
         }

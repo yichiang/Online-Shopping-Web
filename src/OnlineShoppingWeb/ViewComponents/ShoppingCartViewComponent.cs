@@ -10,14 +10,17 @@ namespace OnlineShoppingWeb.ViewComponents
     public class ShoppingCartViewComponent :ViewComponent
     {
         private IShoppingCartData _cartData;
+        private IProductData _productData;
 
-        public ShoppingCartViewComponent(IShoppingCartData cartData)
+        public ShoppingCartViewComponent(IShoppingCartData cartData, IProductData productData)
         {
             _cartData = cartData;
+            _productData = productData;
         }
         public IViewComponentResult Invoke()
         {
-            return View();
+            var model = _productData.GetAll();
+            return View("Default", model);
         }
 
     }
