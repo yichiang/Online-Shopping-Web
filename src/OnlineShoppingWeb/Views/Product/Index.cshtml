@@ -19,34 +19,45 @@
         </div>
 
 }
-<table class="table">
-    <tr>
-        <th>Title</th>
-        <th>Price</th>
-        <th>SubDepartment</th>
-        <th>Rating</th>
-        <th>Edit</th>
-        <th>Delete</th>
+<div class="table-responsive">
 
-    </tr>
-    @foreach (var product in Model.Products)
-    {
+    <table class="table">
         <tr>
-
-            <th>@product.Title</th>
-            <th>$ @product.Price</th>
-            <th>@product.SubDepartmentId</th>
-            <th>@product.AvgCustomerReview</th>
-
+            <th>Title</th>
+            <th>Price</th>
+            <th>SubDepartment</th>
+            <th>Rating</th>
             <th>Edit</th>
-            <th>
-            <form action="/Product/DeleteProduct/@product.ProductId" method="post" class="">
-                <input type="submit" value="Delete" />
-            </form>
-            </th>       
-        </tr>
-    }
+            <th>Delete</th>
 
-</table>
+        </tr>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                @if (@product.Title.Length > 17)
+                {
+                    <th>@product.Title.Substring(0, 16)</th>
+                }
+                else
+                {
+                    <th>@product.Title</th>
+
+                }
+                <th>$ @product.Price</th>
+                <th>@product.SubDepartmentId</th>
+                <th>@product.AvgCustomerReview</th>
+
+                <th>Edit</th>
+                <th>
+                    <form action="/Product/DeleteProduct/@product.ProductId" method="post" class="">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </th>
+            </tr>
+        }
+
+    </table>
+</div>
+
 @Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
 @Html.ActionLink("Create New Phone", "CreateLaptop", "Product")
