@@ -41,6 +41,7 @@
                 <th>SubDepartment</th>
                 <th>Condition</th>
                 <th>Rating</th>
+                <th>Quantity</th>
                 <th>Edit</th>
                 <th>Delete</th>
 
@@ -62,7 +63,8 @@
                     <th>@product.Condition</th>
 
                     <th>@Html.Partial("_StarReview", product.AvgCustomerReview)</th>
-                    
+                    <th>@product.Quantity</th>
+
                     <th>Edit</th>
                     <th>
                         <form action="/Product/DeleteProduct/@product.ProductId" method="post" class="">
@@ -118,7 +120,11 @@
             @Html.TextBoxFor(model => model.Phone.Carrier, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Phone.Carrier)
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone.Quantity)
+            @Html.TextBoxFor(model => model.Phone.Quantity, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Phone.Quantity)
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Phone.Condition)
@@ -186,6 +192,14 @@
                 @Html.TextBoxFor(model => model.Laptop.AvgCustomerReview, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Laptop.AvgCustomerReview)
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Laptop.Quantity)
+                @Html.TextBoxFor(model => model.Laptop.Quantity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Laptop.Quantity)
+            </div>
+
+
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Laptop.HardDrive)

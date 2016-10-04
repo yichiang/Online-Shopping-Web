@@ -24,7 +24,12 @@
         @Html.TextBoxFor(model => model.Phone.Brand, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Phone.Brand)
     </div>
-  
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone.Quantity)
+        @Html.TextBoxFor(model => model.Phone.Quantity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Phone.Quantity)
+    </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Phone.AvgCustomerReview)
