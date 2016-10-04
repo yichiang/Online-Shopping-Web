@@ -19,7 +19,7 @@ namespace OnlineShoppingWeb.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var model = _productData.GetAll();
+            var model = _cartData.GetAll();
             return View("Default", model);
         }
 

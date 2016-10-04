@@ -19,6 +19,8 @@
                 <a class="navbar-brand" href="/"> Shopping Website</a>
             </div>
             <div class="navbar navbar-nav navbar-right">
+
+
                 @if (SignInManager.IsSignedIn(User))
                 {
                     @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "navbar-form" }))
@@ -36,13 +38,17 @@
 
                 }
             </div>
+
+            <div class="navbar navbar-nav navbar-right">
+                @await Component.InvokeAsync("ShoppingCart")
+            </div>
         </div>
     </nav>
     
 
         <div class="container">
             @RenderBody()
-            @await Component.InvokeAsync("ShoppingCart")
+   
         </div>
     <environment name="Development">
     <script src="/node_modules/jquery/dist/jquery.js"></script>
