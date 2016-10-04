@@ -28,18 +28,45 @@ namespace OnlineShoppingWeb.Controllers
             _env = env;
         }
         // GET: /<controller>/
+        [HttpGet]
         [AllowAnonymous]
         public IActionResult Index()
         {
-            ViewModels.ProductPageViewModel viewModel = new ViewModels.ProductPageViewModel();
-            viewModel.Products = _ProductData.GetAll();
-    
+            ProductPageViewModel viewModel = new ProductPageViewModel();
+            if (viewModel.EventCommand=="list")
+            {
+                viewModel.Products = _ProductData.GetAll();
+            }else if(viewModel.EventCommand == "search")
+            {
+                viewModel.Products = _ProductData.SearchByTitle("Laptop");
+
+            }
             return View(viewModel);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+
+        public IActionResult Index(ProductPageViewModel vm)
+        {
+            if (vm.EventCommand == "list")
+            {
+                vm.Products = _ProductData.GetAll();
+            }
+            else if (vm.EventCommand == "search")
+            {
+                vm.Products = _ProductData.SearchByTitle(vm.ProductSearchName);
+
+            }
+            vm.SubDepartments = _DepartmentData.GetAllSubDepartments();
+            return View(vm);
+        }
+
+
         [HttpGet]
         public IActionResult CreateLaptop()
         {
-            ViewModels.ProductPageViewModel viewModel = new ViewModels.ProductPageViewModel();
+            ProductPageViewModel viewModel = new ProductPageViewModel();
             viewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(viewModel);
         }
@@ -55,7 +82,7 @@ namespace OnlineShoppingWeb.Controllers
                 return RedirectToAction("Index");
 
             }
-            ViewModels.ProductPageViewModel newviewModel = new ViewModels.ProductPageViewModel();
+            ProductPageViewModel newviewModel = new ProductPageViewModel();
             newviewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(newviewModel);
         }
@@ -104,7 +131,7 @@ namespace OnlineShoppingWeb.Controllers
         [HttpGet]
         public IActionResult CreatePhone()
         {
-            ViewModels.ProductPageViewModel viewModel = new ViewModels.ProductPageViewModel();
+            ProductPageViewModel viewModel = new ProductPageViewModel();
             viewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(viewModel);
         }
@@ -119,10 +146,11 @@ namespace OnlineShoppingWeb.Controllers
                 return RedirectToAction("Index");
 
             }
-            ViewModels.ProductPageViewModel newviewModel = new ViewModels.ProductPageViewModel();
+            ProductPageViewModel newviewModel = new ProductPageViewModel();
             newviewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(newviewModel);
         }
+     
     }
 }
 

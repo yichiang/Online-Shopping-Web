@@ -1,24 +1,26 @@
 ﻿@model ProductPageViewModel
 <h1>It is product list</h1>
-@using (Html.BeginForm("Search", "Product", FormMethod.Post))
+@using (Html.BeginForm("Index", "Product", FormMethod.Post,new { @class = "SearchForm" }))
 {
     @Html.ValidationSummary()
-
+    @Html.HiddenFor(model => model.EventCommand)
     <div class="panel panel-default">
         <div class="panel-heading">Product</div>
         <div class="panel-body">
 
             <div class="form-group">
-                @Html.Label("Title")
-                @Html.TextBox("SearchProductName","", new { @class = "form-control" })
+                @Html.LabelFor(model => model.ProductSearchName)
+                @Html.TextBoxFor(model => model.ProductSearchName, new { @class = "form-control" })
             </div>
          </div>
         <div class="panel-footer">
-            <button class="btn" type="submit"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
+            <button class="btn own-btn-action" value="search"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
+            <button class="btn own-btn-action" value="list"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Reset</button>
         </div>
         </div>
 
 }
+
 <div class="table-responsive">
 
     <table class="table">
@@ -60,4 +62,24 @@
 </div>
 
 @Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
-@Html.ActionLink("Create New Phone", "CreateLaptop", "Product")
+@Html.ActionLink("Create New Phone", "CreatePhone", "Product")
+
+@section ownScript
+{
+<script>
+    $(document).ready(function () {
+        $(".own-btn-action").click(function (e) {
+            e.preventDefault();
+
+            console.log("eventCommand" + $("#EventCommand").val());
+            console.log("button value" + $(this).val());
+            $(this).css("color", "red");
+            $("#EventCommand").val($(this).val());
+            console.log("eventCommand" + $("#EventCommand").val());
+            $("form.SearchForm").submit();
+
+        });
+    });
+
+</script>    
+}

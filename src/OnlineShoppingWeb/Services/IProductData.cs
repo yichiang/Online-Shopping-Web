@@ -7,6 +7,7 @@ namespace OnlineShoppingWeb.Services
     public interface IProductData
     {
         IEnumerable<Product> GetAll();
+        IEnumerable<Product> SearchByTitle(string SearchTitle);
         void AddNewProduct(Product newProduct);
         IEnumerable<Product> GetProductsbySubDepartment(int SubDepartmentId);
         void DeleteProduct(int ProductId);

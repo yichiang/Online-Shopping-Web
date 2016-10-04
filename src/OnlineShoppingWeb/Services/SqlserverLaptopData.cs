@@ -48,5 +48,10 @@ namespace OnlineShoppingWeb.Services
         {
             return _context.Products.Where(computer => computer.SubDepartmentId== SubDepartmentId);
         }
+
+        public IEnumerable<Product> SearchByTitle(string SearchTitle)
+        {
+            return _context.Products.Where(product => product.Title.Contains(SearchTitle)).ToList();
+        }
     }
 }

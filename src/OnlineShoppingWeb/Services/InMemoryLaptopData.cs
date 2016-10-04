@@ -44,5 +44,10 @@ namespace OnlineShoppingWeb.Services
         {
             return _allTestLaptop.Where(n => n.SubDepartmentId == SubDepartmentId).ToList();
         }
+
+        public IEnumerable<Product> SearchByTitle(string SearchTitle)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
