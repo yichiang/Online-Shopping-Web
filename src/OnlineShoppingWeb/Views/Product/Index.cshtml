@@ -39,6 +39,7 @@
                 <th>Title</th>
                 <th>Price</th>
                 <th>SubDepartment</th>
+                <th>Condition</th>
                 <th>Rating</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -58,6 +59,8 @@
                     }
                     <th>$ @product.Price</th>
                     <th>@product.SubDepartmentId</th>
+                    <th>@product.Condition</th>
+
                     <th>@Html.Partial("_StarReview", product.AvgCustomerReview)</th>
                     
                     <th>Edit</th>
