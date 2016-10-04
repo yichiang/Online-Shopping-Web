@@ -59,13 +59,17 @@
 
                     }
                     <th>$ @product.Price</th>
-                    <th>@product.SubDepartmentId</th>
+                    <th>@product.Discriminator</th>
                     <th>@product.Condition</th>
 
                     <th>@Html.Partial("_StarReview", product.AvgCustomerReview)</th>
                     <th>@product.Quantity</th>
 
-                    <th>Edit</th>
+                    <th>
+                        <form action="/Product/EditProduct/@product.Discriminator" method="post" class="">
+                            <input type="submit" value="Edit" />
+                        </form>
+                    </th>
                     <th>
                         <form action="/Product/DeleteProduct/@product.ProductId" method="post" class="">
                             <input type="submit" value="Delete" />
