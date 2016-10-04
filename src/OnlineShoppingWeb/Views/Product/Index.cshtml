@@ -1,5 +1,23 @@
 ﻿@model ProductPageViewModel
 <h1>It is product list</h1>
+@using (Html.BeginForm("Search", "Product", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Product</div>
+        <div class="panel-body">
+
+            <div class="form-group">
+                @Html.Label("Title")
+                @Html.TextBox("SearchProductName","", new { @class = "form-control" })
+            </div>
+         </div>
+    </div>
+
+    <input type="submit" value="Search" />
+}
+
 @foreach (var product in Model.Products)
 {
 <h2>@product.Title |$ @product.Price|@product.SubDepartmentId</h2>
