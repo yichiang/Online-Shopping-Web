@@ -11,11 +11,11 @@
             <div class="form-group">
                 @Html.Label("Title")
                 @Html.TextBox("SearchProductName","", new { @class = "form-control" })
+                <button class="btn" type="submit"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
             </div>
          </div>
     </div>
 
-    <input type="submit" value="Search" />
 }
 <table class="table">
     <tr>
@@ -47,3 +47,4 @@
 
 </table>
 @Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
+@Html.ActionLink("Create New Phone", "CreateLaptop", "Product")
