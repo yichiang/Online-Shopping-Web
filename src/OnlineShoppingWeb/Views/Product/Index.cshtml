@@ -47,9 +47,9 @@
             @foreach (var product in Model.Products)
             {
                 <tr>
-                    @if (@product.Title.Length > 17)
+                    @if (@product.Title.Length > 60)
                     {
-                        <th>@product.Title.Substring(0, 16)</th>
+                        <th>@product.Title.Substring(0, 59) ...</th>
                     }
                     else
                     {
