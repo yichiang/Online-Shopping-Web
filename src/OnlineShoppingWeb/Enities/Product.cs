@@ -31,5 +31,6 @@ namespace OnlineShoppingWeb.Enities
         public int SubDepartmentId { get; set; }
         public virtual SubDepartment SubDepartment { get; set; }
         public ConditionType Condition { get; set; }
+        public int Quantity { get; set; }
     }
 }
