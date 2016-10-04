@@ -8,9 +8,10 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161004170757_v14")]
+    partial class v14
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -164,28 +165,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Product");
                 });
 
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingCart", b =>
-                {
-                    b.Property<int>("ShoppingCartId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("AddToCartDate");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
-
-                    b.HasKey("ShoppingCartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("ShoppingCart");
-                });
-
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>
                 {
                     b.Property<int>("OrderId")
@@ -217,7 +196,7 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.HasIndex("UserId1");
 
-                    b.ToTable("ShoppingOrder");
+                    b.ToTable("ShoppingOrderd");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.SubDepartment", b =>
@@ -371,18 +350,6 @@ namespace OnlineShoppingWeb.Migrations
                         .WithMany("Products")
                         .HasForeignKey("SubDepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingCart", b =>
-                {
-                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Proudct")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OnlineShoppingWeb.Enities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>

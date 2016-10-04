@@ -10,7 +10,9 @@ namespace OnlineShoppingWeb.Enities
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<ShoppingOrder> ShoppingOrderd { get; set; }
+        public DbSet<ShoppingOrder> ShoppingOrder { get; set; }
+        public DbSet<ShoppingCart> ShoppingCart { get; set; }
+
         public DbSet<Department> Departments { get; set; }
         public DbSet<SubDepartment> SubDepartments { get; set; }
 
