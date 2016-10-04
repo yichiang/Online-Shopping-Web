@@ -17,13 +17,33 @@
 
     <input type="submit" value="Search" />
 }
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>SubDepartmentId</th>
+        <th>Rating</th>
+        <th>Edit</th>
+        <th>Delete</th>
 
-@foreach (var product in Model.Products)
-{
-<h2>@product.Title |$ @product.Price|@product.SubDepartmentId</h2>
-<form action="/Product/DeleteProduct/@product.ProductId" method="post" class="">
-    <input type="submit" value="Delete" />
-</form>
-}
+    </tr>
+    @foreach (var product in Model.Products)
+    {
+        <tr>
 
+            <th>@product.Title</th>
+            <th>$ @product.Price</th>
+            <th>@product.SubDepartmentId</th>
+            <th>@product.AvgCustomerReview</th>
+
+            <th>Edit</th>
+            <th>
+            <form action="/Product/DeleteProduct/@product.ProductId" method="post" class="">
+                <input type="submit" value="Delete" />
+            </form>
+            </th>       
+        </tr>
+    }
+
+</table>
 @Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
