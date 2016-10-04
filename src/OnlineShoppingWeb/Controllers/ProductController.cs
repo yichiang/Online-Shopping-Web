@@ -51,11 +51,36 @@ namespace OnlineShoppingWeb.Controllers
         {
             if (vm.EventCommand == "list")
             {
+                vm.IsListAreaVisible = true;
+                vm.IsSearchAreaVisible = true;
+                vm.IsAddPhoneFormAreaVisible = false;
+                vm.IsAddLaptopFormAreaVisible = false;
                 vm.Products = _ProductData.GetAll();
             }
             else if (vm.EventCommand == "search")
             {
+                vm.IsListAreaVisible = true;
+                vm.IsSearchAreaVisible = true;
+                vm.IsAddPhoneFormAreaVisible = false;
+                vm.IsAddLaptopFormAreaVisible = false;
                 vm.Products = _ProductData.SearchByTitle(vm.ProductSearchName);
+
+            }
+            else if (vm.EventCommand == "addPhone")
+            {
+                vm.IsListAreaVisible = false;
+                vm.IsSearchAreaVisible = false;
+                vm.IsAddPhoneFormAreaVisible = true;
+
+            }
+            else if (vm.EventCommand == "addLaptop")
+            {
+                vm.IsListAreaVisible = false;
+                vm.IsSearchAreaVisible = false;
+                vm.IsAddPhoneFormAreaVisible = false;
+                vm.IsAddLaptopFormAreaVisible = true;
+
+                vm.Products = _ProductData.GetAll();
 
             }
             vm.SubDepartments = _DepartmentData.GetAllSubDepartments();
