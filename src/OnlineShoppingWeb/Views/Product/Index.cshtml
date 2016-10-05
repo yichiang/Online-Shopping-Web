@@ -436,8 +436,8 @@
             }
         });
 
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() > $(document).height() - 10) {
+        @*$(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() > $(document).height()) {
                 console.log("trigger");
                 $("#DisplayList").val(parseInt($("#DisplayList").val())+5);
                 $.ajax({
@@ -448,7 +448,7 @@
 
                 });
             }
-        });
+        });*@
     });
 
 </script>    
