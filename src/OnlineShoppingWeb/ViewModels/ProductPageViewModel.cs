@@ -14,6 +14,9 @@ namespace OnlineShoppingWeb.ViewModels
             IsSearchAreaVisible = true;
             IsAddPhoneFormAreaVisible = false;
             IsAddLaptopFormAreaVisible = false;
+            IsEditLaptopFormAreaVisible = false;
+            IsEditPhoneFormAreaVisible = false;
+
             EventCommand = "list";
         }
         public Laptop Laptop { get; set; }
@@ -29,5 +32,8 @@ namespace OnlineShoppingWeb.ViewModels
         public bool IsSearchAreaVisible { get; set; }
         public bool IsAddPhoneFormAreaVisible { get; set; }
         public bool IsAddLaptopFormAreaVisible { get; set; }
+        public bool IsEditLaptopFormAreaVisible { get; set; }
+        public bool IsEditPhoneFormAreaVisible { get; set; }
+
     }
 }

@@ -83,6 +83,29 @@ namespace OnlineShoppingWeb.Controllers
                 vm.Products = _ProductData.GetAll();
 
             }
+
+            else if (vm.EventCommand.Contains("editPhone"))
+            {
+                string productID = vm.EventCommand.Replace("editPhone/", "");
+                vm.Phone = (Phone)_ProductData.FindProductById(int.Parse(productID));
+                vm.IsListAreaVisible = false;
+                vm.IsSearchAreaVisible = false;
+                vm.IsAddPhoneFormAreaVisible = false;
+                vm.IsEditLaptopFormAreaVisible = false;
+                vm.IsEditPhoneFormAreaVisible = true;
+
+            }
+            else if (vm.EventCommand.Contains("editLaptop"))
+            {
+                string productID = vm.EventCommand.Replace("editLaptop/", "");
+                vm.Laptop = (Laptop) _ProductData.FindProductById(int.Parse(productID));
+                vm.IsListAreaVisible = false;
+                vm.IsSearchAreaVisible = false;
+                vm.IsAddPhoneFormAreaVisible = false;
+                vm.IsAddLaptopFormAreaVisible = false;
+                vm.IsEditLaptopFormAreaVisible = true;
+
+            }
             vm.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(vm);
         }
@@ -175,7 +198,8 @@ namespace OnlineShoppingWeb.Controllers
             newviewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(newviewModel);
         }
-     
+
+
     }
 }
 
