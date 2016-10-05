@@ -63,7 +63,7 @@
                     <th>@product.Condition</th>
 
                     <th>@Html.Partial("_StarReview", product.AvgCustomerReview)</th>
-                    <th>@product.Quantity</th>
+                    <th><span class="glyphicon glyphicon-minus" aria-hidden="true">  </span>@product.Quantity <span class="glyphicon glyphicon-plus" aria-hidden="true">  </span></th>
 
                     <th>
                         <form action="/Product/EditProduct/@product.Discriminator" method="post" class="">
