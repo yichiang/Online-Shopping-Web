@@ -151,7 +151,11 @@ namespace OnlineShoppingWeb.Controllers
         [Route("product/EditQty")]
         public IActionResult EditQty(ProductPageViewModel viewModel)
         {
-            _ProductData.EditQty(viewModel.Product);
+            if (viewModel.Product.Quantity >= 0)
+            {
+                _ProductData.EditQty(viewModel.Product);
+
+            }
             return RedirectToAction("Index");
 
         }
