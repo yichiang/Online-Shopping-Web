@@ -122,10 +122,10 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpPost]
-        [Route("product/DeleteProduct/{ProductId}")]
-        public IActionResult DeleteProduct(int ProductId)
+        [Route("product/DeleteProduct")]
+        public IActionResult Delete(ProductPageViewModel viewModel)
         {
-            _ProductData.DeleteProduct(ProductId);
+            _ProductData.DeleteProduct(viewModel.Product.ProductId);
  
             return RedirectToAction("Index");
 
