@@ -37,6 +37,14 @@ namespace OnlineShoppingWeb.Services
             return EditProduct;
         }
 
+        public void EditQty(Product EditProduct)
+        {
+            Product foundProduct=this.FindProductById(EditProduct.ProductId);
+            foundProduct.Quantity = EditProduct.Quantity;
+            _context.SaveChanges();
+
+        }
+
         public Product FindProductById(int ProductId)
         {
             return _context.Products.FirstOrDefault(computer => computer.ProductId == ProductId);

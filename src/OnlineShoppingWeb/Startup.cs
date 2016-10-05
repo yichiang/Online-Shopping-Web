@@ -80,7 +80,7 @@ namespace OnlineShoppingWeb
                 //);
                 routes.MapRoute(
                     name: "Default",
-                    template: "{controller}/{action}/{id?}",
+                    template: "{controller}/{action}/{id?}/{ProductId?}/{Quantity?}",
                     defaults: new { controller = "Home", action = "Index"}
                 );
             });

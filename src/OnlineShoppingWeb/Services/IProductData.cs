@@ -14,6 +14,6 @@ namespace OnlineShoppingWeb.Services
         Product FindProductById(int ProductId);
         Product Edit(Product EditProduct);
 
-
+        void EditQty(Product EditProduct);
     }
 }

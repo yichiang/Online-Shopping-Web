@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Net.Http.Headers;
+using System.Reflection;
 
 namespace OnlineShoppingWeb.Controllers
 {
@@ -142,6 +143,15 @@ namespace OnlineShoppingWeb.Controllers
         public IActionResult EditPhone(ProductPageViewModel viewModel)
         {
             _ProductData.Edit(viewModel.Phone);
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpPost]
+        [Route("product/EditQty")]
+        public IActionResult EditQty(ProductPageViewModel viewModel)
+        {
+            _ProductData.EditQty(viewModel.Product);
             return RedirectToAction("Index");
 
         }
