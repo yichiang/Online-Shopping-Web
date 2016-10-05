@@ -68,9 +68,11 @@ namespace OnlineShoppingWeb.Controllers
             }
             else if (vm.EventCommand == "addToCart")
             {
-                vm.IsListAreaVisible = false;
-                vm.IsSearchAreaVisible = false;
-                vm.IsAddPhoneFormAreaVisible = true;
+                vm.IsListAreaVisible = true;
+                vm.IsSearchAreaVisible = true;
+                vm.IsAddPhoneFormAreaVisible = false;
+                vm.IsAddLaptopFormAreaVisible = false;
+                vm.Products = _ProductData.GetAll();
 
             }
             else if (vm.EventCommand == "viewDetail")
