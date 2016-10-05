@@ -67,7 +67,7 @@
                         @using (Html.BeginForm("EditQty", "Product", FormMethod.Post))
                         {
                             <input type="hidden" name="Product.ProductId" value="@product.ProductId"/>
-                            <input type="hidden" name="Product.Quantity" value="@product.Quantity-1" />
+                            <input type="hidden" name="Product.Quantity" value="@(product.Quantity -1)" />
                             <input type="hidden" name="Product.Title" value="@product.Title" />
                             <input type="hidden" name="Product.Price" value="@product.Price" />
                             <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
@@ -80,9 +80,9 @@
                             <input type="hidden" name="Product.Title" value="@product.Title" />
                             <input type="hidden" name="Product.Price" value="@product.Price" />
 
-                            <input type="hidden" name="Product.Quantity" value="@product.Quantity+1" />
+                            <input type="hidden" name="Product.Quantity" value="@(product.Quantity +1)" />
 
-                            <button type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+<button type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 
                         }
                     
