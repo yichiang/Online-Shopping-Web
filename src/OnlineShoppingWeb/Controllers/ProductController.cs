@@ -144,7 +144,14 @@ namespace OnlineShoppingWeb.Controllers
             return RedirectToAction("Index");
 
         }
+        [HttpPost]
+        [Route("product/EditPhone")]
+        public IActionResult EditPhone(ProductPageViewModel viewModel)
+        {
+            _ProductData.Edit(viewModel.Phone);
+            return RedirectToAction("Index");
 
+        }
 
         [HttpGet]
         [AllowAnonymous]

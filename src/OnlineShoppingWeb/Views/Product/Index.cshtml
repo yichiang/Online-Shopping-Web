@@ -158,7 +158,7 @@
     @using (Html.BeginForm("EditPhone", "Product", FormMethod.Post, new { ProductId = Model.Phone.ProductId }))
     {
         @Html.ValidationSummary()
-
+        @Html.HiddenFor(model => model.Phone.ProductId, new { @Value = @Model.Phone.ProductId })
         <div class="form-group">
             @Html.LabelFor(model => model.Phone.Title)
             @Html.TextBoxFor(model => model.Phone.Title, new { @class = "form-control" })

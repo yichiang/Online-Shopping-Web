@@ -12,6 +12,8 @@ namespace OnlineShoppingWeb.Services
         IEnumerable<Product> GetProductsbySubDepartment(int SubDepartmentId);
         void DeleteProduct(int ProductId);
         Product FindProductById(int ProductId);
+        Product Edit(Product EditProduct);
+
 
     }
 }

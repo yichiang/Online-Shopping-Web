@@ -30,6 +30,11 @@ namespace OnlineShoppingWeb.Services
             throw new NotImplementedException();
         }
 
+        public Product Edit(Product EditProduct)
+        {
+            throw new NotImplementedException();
+        }
+
         public Product FindProductById(int ProductId)
         {
             throw new NotImplementedException();

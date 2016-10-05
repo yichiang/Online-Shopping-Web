@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineShoppingWeb.Enities;
+using Microsoft.EntityFrameworkCore;
 
 namespace OnlineShoppingWeb.Services
 {
@@ -27,6 +28,13 @@ namespace OnlineShoppingWeb.Services
             
             _context.Remove(this.FindProductById(ProductId));
             _context.SaveChanges();
+        }
+
+        public Product Edit(Product EditProduct)
+        {
+            _context.Entry(EditProduct).State = EntityState.Modified;
+            _context.SaveChanges();
+            return EditProduct;
         }
 
         public Product FindProductById(int ProductId)
