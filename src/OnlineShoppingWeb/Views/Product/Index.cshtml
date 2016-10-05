@@ -413,7 +413,7 @@
 }
 @Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
 @Html.ActionLink("Create New Phone", "CreatePhone", "Product")
-
+@Html.TextBoxFor(model => model.DisplayList,new { @Value=Model.DisplayList })
 @section ownScript
 {
 <script>
@@ -428,6 +428,26 @@
             console.log("eventCommand" + $("#EventCommand").val());
             $("form.SearchForm").submit();
 
+        });
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+                console.log("down");
+            }
+        });
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 10) {
+                console.log("trigger");
+                $("#DisplayList").val(parseInt($("#DisplayList").val())+5);
+                $.ajax({
+                    url: '@Url.Action("Index")',
+                    type: 'Get',
+                    dataType: 'json',
+                    data: $("#DisplayList").serialize()
+
+                });
+            }
         });
     });
 

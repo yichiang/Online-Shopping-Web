@@ -50,6 +50,11 @@ namespace OnlineShoppingWeb.Services
             return _allTestLaptop;
         }
 
+        public IEnumerable<Product> GetPorductsofNum(int num)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Product> GetProductsbySubDepartment(int SubDepartmentId)
         {
             return _allTestLaptop.Where(n => n.SubDepartmentId == SubDepartmentId).ToList();

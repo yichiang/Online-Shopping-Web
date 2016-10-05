@@ -41,7 +41,7 @@ namespace OnlineShoppingWeb.Controllers
                 vm.IsSearchAreaVisible = true;
                 vm.IsAddPhoneFormAreaVisible = false;
                 vm.IsAddLaptopFormAreaVisible = false;
-                vm.Products = _ProductData.GetAll();
+                vm.Products = _ProductData.GetPorductsofNum(vm.DisplayList);
             }
             else if (vm.EventCommand == "search")
             {

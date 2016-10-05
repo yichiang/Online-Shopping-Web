@@ -60,6 +60,19 @@ namespace OnlineShoppingWeb.Services
             return _context.Products.FirstOrDefault(computer => computer.ProductId == id );
         }
 
+        public IEnumerable<Product> GetPorductsofNum(int num)
+        {
+            if (num < _context.Products.Count())
+            {
+                var number = _context.Products.Count();
+                return _context.Products.Take(num).ToList();
+            }else
+            {
+                return _context.Products.ToList();
+
+            }
+        }
+
         public IEnumerable<Product> GetProductsbySubDepartment(int SubDepartmentId)
         {
             return _context.Products.Where(computer => computer.SubDepartmentId== SubDepartmentId);
