@@ -155,7 +155,7 @@
 {
 
     <h2> Edit Phone</h2>
-    @using (Html.BeginForm("EditPhone", "Product", FormMethod.Post, new { ProductId = Model.Phone.ProductId }))
+    @using (Html.BeginForm("EditPhone", "Product", FormMethod.Post))
     {
         @Html.ValidationSummary()
         @Html.HiddenFor(model => model.Phone.ProductId, new { @Value = @Model.Phone.ProductId })
@@ -313,10 +313,10 @@
     }
     <h1>Edit Laptop</h1>
 
-    @using (Html.BeginForm("EditLaptop", "Product", FormMethod.Post, new { ProductId = Model.Laptop.ProductId }))
+    @using (Html.BeginForm("EditLaptop", "Product", FormMethod.Post))
     {
         @Html.ValidationSummary()
-
+        @Html.HiddenFor(model => model.Laptop.ProductId, new { @Value = @Model.Laptop.ProductId })
         <div class="form-group">
             @Html.LabelFor(model => model.Laptop.Title)
             @Html.TextBoxFor(model => model.Laptop.Title, new { @class = "form-control" })

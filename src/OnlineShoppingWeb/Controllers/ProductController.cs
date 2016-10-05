@@ -145,6 +145,14 @@ namespace OnlineShoppingWeb.Controllers
 
         }
         [HttpPost]
+        [Route("product/EditLaptop")]
+        public IActionResult EditLaptop(ProductPageViewModel viewModel)
+        {
+            _ProductData.Edit(viewModel.Laptop);
+            return RedirectToAction("Index");
+
+        }
+        [HttpPost]
         [Route("product/EditPhone")]
         public IActionResult EditPhone(ProductPageViewModel viewModel)
         {
@@ -152,7 +160,6 @@ namespace OnlineShoppingWeb.Controllers
             return RedirectToAction("Index");
 
         }
-
         [HttpGet]
         [AllowAnonymous]
         public IActionResult UploadFile()
