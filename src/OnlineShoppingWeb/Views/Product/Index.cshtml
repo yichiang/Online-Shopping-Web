@@ -422,11 +422,11 @@
 
 @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "addMoretoListForm" }))
 {
-@Html.TextBoxFor(model => model.TakeDisplayList, new { @Value = Model.TakeDisplayList })
-@Html.TextBoxFor(model => model.SkipDisplayList, new { @Value = Model.SkipDisplayList })
+@Html.HiddenFor(model => model.TakeDisplayList, new { @Value = Model.TakeDisplayList })
+@Html.HiddenFor(model => model.SkipDisplayList, new { @Value = Model.SkipDisplayList })
 
 }
-@Html.TextBoxFor(model => model.AllProductsCount, new { @Value = Model.AllProductsCount })
+@Html.HiddenFor(model => model.AllProductsCount, new { @Value = Model.AllProductsCount })
 
 @section ownScript
 {
