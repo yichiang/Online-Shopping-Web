@@ -64,7 +64,11 @@
                     <th>@product.Quantity</th>
 
                     <th>
-                            <button class="own-btn-action" type="submit" value="AddToCart"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>AddToCart</button> 
+                        @using (Html.BeginForm("AddToCart", "Client", FormMethod.Post, new { @class = "SearchForm" }))
+                        {
+                            @Html.HiddenFor(model => model.SaveToCartProductId, new { SaveToCartProductId = @product.ProductId })
+                        <button class="own-btn-action" type="submit" value="AddToCart"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>AddToCart</button> 
+                        }          
                     </th>
                     <th>
                         <form action="/Client/Detail/@product.ProductId" method="post" class="">

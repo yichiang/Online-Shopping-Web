@@ -29,5 +29,6 @@ namespace OnlineShoppingWeb.ViewModels
         public bool IsSearchAreaVisible { get; set; }
         public bool IsAddPhoneFormAreaVisible { get; set; }
         public bool IsAddLaptopFormAreaVisible { get; set; }
+        public int SaveToCartProductId { get; set; }
     }
 }

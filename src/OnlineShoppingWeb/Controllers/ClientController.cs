@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Net.Http.Headers;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace OnlineShoppingWeb.Controllers
 {
@@ -20,18 +22,19 @@ namespace OnlineShoppingWeb.Controllers
         private IProductData _ProductData;
         private IDepartmentData _DepartmentData;
         private IHostingEnvironment _env;
+        private UserManager<User> _userManager;
 
-        public ClientController(IProductData LaptopData, IDepartmentData DepartmentData, IHostingEnvironment env)
+        public ClientController(IProductData LaptopData, IDepartmentData DepartmentData, IHostingEnvironment env, UserManager<User> userManager)
         {
             _ProductData = LaptopData;
             _DepartmentData = DepartmentData;
             _env = env;
+            _userManager = userManager;
         }
         // GET: /<controller>/
 
         [HttpGet]
         [AllowAnonymous]
-
         public IActionResult Index(ClientProductPageViewModel vm)
         {
             if (vm.EventCommand == "list")
@@ -74,8 +77,18 @@ namespace OnlineShoppingWeb.Controllers
             return View(vm);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> AddToCart(ClientProductPageViewModel vm)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser);
+            vm.EventCommand = "list";
+            return RedirectToAction("Index",vm);
+        }
 
-        
+
     }
 }
 
