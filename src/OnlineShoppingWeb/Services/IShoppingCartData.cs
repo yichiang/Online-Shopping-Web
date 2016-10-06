@@ -9,5 +9,7 @@ namespace OnlineShoppingWeb.Services
     public interface IShoppingCartData
     {
         IEnumerable<ShoppingCart> GetAll();
+        IEnumerable<ShoppingCart> GetAllByUser(User User);
+
     }
 }

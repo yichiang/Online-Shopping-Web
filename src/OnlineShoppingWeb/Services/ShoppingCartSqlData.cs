@@ -18,5 +18,10 @@ namespace OnlineShoppingWeb.Services
         {
             return _context.ShoppingCart.ToList();
         }
+
+        public IEnumerable<ShoppingCart> GetAllByUser(User User)
+        {
+            return _context.ShoppingCart.Where(c =>c.User== User).ToList();
+        }
     }
 }

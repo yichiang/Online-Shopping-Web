@@ -60,7 +60,7 @@ namespace OnlineShoppingWeb.Services
             return _allTestLaptop.Where(n => n.SubDepartmentId == SubDepartmentId).ToList();
         }
 
-        public int SaveToCart(int ProductId, int UserId)
+        public void SaveToCart(int ProductId, User User)
         {
             throw new NotImplementedException();
         }
