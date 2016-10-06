@@ -80,7 +80,7 @@ namespace OnlineShoppingWeb.Services
             newProductAddtoCart.ProductId = ProductId;
             newProductAddtoCart.User = User;
 
-            _context.Add(newProductAddtoCart);
+            _context.ShoppingCart.Add(newProductAddtoCart);
             _context.SaveChanges();
 
         }
