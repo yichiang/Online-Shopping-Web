@@ -50,7 +50,7 @@ namespace OnlineShoppingWeb.Services
             return _allTestLaptop;
         }
 
-        public IEnumerable<Product> GetPorductsofNum(int num)
+        public IEnumerable<Product> GetPorductsofNum(int SkipNum, int TakeNum)
         {
             throw new NotImplementedException();
         }

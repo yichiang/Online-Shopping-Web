@@ -436,10 +436,10 @@
             }
         });
 
-        @*$(window).scroll(function () {
+        $(window).scroll(function () {
             if ($(window).scrollTop() + $(window).height() > $(document).height()) {
                 console.log("trigger");
-                $("#DisplayList").val(parseInt($("#DisplayList").val())+5);
+                
                 $.ajax({
                     url: '@Url.Action("Index")',
                     type: 'Get',
@@ -448,7 +448,7 @@
 
                 });
             }
-        });*@
+        });
     });
 
 </script>    

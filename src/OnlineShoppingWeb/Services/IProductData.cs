@@ -15,7 +15,7 @@ namespace OnlineShoppingWeb.Services
         Product Edit(Product EditProduct);
 
         void EditQty(Product EditProduct);
-        IEnumerable<Product> GetPorductsofNum(int num);
+        IEnumerable<Product> GetPorductsofNum(int SkipNum, int TakeNum);
 
     }
 }

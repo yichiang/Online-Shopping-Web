@@ -60,11 +60,11 @@ namespace OnlineShoppingWeb.Services
             return _context.Products.FirstOrDefault(computer => computer.ProductId == id );
         }
 
-        public IEnumerable<Product> GetPorductsofNum(int num)
+        public IEnumerable<Product> GetPorductsofNum(int SkipNum,int TakeNum)
         {
 
                 var number = _context.Products.Count();
-                return _context.Products.Take(num).ToList();
+                return _context.Products.Skip(SkipNum).Take(TakeNum).ToList();
 
         }
 

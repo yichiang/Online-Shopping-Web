@@ -35,13 +35,24 @@ namespace OnlineShoppingWeb.Controllers
 
         public IActionResult Index(ProductPageViewModel vm)
         {
-            if (vm.EventCommand == "list")
+            if (vm.EventCommand == "list" && vm.DisplayList != 10)
             {
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
                 vm.IsAddPhoneFormAreaVisible = false;
                 vm.IsAddLaptopFormAreaVisible = false;
-                vm.Products = _ProductData.GetPorductsofNum(vm.DisplayList);
+                var ajaxProducts = _ProductData.GetPorductsofNum(vm.DisplayList,5);
+                vm.DisplayList += 5;
+                return Json(ajaxProducts);
+            }
+
+            if (vm.EventCommand == "list"&& vm.DisplayList==10)
+            {
+                vm.IsListAreaVisible = true;
+                vm.IsSearchAreaVisible = true;
+                vm.IsAddPhoneFormAreaVisible = false;
+                vm.IsAddLaptopFormAreaVisible = false;
+                vm.Products = _ProductData.GetPorductsofNum(0,vm.DisplayList);
 
             }
             else if (vm.EventCommand == "search")
@@ -93,6 +104,7 @@ namespace OnlineShoppingWeb.Controllers
                 vm.IsEditLaptopFormAreaVisible = true;
 
             }
+
             vm.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(vm);
         }
