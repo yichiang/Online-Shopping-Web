@@ -28,23 +28,8 @@ namespace OnlineShoppingWeb.Controllers
             _env = env;
         }
         // GET: /<controller>/
+
         [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Index()
-        {
-            ClientProductPageViewModel viewModel = new ClientProductPageViewModel();
-            if (viewModel.EventCommand=="list")
-            {
-                viewModel.Products = _ProductData.GetAll();
-            }else if(viewModel.EventCommand == "search")
-            {
-                viewModel.Products = _ProductData.SearchByTitle("Laptop");
-
-            }
-            return View(viewModel);
-        }
-
-        [HttpPost]
         [AllowAnonymous]
 
         public IActionResult Index(ClientProductPageViewModel vm)

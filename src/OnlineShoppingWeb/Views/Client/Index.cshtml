@@ -3,7 +3,7 @@
 @model ClientProductPageViewModel
 @if(Model.IsSearchAreaVisible)
 {
-    @using (Html.BeginForm("Index", "Product", FormMethod.Post, new { @class = "SearchForm" }))
+    @using (Html.BeginForm("Index", "Client", FormMethod.Get, new { @class = "SearchForm" }))
     {
         @Html.ValidationSummary()
         @Html.HiddenFor(model => model.EventCommand)
