@@ -60,6 +60,11 @@ namespace OnlineShoppingWeb.Services
             return _allTestLaptop.Where(n => n.SubDepartmentId == SubDepartmentId).ToList();
         }
 
+        public int SaveToCart(int ProductId, int UserId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Product> SearchByTitle(string SearchTitle)
         {
             throw new NotImplementedException();

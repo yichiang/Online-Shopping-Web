@@ -73,6 +73,18 @@ namespace OnlineShoppingWeb.Services
             return _context.Products.Where(computer => computer.SubDepartmentId== SubDepartmentId);
         }
 
+        public int SaveToCart(int ProductId, User User)
+        {
+            Product saveProduct=(Product) this.GetLaptopById(ProductId);
+            ShoppingCart newProductAddtoCart = new ShoppingCart();
+            newProductAddtoCart.ProductId = ProductId;
+            newProductAddtoCart.User = User;
+
+            _context.Add(newProductAddtoCart);
+            _context.SaveChanges();
+
+        }
+
         public IEnumerable<Product> SearchByTitle(string SearchTitle)
         {
             return _context.Products.Where(product => product.Title.Contains(SearchTitle)).ToList();
