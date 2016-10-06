@@ -35,19 +35,21 @@ namespace OnlineShoppingWeb.Controllers
 
         public IActionResult Index(ProductPageViewModel vm)
         {
+            
             if (vm.EventCommand == "list" && vm.DisplayList != 10)
             {
+                vm.AllProductsCount = _ProductData.GetAll().Count();
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
                 vm.IsAddPhoneFormAreaVisible = false;
                 vm.IsAddLaptopFormAreaVisible = false;
-                var ajaxProducts = _ProductData.GetPorductsofNum(vm.DisplayList,5);
+                vm.Products = _ProductData.GetPorductsofNum(vm.DisplayList,5);
                 vm.DisplayList += 5;
-                return Json(ajaxProducts);
             }
 
             if (vm.EventCommand == "list"&& vm.DisplayList==10)
             {
+                vm.AllProductsCount = _ProductData.GetAll().Count();
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
                 vm.IsAddPhoneFormAreaVisible = false;

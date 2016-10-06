@@ -68,8 +68,7 @@
                         {
                             <input type="hidden" name="Product.ProductId" value="@product.ProductId"/>
                             <input type="hidden" name="Product.Quantity" value="@(product.Quantity -1)" />
-                            @*<input type="hidden" name="Product.Title" value="@product.Title" />
-                            <input type="hidden" name="Product.Price" value="@product.Price" />*@
+           
                             <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
 
                         }
@@ -77,8 +76,7 @@
                         @using (Html.BeginForm("EditQty", "Product", FormMethod.Post))
                         {
                             <input type="hidden" name="Product.ProductId" value="@product.ProductId" />
-                            @*<input type="hidden" name="Product.Title" value="@product.Title" />
-                            <input type="hidden" name="Product.Price" value="@product.Price" />*@
+   
 
                             <input type="hidden" name="Product.Quantity" value="@(product.Quantity +1)" />
 
@@ -101,7 +99,15 @@
                     </th>
                 </tr>
             }
+            <tr>
+                <th>Page</th>
+                @for (var i = 1; i <= Model.AllProductsCount; i += 5)
+                {
+                    <th>@i - @(i + 4)</th>
+                }          
+                <th>All</th>
 
+            </tr>
         </table>
     </div>
 
@@ -413,11 +419,18 @@
 }
 @Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
 @Html.ActionLink("Create New Phone", "CreatePhone", "Product")
-@Html.TextBoxFor(model => model.DisplayList,new { @Value=Model.DisplayList })
+
+@using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "addMoretoListForm" }))
+{
+@Html.TextBoxFor(model => model.DisplayList, new { @Value = Model.DisplayList })
+    @Html.TextBoxFor(model => model.windowPostiton, new { @Value = Model.windowPostiton })
+
+}
 @section ownScript
 {
 <script>
     $(document).ready(function () {
+        //window.scrollTo(0, parseInt($("#windowPostiton").val()));
         $(".own-btn-action").click(function (e) {
             e.preventDefault();
 
@@ -430,25 +443,7 @@
 
         });
 
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-                console.log("down");
-            }
-        });
-
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() > $(document).height()) {
-                console.log("trigger");
-                //$("#DisplayList").val(parseInt($("#DisplayList").val())+5);
-                $.ajax({
-                    url: '@Url.Action("Index")',
-                    type: 'Get',
-                    dataType: 'json',
-                    data: $("#DisplayList").serialize()
-
-                });
-            }
-        });
+    
     });
 
 </script>    
