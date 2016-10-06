@@ -16,8 +16,8 @@ namespace OnlineShoppingWeb.ViewModels
             IsAddLaptopFormAreaVisible = false;
             IsEditLaptopFormAreaVisible = false;
             IsEditPhoneFormAreaVisible = false;
-            DisplayList = 5;
-            windowPostiton = 0;
+            TakeDisplayList = 5;
+            SkipDisplayList = 0;
             EventCommand = "list";
         }
         public Laptop Laptop { get; set; }
@@ -35,8 +35,8 @@ namespace OnlineShoppingWeb.ViewModels
         public bool IsAddLaptopFormAreaVisible { get; set; }
         public bool IsEditLaptopFormAreaVisible { get; set; }
         public bool IsEditPhoneFormAreaVisible { get; set; }
-        public int DisplayList { get; set; }
-        public int windowPostiton { get; set; }
+        public int TakeDisplayList { get; set; }
+        public int SkipDisplayList { get; set; }
         public int AllProductsCount { get; set; }
 
     }

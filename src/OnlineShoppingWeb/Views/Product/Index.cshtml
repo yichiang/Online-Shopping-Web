@@ -103,9 +103,9 @@
                 <th>Page</th>
                 @for (var i = 1; i <= Model.AllProductsCount; i += 5)
                 {
-                    <th>@i - @(i + 4)</th>
+                    <th class="pageButton">@i - @(i + 4)</th>
                 }          
-                <th>All</th>
+                <th class="pageButton">All</th>
 
             </tr>
         </table>
@@ -422,10 +422,12 @@
 
 @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "addMoretoListForm" }))
 {
-@Html.TextBoxFor(model => model.DisplayList, new { @Value = Model.DisplayList })
-    @Html.TextBoxFor(model => model.windowPostiton, new { @Value = Model.windowPostiton })
+@Html.TextBoxFor(model => model.TakeDisplayList, new { @Value = Model.TakeDisplayList })
+@Html.TextBoxFor(model => model.SkipDisplayList, new { @Value = Model.SkipDisplayList })
 
 }
+@Html.TextBoxFor(model => model.AllProductsCount, new { @Value = Model.AllProductsCount })
+
 @section ownScript
 {
 <script>
@@ -443,6 +445,24 @@
 
         });
 
+        $(".pageButton").click(function () {
+            var pageRange = $(this).text();
+            console.log(pageRange);
+            if (pageRange === "All") {
+                console.log("All");
+
+                $("#TakeDisplayList").val($("#AllProductsCount").val("0"));
+                $("#SkipDisplayList").val("0");
+
+            } else {
+                var tempArray = pageRange.split("-");
+                console.log(tempArray);
+                $("#TakeDisplayList").val("5");
+                $("#SkipDisplayList").val(parseInt(tempArray)-1);
+            }
+            $("form.addMoretoListForm").submit();
+
+        })
     
     });
 

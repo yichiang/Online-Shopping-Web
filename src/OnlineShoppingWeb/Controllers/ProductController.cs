@@ -37,14 +37,14 @@ namespace OnlineShoppingWeb.Controllers
         {
             
 
-            if (vm.EventCommand == "list"&& vm.DisplayList==10)
+            if (vm.EventCommand == "list")
             {
                 vm.AllProductsCount = _ProductData.GetAll().Count();
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
                 vm.IsAddPhoneFormAreaVisible = false;
                 vm.IsAddLaptopFormAreaVisible = false;
-                vm.Products = _ProductData.GetPorductsofNum(0,vm.DisplayList);
+                vm.Products = _ProductData.GetPorductsofNum(vm.SkipDisplayList, vm.TakeDisplayList);
 
             }
             else if (vm.EventCommand == "search")
