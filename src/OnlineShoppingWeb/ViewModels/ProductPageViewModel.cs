@@ -16,7 +16,7 @@ namespace OnlineShoppingWeb.ViewModels
             IsAddLaptopFormAreaVisible = false;
             IsEditLaptopFormAreaVisible = false;
             IsEditPhoneFormAreaVisible = false;
-            DisplayList = 20;
+            DisplayList = 10;
             EventCommand = "list";
         }
         public Laptop Laptop { get; set; }

@@ -68,8 +68,8 @@
                         {
                             <input type="hidden" name="Product.ProductId" value="@product.ProductId"/>
                             <input type="hidden" name="Product.Quantity" value="@(product.Quantity -1)" />
-                            <input type="hidden" name="Product.Title" value="@product.Title" />
-                            <input type="hidden" name="Product.Price" value="@product.Price" />
+                            @*<input type="hidden" name="Product.Title" value="@product.Title" />
+                            <input type="hidden" name="Product.Price" value="@product.Price" />*@
                             <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
 
                         }
@@ -77,8 +77,8 @@
                         @using (Html.BeginForm("EditQty", "Product", FormMethod.Post))
                         {
                             <input type="hidden" name="Product.ProductId" value="@product.ProductId" />
-                            <input type="hidden" name="Product.Title" value="@product.Title" />
-                            <input type="hidden" name="Product.Price" value="@product.Price" />
+                            @*<input type="hidden" name="Product.Title" value="@product.Title" />
+                            <input type="hidden" name="Product.Price" value="@product.Price" />*@
 
                             <input type="hidden" name="Product.Quantity" value="@(product.Quantity +1)" />
 
@@ -439,7 +439,7 @@
         $(window).scroll(function () {
             if ($(window).scrollTop() + $(window).height() > $(document).height()) {
                 console.log("trigger");
-                
+                //$("#DisplayList").val(parseInt($("#DisplayList").val())+5);
                 $.ajax({
                     url: '@Url.Action("Index")',
                     type: 'Get',
