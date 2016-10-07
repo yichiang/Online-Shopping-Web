@@ -8,9 +8,6 @@ using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using System.IO;
-using Microsoft.Net.Http.Headers;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 
@@ -64,7 +61,6 @@ namespace OnlineShoppingWeb.Controllers
                 vm.Products = _ProductData.GetAll();
 
             }
-            vm.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(vm);
         }
 
