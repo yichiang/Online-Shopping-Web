@@ -72,9 +72,7 @@
                         }          
                     </th>
                     <th>
-                        <form action="/Client/Detail/@product.ProductId" method="post" class="">
-                            <input type="submit" value="Detail" />
-                        </form>
+                            <button class="btn own-btn-action" value="Detail"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Reset</button>
                     </th>
                 </tr>
             }
@@ -83,7 +81,10 @@
     </div>
 
 }
-
+@if(Model.IsDetailAreaVisible)
+{
+    <h1>Detail</h1>
+}
 
 
 

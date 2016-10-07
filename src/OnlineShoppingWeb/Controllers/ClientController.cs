@@ -41,16 +41,15 @@ namespace OnlineShoppingWeb.Controllers
             {
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
-                vm.IsAddPhoneFormAreaVisible = false;
-                vm.IsAddLaptopFormAreaVisible = false;
+                vm.IsDetailAreaVisible = false;
                 vm.Products = _ProductData.GetAll();
             }
             else if (vm.EventCommand == "search")
             {
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
-                vm.IsAddPhoneFormAreaVisible = false;
-                vm.IsAddLaptopFormAreaVisible = false;
+                vm.IsDetailAreaVisible = false;
+
                 vm.Products = _ProductData.SearchByTitle(vm.ProductSearchName);
 
             }
@@ -58,17 +57,16 @@ namespace OnlineShoppingWeb.Controllers
             {
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
-                vm.IsAddPhoneFormAreaVisible = false;
-                vm.IsAddLaptopFormAreaVisible = false;
+                vm.IsDetailAreaVisible = false;
+
                 vm.Products = _ProductData.GetAll();
 
             }
-            else if (vm.EventCommand == "viewDetail")
+            else if (vm.EventCommand == "Detail")
             {
                 vm.IsListAreaVisible = false;
                 vm.IsSearchAreaVisible = false;
-                vm.IsAddPhoneFormAreaVisible = false;
-                vm.IsAddLaptopFormAreaVisible = true;
+                vm.IsDetailAreaVisible = false;
 
                 vm.Products = _ProductData.GetAll();
 
