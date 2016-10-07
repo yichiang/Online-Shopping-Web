@@ -79,9 +79,9 @@ namespace OnlineShoppingWeb.Controllers
         public async Task<IActionResult> AddToCart(ClientProductPageViewModel vm)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            //var currentUser = await _userManager.FindByIdAsync(userId);
+            var currentUser = await _userManager.FindByIdAsync(userId);
 
-            _ProductData.SaveToCart(vm.SaveToCartProductId, userId);
+            _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser.Id);
             vm.EventCommand = "list";
             return RedirectToAction("Index",vm);
         }
