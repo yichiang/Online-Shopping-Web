@@ -86,14 +86,10 @@
                 </tr>
             }
             <tr>
-                @if(Model.EventCommand !="search")
+                @if (Model.EventCommand != "search")
                 {
-                <th>Page</th>
-                @for (var i = 1; i <= Model.AllProductsCount; i += 5)
-                {
-                    <th class="pageButton">@i - @(i + 4)</th>
-                }
-                <th class="pageButton">All</th>
+                    @Html.Partial("_PageDisplay", Model.AllProductsCount)
+
                 }
      
 

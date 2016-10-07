@@ -1,0 +1,9 @@
+﻿<tr>
+    <th>Page</th>
+    @for (var i = 1; i <= Model; i += 5)
+    {
+        <th class="pageButton">@i - @(i + 4)</th>
+    }
+    <th class="pageButton">All</th>
+
+</tr>

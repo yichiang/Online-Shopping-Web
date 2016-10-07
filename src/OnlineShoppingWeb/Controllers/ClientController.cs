@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
-using System.Reflection;
 using System.Linq;
 
 namespace OnlineShoppingWeb.Controllers
