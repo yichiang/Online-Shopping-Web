@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using System.Reflection;
+using System.Linq;
 
 namespace OnlineShoppingWeb.Controllers
 {
@@ -34,10 +35,11 @@ namespace OnlineShoppingWeb.Controllers
         {
             if (vm.EventCommand == "list")
             {
+                vm.AllProductsCount = _ProductData.GetAll().Count();
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
                 vm.IsDetailAreaVisible = false;
-                vm.Products = _ProductData.GetAll();
+                vm.Products = _ProductData.GetPorductsofNum(vm.SkipDisplayList, vm.TakeDisplayList);
             }
             else if (vm.EventCommand == "search")
             {
@@ -46,9 +48,10 @@ namespace OnlineShoppingWeb.Controllers
                 vm.IsDetailAreaVisible = false;
 
                 vm.Products = _ProductData.SearchByTitle(vm.ProductSearchName);
+                vm.AllProductsCount = vm.Products.Count();
 
             }
-      
+
             else if (vm.EventCommand == "detail")
             {
                 int productId =vm.SaveToCartProductId;

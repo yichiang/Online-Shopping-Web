@@ -1,5 +1,8 @@
 ﻿@using OnlineShoppingWeb.ViewModels;
 @using OnlineShoppingWeb.Enities;
+@using System.Linq;
+
+
 @model ProductPageViewModel
 @if(Model.IsSearchAreaVisible)
 {
@@ -99,15 +102,20 @@
                     </th>
                 </tr>
             }
-            <tr>
-                <th>Page</th>
-                @for (var i = 1; i <= Model.AllProductsCount; i += 5)
+                @if (Model.EventCommand != "search")
                 {
-                    <th class="pageButton">@i - @(i + 4)</th>
-                }          
-                <th class="pageButton">All</th>
 
-            </tr>
+                    <tr>
+                        <th>Page</th>
+                        @for (var i = 1; i <= Model.AllProductsCount; i += 5)
+                        {
+                            <th class="pageButton">@i - @(i + 4)</th>
+                        }
+                        <th class="pageButton">All</th>
+
+                    </tr>
+                }
+         
         </table>
     </div>
 
@@ -458,11 +466,11 @@
                 var tempArray = pageRange.split("-");
                 console.log(tempArray);
                 $("#TakeDisplayList").val("5");
-                $("#SkipDisplayList").val(parseInt(tempArray)-1);
+                $("#SkipDisplayList").val(parseInt(tempArray) - 1);
             }
             $("form.addMoretoListForm").submit();
 
-        })
+        });
     
     });
 

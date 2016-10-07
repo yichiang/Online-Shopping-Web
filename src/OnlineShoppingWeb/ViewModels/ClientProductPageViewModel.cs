@@ -12,6 +12,8 @@ namespace OnlineShoppingWeb.ViewModels
             IsListAreaVisible = true;
             IsSearchAreaVisible = true;
             IsDetailAreaVisible = false;
+            TakeDisplayList = 5;
+            SkipDisplayList = 0;
             EventCommand = "list";
         }
         public Laptop Laptop { get; set; }
@@ -30,5 +32,8 @@ namespace OnlineShoppingWeb.ViewModels
 
         public int SaveToCartProductId { get; set; }
         public string ProductType { get; set; }
+        public int AllProductsCount { get; set; }
+        public int TakeDisplayList { get; set; }
+        public int SkipDisplayList { get; set; }
     }
 }
