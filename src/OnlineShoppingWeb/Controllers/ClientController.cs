@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using System.Reflection;
 
 namespace OnlineShoppingWeb.Controllers
 {
@@ -50,16 +51,29 @@ namespace OnlineShoppingWeb.Controllers
       
             else if (vm.EventCommand == "detail")
             {
-                var temp =vm.SaveToCartProductId;
+                int productId =vm.SaveToCartProductId;
+                var temp2 = vm.ProductType;
                 vm.IsListAreaVisible = false;
                 vm.IsSearchAreaVisible = false;
                 vm.IsDetailAreaVisible = true;
 
-                vm.Products = _ProductData.GetAll();
+                var foundProduct = _ProductData.FindProductById(productId);
+                vm.Product = foundProduct;
+
+                if (temp2 == "Laptop")
+                {
+                    vm.Laptop = (Laptop) foundProduct;
+                }
+                else if (temp2 == "Phone")
+                {
+                    vm.Phone = (Phone)foundProduct;
+                }
 
             }
             return View(vm);
-        }
+
+
+    }
 
         [HttpPost]
         public async Task<IActionResult> AddToCart(ClientProductPageViewModel vm)
