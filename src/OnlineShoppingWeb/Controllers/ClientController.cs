@@ -37,6 +37,7 @@ namespace OnlineShoppingWeb.Controllers
         [AllowAnonymous]
         public IActionResult Index(ClientProductPageViewModel vm)
         {
+            var temp = vm.EventCommand;
             if (vm.EventCommand == "list")
             {
                 vm.IsListAreaVisible = true;
@@ -53,20 +54,12 @@ namespace OnlineShoppingWeb.Controllers
                 vm.Products = _ProductData.SearchByTitle(vm.ProductSearchName);
 
             }
-            else if (vm.EventCommand == "addToCart")
-            {
-                vm.IsListAreaVisible = true;
-                vm.IsSearchAreaVisible = true;
-                vm.IsDetailAreaVisible = false;
-
-                vm.Products = _ProductData.GetAll();
-
-            }
-            else if (vm.EventCommand == "Detail")
+      
+            else if (vm.EventCommand == "detail")
             {
                 vm.IsListAreaVisible = false;
                 vm.IsSearchAreaVisible = false;
-                vm.IsDetailAreaVisible = false;
+                vm.IsDetailAreaVisible = true;
 
                 vm.Products = _ProductData.GetAll();
 
