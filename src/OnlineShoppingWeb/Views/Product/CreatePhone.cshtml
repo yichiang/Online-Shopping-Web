@@ -1,62 +1,7 @@
-﻿<h1> Add New Product to our store</h1>
-
+﻿
 @using OnlineShoppingWeb.ViewModels;
 @using OnlineShoppingWeb.Enities;
 @model ProductPageViewModel
-@using (Html.BeginForm("CreatePhone", "Product", FormMethod.Post))
-{
-    @Html.ValidationSummary()
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Phone.Title)
-        @Html.TextBoxFor(model => model.Phone.Title, new { @class = "form-control"})
-        @Html.ValidationMessageFor(model => model.Phone.Title)
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Phone.Price)
-        @Html.TextBoxFor(model => model.Phone.Price, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Phone.Price)
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Phone.Brand)
-        @Html.TextBoxFor(model => model.Phone.Brand, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Phone.Brand)
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Phone.Quantity)
-        @Html.TextBoxFor(model => model.Phone.Quantity, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Phone.Quantity)
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Phone.AvgCustomerReview)
-        @Html.TextBoxFor(model => model.Phone.AvgCustomerReview, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Phone.AvgCustomerReview)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Phone.Carrier)
-        @Html.TextBoxFor(model => model.Phone.Carrier, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Phone.Carrier)
-    </div>
+@Html.Partial("_CreatePhoneForm", Model)
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Phone.Condition)
-        @Html.DropDownListFor(model => model.Phone.Condition, Html.GetEnumSelectList(typeof(ConditionType)))
-        @Html.ValidationMessageFor(model => model.Phone.Condition)
-    </div>
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Phone.SubDepartment)
-        @Html.DropDownListFor(model => model.Phone.SubDepartmentId, Model.SubDepartments.Select(x => new SelectListItem { Text = x.SubDepartmentId.ToString()+x.Description, Value = x.SubDepartmentId.ToString() }))
-        @Html.ValidationMessageFor(model => model.Phone.SubDepartment)
-    </div>
-
-    <div class="form-group">
-        <input type="submit" value="Add New Phone" />
-    </div>
-        }
