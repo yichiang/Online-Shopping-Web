@@ -72,7 +72,8 @@ namespace OnlineShoppingWeb.Controllers
                     //newUserRole.RoleId = role.Id;
                     //newUserRole.UserId = user.Id;
                     //_db.UserRoles.Add(newUserRole);
-                    await _userManager.AddToRoleAsync(user, model.RoleName);
+                    var currentUser = await _userManager.FindByIdAsync(user.Id);
+                    await _userManager.AddToRoleAsync(currentUser, model.RoleName);
                     //user.Roles.Add(newUserRole);
                     //_db.SaveChanges();
                     return RedirectToAction("Index", "Account", user);
