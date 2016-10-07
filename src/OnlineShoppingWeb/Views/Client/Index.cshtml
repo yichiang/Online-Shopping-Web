@@ -161,12 +161,10 @@
 
 }
 
-@using (Html.BeginForm("Index", "Client", FormMethod.Get, new { @class = "addMoretoListForm" }))
-{
-    @Html.HiddenFor(model => model.TakeDisplayList, new { @Value = Model.TakeDisplayList })
-    @Html.HiddenFor(model => model.SkipDisplayList, new { @Value = Model.SkipDisplayList })
+@Html.Partial("_PageControlForm", Model)
 
-}
+
+
 
         @section ownScript
 {

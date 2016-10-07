@@ -1,0 +1,8 @@
+﻿@using OnlineShoppingWeb.ViewModels
+@model ProductPageViewModel
+@using (Html.BeginForm("Index", "Client", FormMethod.Get, new { @class = "addMoretoListForm" }))
+{
+    @Html.HiddenFor(model => Model.TakeDisplayList, new { @Value = Model.TakeDisplayList })
+    @Html.HiddenFor(model => Model.SkipDisplayList, new { @Value = Model.SkipDisplayList })
+
+}

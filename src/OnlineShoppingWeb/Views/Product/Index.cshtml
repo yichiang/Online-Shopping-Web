@@ -420,12 +420,8 @@
 @Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
 @Html.ActionLink("Create New Phone", "CreatePhone", "Product")
 
-@using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "addMoretoListForm" }))
-{
-@Html.HiddenFor(model => model.TakeDisplayList, new { @Value = Model.TakeDisplayList })
-@Html.HiddenFor(model => model.SkipDisplayList, new { @Value = Model.SkipDisplayList })
+@Html.Partial("_PageControlForm", Model)
 
-}
 @Html.HiddenFor(model => model.AllProductsCount, new { @Value = Model.AllProductsCount })
 
 @section ownScript
