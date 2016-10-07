@@ -32,5 +32,8 @@ namespace OnlineShoppingWeb.Enities
         public ConditionType Condition { get; set; }
         public int Quantity { get; set; }
         public string Discriminator { get; set; }
+        [StringLength(20, MinimumLength = 2)]
+        public string Brand { get; set; }
+
     }
 }

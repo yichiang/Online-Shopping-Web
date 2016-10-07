@@ -60,14 +60,14 @@ namespace OnlineShoppingWeb.Controllers
                 var foundProduct = _ProductData.FindProductById(productId);
                 vm.Product = foundProduct;
 
-                //if (temp2 == "Laptop")
-                //{
-                //    vm.Laptop = (Laptop) foundProduct;
-                //}
-                //else if (temp2 == "Phone")
-                //{
-                //    vm.Phone = (Phone)foundProduct;
-                //}
+                if (temp2 == "Laptop")
+                {
+                    vm.Laptop = (Laptop)foundProduct;
+                }
+                else if (temp2 == "Phone")
+                {
+                    vm.Phone = (Phone)foundProduct;
+                }
 
             }
             return View(vm);
