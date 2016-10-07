@@ -75,7 +75,7 @@ namespace OnlineShoppingWeb.Controllers
                     await _userManager.AddToRoleAsync(user, model.RoleName);
                     //user.Roles.Add(newUserRole);
                     //_db.SaveChanges();
-                    return View("Index", "Account");
+                    return RedirectToAction("Index", "Account", user);
                 }
                 else
                 {
