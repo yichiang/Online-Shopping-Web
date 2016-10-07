@@ -31,7 +31,6 @@ namespace OnlineShoppingWeb.Controllers
         [AllowAnonymous]
         public IActionResult Index(ClientProductPageViewModel vm)
         {
-            var temp = vm.EventCommand;
             if (vm.EventCommand == "list")
             {
                 vm.IsListAreaVisible = true;
@@ -51,6 +50,7 @@ namespace OnlineShoppingWeb.Controllers
       
             else if (vm.EventCommand == "detail")
             {
+                var temp =vm.SaveToCartProductId;
                 vm.IsListAreaVisible = false;
                 vm.IsSearchAreaVisible = false;
                 vm.IsDetailAreaVisible = true;
