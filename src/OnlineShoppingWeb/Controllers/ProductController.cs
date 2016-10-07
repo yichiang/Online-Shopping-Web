@@ -31,7 +31,7 @@ namespace OnlineShoppingWeb.Controllers
         [HttpGet]
         [AllowAnonymous]
 
-        public IActionResult Index(ProductPageViewModel vm)
+        public IActionResult Index(ManagerProductViewModel vm)
         {
             
 
@@ -105,13 +105,13 @@ namespace OnlineShoppingWeb.Controllers
         [HttpGet]
         public IActionResult CreateLaptop()
         {
-            ProductPageViewModel viewModel = new ProductPageViewModel();
+            ManagerProductViewModel viewModel = new ManagerProductViewModel();
             viewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult CreateLaptop(ProductPageViewModel viewModel)
+        public IActionResult CreateLaptop(ManagerProductViewModel viewModel)
         {
             viewModel.Laptop.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Laptop.SubDepartmentId);
             if (ModelState.IsValid)
@@ -121,14 +121,14 @@ namespace OnlineShoppingWeb.Controllers
                 return RedirectToAction("Index");
 
             }
-            ProductPageViewModel newviewModel = new ProductPageViewModel();
+            ManagerProductViewModel newviewModel = new ManagerProductViewModel();
             newviewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(newviewModel);
         }
 
         [HttpPost]
         [Route("product/DeleteProduct")]
-        public IActionResult Delete(ProductPageViewModel viewModel)
+        public IActionResult Delete(ManagerProductViewModel viewModel)
         {
             _ProductData.DeleteProduct(viewModel.Product.ProductId);
  
@@ -137,7 +137,7 @@ namespace OnlineShoppingWeb.Controllers
         }
         [HttpPost]
         [Route("product/EditLaptop")]
-        public IActionResult EditLaptop(ProductPageViewModel viewModel)
+        public IActionResult EditLaptop(ManagerProductViewModel viewModel)
         {
             _ProductData.Edit(viewModel.Laptop);
             return RedirectToAction("Index");
@@ -145,7 +145,7 @@ namespace OnlineShoppingWeb.Controllers
         }
         [HttpPost]
         [Route("product/EditPhone")]
-        public IActionResult EditPhone(ProductPageViewModel viewModel)
+        public IActionResult EditPhone(ManagerProductViewModel viewModel)
         {
             _ProductData.Edit(viewModel.Phone);
             return RedirectToAction("Index");
@@ -154,7 +154,7 @@ namespace OnlineShoppingWeb.Controllers
 
         [HttpPost]
         [Route("product/EditQty")]
-        public IActionResult EditQty(ProductPageViewModel viewModel)
+        public IActionResult EditQty(ManagerProductViewModel viewModel)
         {
             if (viewModel.Product.Quantity >= 0)
             {
@@ -197,13 +197,13 @@ namespace OnlineShoppingWeb.Controllers
         [HttpGet]
         public IActionResult CreatePhone()
         {
-            ProductPageViewModel viewModel = new ProductPageViewModel();
+            ManagerProductViewModel viewModel = new ManagerProductViewModel();
             viewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult CreatePhone(ProductPageViewModel viewModel)
+        public IActionResult CreatePhone(ManagerProductViewModel viewModel)
         {
             viewModel.Phone.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Phone.SubDepartmentId);
             if (ModelState.IsValid)
@@ -212,7 +212,7 @@ namespace OnlineShoppingWeb.Controllers
                 return RedirectToAction("Index");
 
             }
-            ProductPageViewModel newviewModel = new ProductPageViewModel();
+            ManagerProductViewModel newviewModel = new ManagerProductViewModel();
             newviewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(newviewModel);
         }
