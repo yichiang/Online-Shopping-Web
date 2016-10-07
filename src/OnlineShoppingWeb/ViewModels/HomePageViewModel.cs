@@ -1,7 +1,4 @@
-﻿using OnlineShoppingWeb.Enities;
-using System.Collections.Generic;
-
-namespace onlineShoppingWeb.ViewModels
+﻿namespace onlineShoppingWeb.ViewModels
 {
     public class HomePageViewModel
     {
