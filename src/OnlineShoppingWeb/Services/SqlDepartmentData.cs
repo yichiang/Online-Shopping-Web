@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OnlineShoppingWeb.Enities;
-using System;
+﻿using OnlineShoppingWeb.Enities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace OnlineShoppingWeb.Services
 {
