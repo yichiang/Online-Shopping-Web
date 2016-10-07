@@ -116,16 +116,15 @@
 
 @if (Model.IsAddPhoneFormAreaVisible)
 {
-    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "SearchForm" }))
-    {
-    <button class="btn own-btn-action" value="list"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Reset</button>
-    }
+    @Html.Partial("_ResetToListForm", "Product")
+
     @Html.Partial("_CreatePhoneForm", Model)
 
 }
 
 @if (Model.IsEditPhoneFormAreaVisible)
 {
+    @Html.Partial("_ResetToListForm", "Product")
 
     <h2> Edit Phone</h2>
     @using (Html.BeginForm("EditPhone", "Product", FormMethod.Post))
@@ -185,18 +184,12 @@
         </div>
     }
 
-    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "SearchForm" }))
-    {
-        <button class="btn own-btn-action" value="list"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Cancel</button>
-    }
 }
 
 @if (Model.IsAddLaptopFormAreaVisible)
 {
-    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "SearchForm" }))
-    {
-        <button class="btn own-btn-action" value="list"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Reset</button>
-    }
+    @Html.Partial("_ResetToListForm", "Product")
+
     @Html.Partial("_CreateLaptopForm", Model)
 
   
@@ -206,10 +199,8 @@
 
 @if (Model.IsEditLaptopFormAreaVisible)
 {
-    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "SearchForm" }))
-    {
-        <button class="btn own-btn-action" value="list"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Reset</button>
-    }
+  @Html.Partial("_ResetToListForm", "Product")
+
     <h1>Edit Laptop</h1>
 
     @using (Html.BeginForm("EditLaptop", "Product", FormMethod.Post))

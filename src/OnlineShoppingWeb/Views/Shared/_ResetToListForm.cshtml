@@ -1,0 +1,6 @@
+﻿@model string
+
+@using (Html.BeginForm("Index", @Model, FormMethod.Get, new { @class = "SearchForm" }))
+{
+    <button class="btn own-btn-action" value="list"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Reset</button>
+}
