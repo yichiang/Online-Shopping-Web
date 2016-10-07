@@ -298,41 +298,5 @@
 
 @section ownScript
 {
-<script>
-    $(document).ready(function () {
-
-        $(".own-btn-action").click(function (e) {
-            e.preventDefault();
-
-            console.log("eventCommand" + $("#EventCommand").val());
-            console.log("button value" + $(this).val());
-            $(this).css("color", "red");
-            $("#EventCommand").val($(this).val());
-            console.log("eventCommand" + $("#EventCommand").val());
-            $("form.SearchForm").submit();
-
-        });
-
-        $(".pageButton").click(function () {
-            var pageRange = $(this).text();
-            console.log(pageRange);
-            if (pageRange === "All") {
-                console.log("All");
-
-                $("#TakeDisplayList").val($("#AllProductsCount").val());
-                $("#SkipDisplayList").val("0");
-
-            } else {
-                var tempArray = pageRange.split("-");
-                console.log(tempArray);
-                $("#TakeDisplayList").val("5");
-                $("#SkipDisplayList").val(parseInt(tempArray) - 1);
-            }
-            $("form.addMoretoListForm").submit();
-
-        });
-    
-    });
-
-</script>    
+    <script src="/js/productView.js"></script>
 }
