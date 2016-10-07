@@ -6,9 +6,10 @@
             <div class="font-page-image">
                 <img class="" src="https://static.pexels.com/photos/36428/book-read-relax-lilac-large.jpg" alt="" />
                 <div class="font-image-overlay">
-                    <h2>Popular Book</h2>
-                    We Have a varity of product
-                    <button class="btn overlay-btn">View Books</button>
+                    <h2>Manager your Account</h2>
+                    <button class="btn overlay-btn">
+                        @Html.ActionLink("Account Center", "Index", "Account")
+                    </button>
                 </div>
             </div>
         </div>
@@ -30,10 +31,9 @@
             <div class="font-page-image">
                 <img src="https://static.pexels.com/photos/173983/pexels-photo-173983-large.jpeg" alt="" />
                 <div class="font-image-overlay">
-                    <h2>See More</h2>
-                    We Have a varity of product
+                    <h2>Browser all our Products</h2>
                     <button class="btn overlay-btn">
-                        @Html.ActionLink("View Departments", "Index", "Department")
+                        @Html.ActionLink("View All Products", "Index", "Client")
                     </button>
                 </div>
             </div>
@@ -45,10 +45,10 @@
             <div class="font-page-image">
                 <img class="" src="https://static.pexels.com/photos/425/apple-iphone-desk-office-large.jpg" alt="" />
                 <div class="font-image-overlay">
-                    <h2>High Performence of Laptop</h2>
+                    <h2>All Product</h2>
                     We Have a varity of product
                     <button class="btn overlay-btn">
-                        @Html.ActionLink("View Laptops", "Index", "Product")
+                        @Html.ActionLink("Admin Tools", "Index", "Product")
                     </button>
                 </div>
             </div>

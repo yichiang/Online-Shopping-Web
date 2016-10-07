@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 namespace OnlineShoppingWeb.Controllers
 {
@@ -23,15 +24,24 @@ namespace OnlineShoppingWeb.Controllers
             _roleManager = roleManager;
             _db = db;
         }
-
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId != null)
+            {
+                var currentUser = await _userManager.FindByIdAsync(userId);
+                return View(currentUser);
+              
+            }
+      
             return View();
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult AllUsers()
         {
+      
             return View(_db.Users.ToList());
         }
 
@@ -59,12 +69,12 @@ namespace OnlineShoppingWeb.Controllers
                 {
                     await _signInManager.SignInAsync(user, false);
                     IdentityUserRole<string> newUserRole = new IdentityUserRole<string>();
-                    newUserRole.RoleId = role.Id;
-                    newUserRole.UserId = user.Id;
+                    //newUserRole.RoleId = role.Id;
+                    //newUserRole.UserId = user.Id;
                     //_db.UserRoles.Add(newUserRole);
-                    //await _userManager.AddToRoleAsync(user, model.RoleName);
-                    user.Roles.Add(newUserRole);
-                    _db.SaveChanges();
+                    await _userManager.AddToRoleAsync(user, model.RoleName);
+                    //user.Roles.Add(newUserRole);
+                    //_db.SaveChanges();
                     return View("Index", "Account");
                 }
                 else
@@ -149,17 +159,25 @@ namespace OnlineShoppingWeb.Controllers
             return View(Role);
         }
 
-        /// <summary>
-        /// Create a New Role
-        /// </summary>
-        /// <param name="Role"></param>
-        /// <returns></returns>
+
         [HttpPost]
         [Route("account/createRole")]
-        public ActionResult CreateRole(IdentityRole Role)
+        public async Task<ActionResult> CreateRole(IdentityRole Role)
         {
-            _db.Roles.Add(Role);
-            _db.SaveChanges();
+            bool checkExistedRole = await _roleManager.RoleExistsAsync(Role.Name);
+            if (!checkExistedRole)
+            {
+
+                // first we create Admin rool 
+                IdentityRole newUserRole = new IdentityRole();
+
+                newUserRole.Name = Role.Name;
+                await _roleManager.CreateAsync(newUserRole);
+        
+            }
+
+            //_db.Roles.Add(Role);
+            //_db.SaveChanges();
             return RedirectToAction("Index");
         }
 

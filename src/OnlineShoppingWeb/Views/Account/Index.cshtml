@@ -1,1 +1,10 @@
 ﻿<h1>Welcome to Account Center</h1>
+<h2>You have to Login in as Admin to able to browser it. @Html.ActionLink("View All Existin User And Manager them", "AllUsers", "Account") </h2>
+@if (Model != null)
+{
+    <h3>@Model.Email</h3>
+    @foreach (var name in Model.Roles)
+    { 
+       <h2>Role : name</h2>
+    }
+}
