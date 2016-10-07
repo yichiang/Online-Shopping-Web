@@ -8,7 +8,7 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20160927180251_v1")]
+    [Migration("20161007172734_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,6 +16,27 @@ namespace OnlineShoppingWeb.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
+                {
+                    b.Property<string>("Id");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Name")
+                        .HasAnnotation("MaxLength", 256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasAnnotation("MaxLength", 256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .HasName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
@@ -103,28 +124,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.ApplicationRole", b =>
-                {
-                    b.Property<string>("Id");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasAnnotation("MaxLength", 256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .HasName("RoleNameIndex");
-
-                    b.ToTable("AspNetRoles");
-                });
-
             modelBuilder.Entity("OnlineShoppingWeb.Enities.Department", b =>
                 {
                     b.Property<int>("DepartmentId")
@@ -144,10 +143,14 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<double>("AvgCustomerReview");
 
+                    b.Property<int>("Condition");
+
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
                     b.Property<decimal>("Price");
+
+                    b.Property<int>("Quantity");
 
                     b.Property<int>("SubDepartmentId");
 
@@ -162,6 +165,26 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("Products");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Product");
+                });
+
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingCart", b =>
+                {
+                    b.Property<int>("ShoppingCartId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("AddToCartDate");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("ShoppingCartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingCart");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>
@@ -183,17 +206,17 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<string>("Payment");
 
-                    b.Property<int?>("PurchasedProductProductId");
+                    b.Property<int>("ProductId");
 
                     b.Property<string>("UserId");
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("PurchasedProductProductId");
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ShoppingOrderd");
+                    b.ToTable("ShoppingOrder");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.SubDepartment", b =>
@@ -272,8 +295,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.Property<string>("Brand")
                         .HasAnnotation("MaxLength", 20);
 
-                    b.Property<int>("Condition");
-
                     b.Property<int>("HardDrive");
 
                     b.Property<string>("HardDriveSize")
@@ -290,9 +311,25 @@ namespace OnlineShoppingWeb.Migrations
                     b.HasDiscriminator().HasValue("Laptop");
                 });
 
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.Phone", b =>
+                {
+                    b.HasBaseType("OnlineShoppingWeb.Enities.Product");
+
+                    b.Property<string>("Brand")
+                        .HasAnnotation("MaxLength", 20);
+
+                    b.Property<string>("Carrier");
+
+                    b.Property<double>("ScreenSize");
+
+                    b.ToTable("Products");
+
+                    b.HasDiscriminator().HasValue("Phone");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("OnlineShoppingWeb.Enities.ApplicationRole")
+                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
                         .WithMany("Claims")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -316,7 +353,7 @@ namespace OnlineShoppingWeb.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("OnlineShoppingWeb.Enities.ApplicationRole")
+                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -335,11 +372,24 @@ namespace OnlineShoppingWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingCart", b =>
+                {
+                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Proudct")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("OnlineShoppingWeb.Enities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>
                 {
-                    b.HasOne("OnlineShoppingWeb.Enities.Laptop", "PurchasedProduct")
+                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Proudct")
                         .WithMany()
-                        .HasForeignKey("PurchasedProductProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("OnlineShoppingWeb.Enities.User", "User")
                         .WithMany("ShoppingOrders")

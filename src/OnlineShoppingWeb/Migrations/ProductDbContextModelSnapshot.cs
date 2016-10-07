@@ -175,15 +175,13 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<int>("ProductId");
 
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
+                    b.Property<string>("UserId");
 
                     b.HasKey("ShoppingCartId");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("ShoppingCart");
                 });
@@ -382,7 +380,7 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.HasOne("OnlineShoppingWeb.Enities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>

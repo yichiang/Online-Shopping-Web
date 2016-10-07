@@ -71,13 +71,12 @@ namespace OnlineShoppingWeb.Services
             return _context.Products.Where(computer => computer.SubDepartmentId== SubDepartmentId);
         }
 
-        public void SaveToCart(int ProductId, User User)
+        public void SaveToCart(int ProductId, string UserId)
         {
-            Product saveProduct=(Product) this.GetLaptopById(ProductId);
+
             ShoppingCart newProductAddtoCart = new ShoppingCart();
             newProductAddtoCart.ProductId = ProductId;
-            newProductAddtoCart.User = User;
-
+            newProductAddtoCart.UserId = UserId;
             _context.ShoppingCart.Add(newProductAddtoCart);
             _context.SaveChanges();
 

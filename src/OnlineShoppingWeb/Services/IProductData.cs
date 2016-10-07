@@ -16,6 +16,6 @@ namespace OnlineShoppingWeb.Services
         void EditQty(Product EditProduct);
         IEnumerable<Product> GetPorductsofNum(int SkipNum, int TakeNum);
 
-        void SaveToCart(int ProductId, User User);
+        void SaveToCart(int ProductId, string UserId);
     }
 }

@@ -60,14 +60,14 @@ namespace OnlineShoppingWeb.Controllers
                 var foundProduct = _ProductData.FindProductById(productId);
                 vm.Product = foundProduct;
 
-                if (temp2 == "Laptop")
-                {
-                    vm.Laptop = (Laptop) foundProduct;
-                }
-                else if (temp2 == "Phone")
-                {
-                    vm.Phone = (Phone)foundProduct;
-                }
+                //if (temp2 == "Laptop")
+                //{
+                //    vm.Laptop = (Laptop) foundProduct;
+                //}
+                //else if (temp2 == "Phone")
+                //{
+                //    vm.Phone = (Phone)foundProduct;
+                //}
 
             }
             return View(vm);
@@ -79,9 +79,9 @@ namespace OnlineShoppingWeb.Controllers
         public async Task<IActionResult> AddToCart(ClientProductPageViewModel vm)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = await _userManager.FindByIdAsync(userId);
+            //var currentUser = await _userManager.FindByIdAsync(userId);
 
-            _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser);
+            _ProductData.SaveToCart(vm.SaveToCartProductId, userId);
             vm.EventCommand = "list";
             return RedirectToAction("Index",vm);
         }

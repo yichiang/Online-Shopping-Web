@@ -11,7 +11,7 @@ namespace OnlineShoppingWeb.Enities
 
         public int ProductId { get; set; }
         public virtual Product Proudct { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public virtual User User { get; set; }
     }
 }
