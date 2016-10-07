@@ -1,5 +1,5 @@
 ﻿@using OnlineShoppingWeb.ViewModels;
-@using OnlineShoppingWeb.Enities;
+
 @model ClientProductPageViewModel
 @if(Model.IsSearchAreaVisible)
 {
@@ -98,15 +98,20 @@
 {
 <script>
     $(document).ready(function () {
+        //window.scrollTo(0, parseInt($("#windowPostiton").val()));
         $(".own-btn-action").click(function (e) {
             e.preventDefault();
 
+            console.log("eventCommand" + $("#EventCommand").val());
+            console.log("button value" + $(this).val());
             $(this).css("color", "red");
-            console.log($(this).val());
             $("#EventCommand").val($(this).val());
+            console.log("eventCommand" + $("#EventCommand").val());
             $("form.SearchForm").submit();
 
         });
+
+      
     });
 
 </script>    
