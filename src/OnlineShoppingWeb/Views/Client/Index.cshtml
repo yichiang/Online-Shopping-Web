@@ -6,7 +6,6 @@
 {
     @using (Html.BeginForm("Index", "Client", FormMethod.Get, new { @class = "SearchForm" }))
     {
-        @Html.ValidationSummary()
         @Html.HiddenFor(model => model.EventCommand)
         <div class="panel panel-default">
             <div class="panel-heading">Product</div>
@@ -75,7 +74,6 @@
                     <th>
                         @using (Html.BeginForm("Index", "Client", FormMethod.Get, new { @class = "DetailForm" }))
                     {
-                            @Html.ValidationSummary()
 
                             <input type="hidden" value="detail" name="EventCommand" />
                             <input type="hidden" value="@product.ProductId" name="SaveToCartProductId" />
@@ -160,9 +158,10 @@
 }
 
 }
-
+@using (Html.BeginForm("Index", "Client", FormMethod.Get, new { @class = "addMoretoListForm" }))
+{
 @Html.Partial("_PageControlForm", Model)
-
+}
 
 
 
