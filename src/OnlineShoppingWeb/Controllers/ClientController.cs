@@ -84,8 +84,17 @@ namespace OnlineShoppingWeb.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
+            var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.SaveToCartProductId, userId);
+            if (foundShoppingProduct != null)
+            {
 
-            _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser.Id);
+                _shoppingCartData.ModifyQty(foundShoppingProduct, foundShoppingProduct.Qty + 1);
+            }
+            else
+            {
+                _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser.Id);
+
+            }
             vm.EventCommand = "list";
             var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
             return Json(new { qty= foundqQty });

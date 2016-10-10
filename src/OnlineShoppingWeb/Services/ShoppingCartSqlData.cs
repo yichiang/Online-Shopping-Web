@@ -13,6 +13,12 @@ namespace OnlineShoppingWeb.Services
         {
             _context = context;
         }
+
+        public ShoppingCart FindCartProductById(int ProductId,string UserId)
+        {
+            return _context.ShoppingCart.FirstOrDefault(c => c.UserId == UserId && c.ProductId == ProductId); ;
+        }
+
         public IEnumerable<ShoppingCart> GetAll()
         {
             return _context.ShoppingCart.ToList();
@@ -40,6 +46,14 @@ namespace OnlineShoppingWeb.Services
                 return true;
             }
             
+        }
+
+        public void ModifyQty(ShoppingCart product ,int newQty)
+        {
+            product.Qty = newQty;
+            product.AddToCartDate = DateTime.Now;
+            _context.SaveChanges();
+
         }
     }
 }

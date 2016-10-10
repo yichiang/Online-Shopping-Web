@@ -9,5 +9,8 @@ namespace OnlineShoppingWeb.Services
         IEnumerable<ShoppingCart> GetAllByUser(User User);
         int GetUserTotalSavedItems(string UserId);
         bool IsProductInCart(int ProductId, string UserId);
+        void ModifyQty(ShoppingCart product, int newQty);
+        ShoppingCart FindCartProductById(int ProductId, string UserId);
+
     }
 }
