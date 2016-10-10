@@ -42,7 +42,7 @@ namespace OnlineShoppingWeb.Controllers
         [HttpGet]
         public IActionResult AllUsers()
         {
-      
+
             return View(_db.Users.ToList());
         }
 

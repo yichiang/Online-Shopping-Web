@@ -10,5 +10,7 @@ namespace OnlineShoppingWeb.Enities
         public string Address { get; set; }
         public DateTime JoinDate { get; set; }
         public virtual ICollection<ShoppingOrder> ShoppingOrders { get; set; }
+
+        List<string> Roles;
     }
 }
