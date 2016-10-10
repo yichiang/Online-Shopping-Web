@@ -4,7 +4,11 @@
 <h1>You have @Model.Products.Count() in your cart</h1>
 @foreach (var product in Model.Products)
 {
-    <h2>@product.Title</h2>
-
-    <h2>@product.Price</h2>
+    
+    <div class="col-sm-4">
+        <h4>@product.Title</h4>
+        <h4>@product.Price</h4>
+        <button>Delete</button>
+        <button>Change Qty</button>
+    </div>
 }

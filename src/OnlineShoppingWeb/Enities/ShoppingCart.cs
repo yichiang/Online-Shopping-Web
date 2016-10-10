@@ -8,7 +8,7 @@ namespace OnlineShoppingWeb.Enities
         [Key]
         public int ShoppingCartId { get; set; }
         public DateTime AddToCartDate { get; set; }
-
+        public int Qty { get; set; }
         public int ProductId { get; set; }
         public virtual Product Proudct { get; set; }
         public string UserId { get; set; }

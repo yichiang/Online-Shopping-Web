@@ -2,6 +2,7 @@
 using System.Linq;
 using OnlineShoppingWeb.Enities;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace OnlineShoppingWeb.Services
 {
@@ -77,6 +78,7 @@ namespace OnlineShoppingWeb.Services
             ShoppingCart newProductAddtoCart = new ShoppingCart();
             newProductAddtoCart.ProductId = ProductId;
             newProductAddtoCart.UserId = UserId;
+            newProductAddtoCart.AddToCartDate = DateTime.Now;
             _context.ShoppingCart.Add(newProductAddtoCart);
             _context.SaveChanges();
 
