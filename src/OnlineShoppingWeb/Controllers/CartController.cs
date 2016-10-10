@@ -30,12 +30,13 @@ namespace OnlineShoppingWeb.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             IEnumerable<ShoppingCart> allSavedProducts=_shoppingCartData.GetAllByUser(currentUser);
-            
+            List<Product> allSavedProduct = new List<Product>();
             foreach (var item in allSavedProducts)
             {
-                vm.Products.ToList().Add(_productData.FindProductById(item.ProductId));
+                Product foundProduct = _productData.FindProductById(item.ProductId);
+                allSavedProduct.Add(foundProduct);
             }
-
+            vm.Products = allSavedProduct;
             return View(vm);
         }
 

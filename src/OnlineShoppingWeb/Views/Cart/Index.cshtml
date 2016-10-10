@@ -1,1 +1,10 @@
-﻿
+﻿@using OnlineShoppingWeb.ViewModels
+@model CartPageViewModel
+
+<h1>You have @Model.Products.Count() in your cart</h1>
+@foreach (var product in Model.Products)
+{
+    <h2>@product.Title</h2>
+
+    <h2>@product.Price</h2>
+}
