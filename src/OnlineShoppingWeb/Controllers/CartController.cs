@@ -48,5 +48,14 @@ namespace OnlineShoppingWeb.Controllers
             _shoppingCartData.Delete(foundShoppingProduct);
             return RedirectToAction("Index", "Cart");
         }
+
+        [HttpPost]
+        public IActionResult ChangeQty(CartPageViewModel vm)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.ShoppingCart.ProductId, userId);
+            _shoppingCartData.ModifyQty(foundShoppingProduct, vm.ShoppingCart.Qty);
+            return Json(new { qty= vm.ShoppingCart.Qty });
+        }
     }
 }
