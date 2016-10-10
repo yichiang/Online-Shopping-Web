@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "Create";
 }
-
+@using OnlineShoppingWeb.ViewModels
+@model RoleViewModel
 <h2>Create Role</h2>
 @Html.ActionLink("List Roles", "Index") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
 <hr />
@@ -15,7 +16,12 @@
         Role name
     </div>
     <p>
-        @Html.TextBox("Name")
+        @Html.TextBoxFor(model => model.Role.Name)
     </p>
     <input type="submit" value="Save" />
+}
+
+@foreach (var role in Model.Roles)
+{
+    <h1>@role.Name</h1>
 }

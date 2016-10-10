@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.Services;
 using OnlineShoppingWeb.ViewModels;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineShoppingWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class DepartmentController : Controller
     {
         private IDepartmentData _DepartmentData;

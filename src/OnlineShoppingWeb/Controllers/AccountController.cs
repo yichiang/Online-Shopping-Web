@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -152,27 +153,30 @@ namespace OnlineShoppingWeb.Controllers
             return NotFound();
 
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [Route("account/createRole")]
         public ActionResult CreateRole()
         {
-            var Role = new IdentityRole();
-            return View(Role);
+            RoleViewModel vm = new RoleViewModel();
+            vm.Role = new IdentityRole();
+            vm.Roles= _db.Roles.ToList();
+            return View(vm);
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("account/createRole")]
-        public async Task<ActionResult> CreateRole(IdentityRole Role)
+        public async Task<ActionResult> CreateRole(RoleViewModel vm)
         {
-            bool checkExistedRole = await _roleManager.RoleExistsAsync(Role.Name);
+            bool checkExistedRole = await _roleManager.RoleExistsAsync(vm.Role.Name);
             if (!checkExistedRole)
             {
 
                 // first we create Admin rool 
                 IdentityRole newUserRole = new IdentityRole();
 
-                newUserRole.Name = Role.Name;
+                newUserRole.Name = vm.Role.Name;
                 await _roleManager.CreateAsync(newUserRole);
         
             }

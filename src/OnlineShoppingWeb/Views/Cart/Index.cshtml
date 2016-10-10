@@ -61,62 +61,61 @@
                 i++;
    }
 }
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h2>Subtotal : $<span class="total-price">@Model.totalPrice</span></h2>
-                            </div>
-                            <div class="col-sm-4">
-                                <a href="/Client">Continue Shopping</a>
-                            </div>
-                            <div class="col-sm-4">
-                                Porceed to Checkout
-                            </div>
-                        </div>
-                        @section ownScript
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h2>Subtotal (@Model.Products.Count() Items): $<span class="total-price">@Model.totalPrice</span></h2>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="/Client">Continue Shopping</a>
+                    </div>
+                    <div class="col-sm-4">
+                        Porceed to Checkout
+                    </div>
+                </div>
+@section ownScript
 {
+    <script>
+        $(document).ready(function () {
+            $(".change-qty-form").hide();
+            $(".change-qty-cancel-button").hide();
 
-                            <script>
-                                $(document).ready(function () {
-                                    $(".change-qty-form").hide();
-                                    $(".change-qty-cancel-button").hide();
+            $(".change-qty-button").click(function () {
+                $(this).next().show();
+                $(".change-qty-cancel-button").show();
 
-                                    $(".change-qty-button").click(function () {
-                                        $(this).next().show();
-                                        $(".change-qty-cancel-button").show();
+                $(this).hide();
+                $(this).prev().hide();
+            });
+            $(".change-qty-cancel-button").click(function () {
+                $(this).prev().prev().prev().show();
+                $(this).prev().hide();
+                $(".change-qty-button").show();
 
-                                        $(this).hide();
-                                        $(this).prev().hide();
-                                    });
-                                    $(".change-qty-cancel-button").click(function () {
-                                        $(this).prev().prev().prev().show();
-                                        $(this).prev().hide();
-                                        $(".change-qty-button").show();
-
-                                        $(this).hide();
-                                    });
+                $(this).hide();
+            });
 
 
-                                    $(".change-qty-form").submit(function (event) {
-                                        $qtyDisplay = $(this).prev().prev();
-                                        $(this).hide();
-                                        $(this).next().hide();
-                                        $(".change-qty-cancel-button").hide();
-                                        $(".change-qty-button").show();
-                                        event.preventDefault();
-                                        $.ajax({
-                                            url: "@Url.Action("ChangeQty")",
-                                            type: "Post",
-                                            data: $(this).serialize(),
-                                            dataType: "json",
-                                            success: function (result) {
-                                                console.log("AddToCart");
-                                                console.log("result" + result.qty);
-                                                $qtyDisplay.text(result.qty).css("color", "green").show();
-                                                var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
-                                                $(".total-price").text(newTotal);
-                                            }
-                                        });
-                                    });
-                                });
-                            </script>
-                        }
+            $(".change-qty-form").submit(function (event) {
+                $qtyDisplay = $(this).prev().prev();
+                $(this).hide();
+                $(this).next().hide();
+                $(".change-qty-cancel-button").hide();
+                $(".change-qty-button").show();
+                event.preventDefault();
+                $.ajax({
+                    url: "@Url.Action("ChangeQty")",
+                    type: "Post",
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function (result) {
+                        console.log("AddToCart");
+                        console.log("result" + result.qty);
+                        $qtyDisplay.text(result.qty).css("color", "green").show();
+                        var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
+                        $(".total-price").text(newTotal);
+                    }
+                });
+            });
+        });
+    </script>
+}
