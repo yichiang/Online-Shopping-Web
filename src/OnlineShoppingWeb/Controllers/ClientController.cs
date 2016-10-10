@@ -85,7 +85,7 @@ namespace OnlineShoppingWeb.Controllers
 
             _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser.Id);
             vm.EventCommand = "list";
-            return RedirectToAction("Index",vm);
+            return Json(new { qty=1});
         }
 
 

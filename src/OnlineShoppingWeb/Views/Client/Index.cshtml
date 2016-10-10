@@ -64,7 +64,7 @@
                     <th>@product.Quantity</th>
 
                     <th>
-                        @using (Html.BeginForm("AddToCart", "Client", FormMethod.Post, new { @class = "" }))
+                        @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "SaveToCartForm" }))
                         {
                             <input type="hidden" value="@product.ProductId" name="SaveToCartProductId" />
 
@@ -168,5 +168,22 @@
         @section ownScript
 {
 <script src="/js/productView.js"></script>
-
+<script>
+    $(document).ready(function () {
+        $(".SaveToCartForm").submit(function (event) {
+            event.PreventDefault();
+            $.ajax({
+                url:"@Url.Action("AddToCart")",
+                type:"Post",
+                data: $(this).serialize(),
+                dataType:"json",
+                sucess: function (result) {
+                    console.log("AddToCart");
+                    console.log("result"+result.qty);
+                    $(".CartQtyDisplay").text(result.qty);
+                }
+            })
+         });
+    });
+</script>
 }
