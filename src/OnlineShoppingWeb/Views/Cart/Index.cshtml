@@ -47,8 +47,13 @@
         </div>        
       </div>
 }
-<div>
-    Total is <h2 class="total-price">@Model.totalPrice</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Total is <span class="total-price">@Model.totalPrice</span></h2>
+    </div>
+    <div class="col-sm-6">
+        Place Order Now
+    </div>
 </div>
 @section ownScript
 {
@@ -78,6 +83,7 @@
                 $qtyDisplay = $(this).prev().prev();
                 $(this).hide();
                 $(this).next().hide();
+                $(".change-qty-cancel-button").hide();
                 $(".change-qty-button").show();
                 event.preventDefault();
                 $.ajax({
