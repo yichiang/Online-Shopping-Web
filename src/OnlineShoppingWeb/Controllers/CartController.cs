@@ -34,6 +34,7 @@ namespace OnlineShoppingWeb.Controllers
             foreach (var item in allSavedProducts)
             {
                 Product foundProduct = _productData.FindProductById(item.ProductId);
+                foundProduct.Quantity = item.Qty;
                 allSavedProduct.Add(foundProduct);
             }
             vm.Products = allSavedProduct;
