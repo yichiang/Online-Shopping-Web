@@ -8,5 +8,6 @@ namespace OnlineShoppingWeb.Services
         IEnumerable<ShoppingCart> GetAll();
         IEnumerable<ShoppingCart> GetAllByUser(User User);
         int GetUserTotalSavedItems(string UserId);
+        bool IsProductInCart(int ProductId, string UserId);
     }
 }

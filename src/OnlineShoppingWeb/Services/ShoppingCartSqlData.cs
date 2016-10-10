@@ -25,8 +25,21 @@ namespace OnlineShoppingWeb.Services
 
         public int GetUserTotalSavedItems(string UserId)
         {
-           var temp=_context.ShoppingCart.Where(c=> c.UserId == UserId).Sum(c=>c.Qty);
-            return temp;
+            return _context.ShoppingCart.Where(c => c.UserId == UserId).Sum(c => c.Qty);
+        }
+
+        public bool IsProductInCart(int ProductId, string UserId)
+        {
+            var foundProductCount=_context.ShoppingCart.Where(c => c.UserId == UserId && c.ProductId == ProductId).Count();
+            if (foundProductCount == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
         }
     }
 }
