@@ -13,5 +13,6 @@ namespace OnlineShoppingWeb.ViewModels
         public User User { get; set; }
 
         public ShoppingCart ShoppingCart { get; set; }
+        public decimal totalPrice { get; set; }
     }
 }

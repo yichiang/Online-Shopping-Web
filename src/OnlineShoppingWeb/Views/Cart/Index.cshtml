@@ -4,7 +4,6 @@
 <h1>You have @Model.Products.Count() in your cart</h1>
 @foreach (var product in Model.Products)
 {
-    
     <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading">Product Details</div>
@@ -48,6 +47,8 @@
         </div>        
       </div>
 }
+
+<h2 class="total-price">@Model.totalPrice</h2>
 @section ownScript
 {
     
@@ -86,7 +87,9 @@
                 success: function (result) {
                     console.log("AddToCart");
                     console.log("result" + result.qty);
-                    $qtyDisplay.text(result.qty).css("color","green").show();
+                    $qtyDisplay.text(result.qty).css("color", "green").show();
+                    var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
+                    $(".total-price").text(newTotal);
                 }
             });
         });

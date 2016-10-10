@@ -38,6 +38,7 @@ namespace OnlineShoppingWeb.Controllers
                 allSavedProduct.Add(foundProduct);
             }
             vm.Products = allSavedProduct;
+            vm.totalPrice = vm.Products.Sum(p => p.Price * p.Quantity);
             return View(vm);
         }
         [HttpPost]
@@ -54,8 +55,12 @@ namespace OnlineShoppingWeb.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.ShoppingCart.ProductId, userId);
+
+            Product foundProduct = _productData.FindProductById(vm.ShoppingCart.ProductId);
+            decimal totalChangePrice = (vm.ShoppingCart.Qty - foundShoppingProduct.Qty) * foundProduct.Price;
+
             _shoppingCartData.ModifyQty(foundShoppingProduct, vm.ShoppingCart.Qty);
-            return Json(new { qty= vm.ShoppingCart.Qty });
+            return Json(new { qty= vm.ShoppingCart.Qty, totalChangePrice = totalChangePrice });
         }
     }
 }
