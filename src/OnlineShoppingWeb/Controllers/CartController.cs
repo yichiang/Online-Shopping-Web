@@ -40,6 +40,13 @@ namespace OnlineShoppingWeb.Controllers
             vm.Products = allSavedProduct;
             return View(vm);
         }
-
+        [HttpPost]
+        public IActionResult Delete(CartPageViewModel vm)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.ShoppingCart.ProductId, userId);
+            _shoppingCartData.Delete(foundShoppingProduct);
+            return RedirectToAction("Index", "Cart");
+        }
     }
 }

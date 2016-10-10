@@ -12,5 +12,6 @@ namespace OnlineShoppingWeb.ViewModels
         public IEnumerable<Product> Products { get; set; }
         public User User { get; set; }
 
+        public ShoppingCart ShoppingCart { get; set; }
     }
 }

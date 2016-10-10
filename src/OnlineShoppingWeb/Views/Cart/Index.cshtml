@@ -6,10 +6,22 @@
 {
     
     <div class="col-sm-4">
-        <h4>@product.Title</h4>
-        <h4>@product.Price</h4>
-        <h4>@product.Quantity</h4>
-        <button>Delete</button>
+        <div class="panel panel-default">
+            <div class="panel-heading">@product.Title</div>
+            <div class="panel-body">
+                <h4>@product.Price</h4>
+                <h4>@product.Quantity</h4>
+            </div>
+            <div class="panel-footer">
+                @using (Html.BeginForm("Delete", "Cart", FormMethod.Post))
+                {
+                    <input type="hidden" name="ShoppingCart.ProductId" value="@product.ProductId" />
+
+                    <button><span type="submit" value="Delete" class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+                }
+            </div>
+        </div>        
+  
         <button>Change Qty</button>
     </div>
 }

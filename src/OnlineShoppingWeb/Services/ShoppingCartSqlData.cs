@@ -14,6 +14,12 @@ namespace OnlineShoppingWeb.Services
             _context = context;
         }
 
+        public void Delete(ShoppingCart ShoppingCartproduct)
+        {
+            _context.Remove(ShoppingCartproduct);
+            _context.SaveChanges();
+        }
+
         public ShoppingCart FindCartProductById(int ProductId,string UserId)
         {
             return _context.ShoppingCart.FirstOrDefault(c => c.UserId == UserId && c.ProductId == ProductId); ;

@@ -11,6 +11,7 @@ namespace OnlineShoppingWeb.Services
         bool IsProductInCart(int ProductId, string UserId);
         void ModifyQty(ShoppingCart product, int newQty);
         ShoppingCart FindCartProductById(int ProductId, string UserId);
+        void Delete(ShoppingCart ShoppingCartproduct);
 
     }
 }
