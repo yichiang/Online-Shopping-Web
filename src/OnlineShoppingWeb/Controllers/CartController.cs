@@ -6,19 +6,22 @@ using OnlineShoppingWeb.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using OnlineShoppingWeb.Enities;
+using System.Collections.Generic;
+using System.Linq;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 namespace OnlineShoppingWeb.Controllers
 {
     [Authorize]
     public class CartController : Controller
     {
+        private IProductData _productData;
         private IShoppingCartData _shoppingCartData;
         private UserManager<User> _userManager;
 
-        public CartController(IShoppingCartData shoppingCartData, UserManager<User> userManager)
+        public CartController(IShoppingCartData shoppingCartData, IProductData productData, UserManager<User> userManager)
         {
             _shoppingCartData = shoppingCartData;
+            _productData = productData;
             _userManager = userManager;
         }
         // GET: /<controller>/
@@ -26,6 +29,12 @@ namespace OnlineShoppingWeb.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
+            IEnumerable<ShoppingCart> allSavedProducts=_shoppingCartData.GetAllByUser(currentUser);
+            
+            foreach (var item in allSavedProducts)
+            {
+                vm.Products.ToList().Add(_productData.FindProductById(item.ProductId));
+            }
 
             return View(vm);
         }
