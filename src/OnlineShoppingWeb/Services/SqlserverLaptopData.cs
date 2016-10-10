@@ -79,6 +79,7 @@ namespace OnlineShoppingWeb.Services
             newProductAddtoCart.ProductId = ProductId;
             newProductAddtoCart.UserId = UserId;
             newProductAddtoCart.AddToCartDate = DateTime.Now;
+            newProductAddtoCart.Qty+=1;
             _context.ShoppingCart.Add(newProductAddtoCart);
             _context.SaveChanges();
 

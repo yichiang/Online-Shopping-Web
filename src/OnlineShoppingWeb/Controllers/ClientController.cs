@@ -18,11 +18,13 @@ namespace OnlineShoppingWeb.Controllers
         private IDepartmentData _DepartmentData;
         private IHostingEnvironment _env;
         private UserManager<User> _userManager;
+        private IShoppingCartData _shoppingCartData;
 
-        public ClientController(IProductData LaptopData, IDepartmentData DepartmentData, IHostingEnvironment env, UserManager<User> userManager)
+        public ClientController(IProductData LaptopData, IDepartmentData DepartmentData,IShoppingCartData shoppingCartData, IHostingEnvironment env, UserManager<User> userManager)
         {
             _ProductData = LaptopData;
             _DepartmentData = DepartmentData;
+            _shoppingCartData = shoppingCartData;
             _env = env;
             _userManager = userManager;
         }
@@ -85,7 +87,8 @@ namespace OnlineShoppingWeb.Controllers
 
             _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser.Id);
             vm.EventCommand = "list";
-            return Json(new { qty=1});
+            var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
+            return Json(new { qty= foundqQty });
         }
 
 

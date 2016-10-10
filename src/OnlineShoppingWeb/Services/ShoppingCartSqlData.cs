@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using OnlineShoppingWeb.Enities;
 
@@ -20,6 +21,12 @@ namespace OnlineShoppingWeb.Services
         public IEnumerable<ShoppingCart> GetAllByUser(User User)
         {
             return _context.ShoppingCart.Where(c =>c.User== User).ToList();
+        }
+
+        public int GetUserTotalSavedItems(string UserId)
+        {
+           var temp=_context.ShoppingCart.Where(c=> c.UserId == UserId).Sum(c=>c.Qty);
+            return temp;
         }
     }
 }
