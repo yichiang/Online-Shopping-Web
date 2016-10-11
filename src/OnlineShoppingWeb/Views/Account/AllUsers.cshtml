@@ -8,7 +8,7 @@
     <h2>@user.JoinDate</h2>
     @foreach (var role in @Model.GetUserHasRoles(user.Roles,Model.Roles))
     {
-        <h2>@role.RoleId</h2>
+        <h2>@role</h2>
 
     }
 }
