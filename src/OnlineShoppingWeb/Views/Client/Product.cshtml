@@ -1,1 +1,64 @@
 ﻿<h1>Product Detail</h1>
+@using OnlineShoppingWeb.ViewModels;
+@using System.Linq;
+
+@model ClientProductPageViewModel
+ @if (Model.Product != null)
+    {
+<div class="table-responsive">
+
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>SubDepartment</th>
+            <th>Condition</th>
+            <th>Rating</th>
+            <th>Quantity</th>
+            <th>Brand</th>
+
+            @if (Model.Product.Discriminator == "Laptop")
+            {
+
+                <th>LaptopModel</th>
+                    <th> ScreenSize</th>
+                    <th> HardDrive</th>
+                    <th>Processor</th>
+            }
+            else if (Model.Product.Discriminator == "Phone")
+            {
+
+
+                <th> ScreenSize</th>
+                        <th> Carrier</th>
+            }
+        </tr>
+
+        <tr>
+            <th>@Model.Product.Title</th>
+            <th>@Model.Product.Price</th>
+            <th>@Model.Product.SubDepartment</th>
+            <th>@Model.Product.Condition</th>
+            <th>@Model.Product.AvgCustomerReview</th>
+            <th>@Model.Product.Quantity</th>
+            <th>@Model.Product.Brand</th>
+
+            @if (Model.Product.Discriminator == "Laptop")
+            {
+
+                <th>@Model.Laptop.LaptopModel</th>
+                        <th> @Model.Laptop.ScreenSize</th>
+                        <th>@Model.Laptop. HardDrive</th>
+                        <th>@Model.Laptop.Processor</th>
+            }
+            else if (Model.Product.Discriminator == "Phone")
+            {
+
+
+                <th> @Model.Phone.ScreenSize</th>
+                        <th> @Model.Phone.Carrier</th>
+            }
+        </tr>
+    </table>
+</div>
+}

@@ -169,6 +169,30 @@ namespace OnlineShoppingWeb.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Product");
                 });
 
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.ProductReview", b =>
+                {
+                    b.Property<int>("ReviewId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Context");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("Score");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("ReviewId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductReviews");
+                });
+
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingCart", b =>
                 {
                     b.Property<int>("ShoppingCartId")
@@ -370,6 +394,18 @@ namespace OnlineShoppingWeb.Migrations
                         .WithMany("Products")
                         .HasForeignKey("SubDepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.ProductReview", b =>
+                {
+                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Proudct")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("OnlineShoppingWeb.Enities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingCart", b =>

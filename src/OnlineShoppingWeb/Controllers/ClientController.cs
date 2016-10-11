@@ -39,41 +39,19 @@ namespace OnlineShoppingWeb.Controllers
                 vm.AllProductsCount = _ProductData.GetAll().Count();
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
-                vm.IsDetailAreaVisible = false;
                 vm.Products = _ProductData.GetPorductsofNum(vm.SkipDisplayList, vm.TakeDisplayList);
             }
             else if (vm.EventCommand == "search")
             {
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
-                vm.IsDetailAreaVisible = false;
 
                 vm.Products = _ProductData.SearchByTitle(vm.ProductSearchName);
                 vm.AllProductsCount = vm.Products.Count();
 
             }
 
-            else if (vm.EventCommand == "detail")
-            {
-                int productId =vm.SaveToCartProductId;
-                var temp2 = vm.ProductType;
-                vm.IsListAreaVisible = false;
-                vm.IsSearchAreaVisible = false;
-                vm.IsDetailAreaVisible = true;
-
-                var foundProduct = _ProductData.FindProductById(productId);
-                vm.Product = foundProduct;
-
-                if (temp2 == "Laptop")
-                {
-                    vm.Laptop = (Laptop)foundProduct;
-                }
-                else if (temp2 == "Phone")
-                {
-                    vm.Phone = (Phone)foundProduct;
-                }
-
-            }
+          
             return View(vm);
 
 
@@ -100,6 +78,26 @@ namespace OnlineShoppingWeb.Controllers
             return Json(new { qty= foundqQty });
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Product(ClientProductPageViewModel vm)
+        {
+            int productId = vm.SaveToCartProductId;
+            var temp2 = vm.ProductType;
+     
+            var foundProduct = _ProductData.FindProductById(productId);
+            vm.Product = foundProduct;
+
+            if (temp2 == "Laptop")
+            {
+                vm.Laptop = (Laptop)foundProduct;
+            }
+            else if (temp2 == "Phone")
+            {
+                vm.Phone = (Phone)foundProduct;
+            }
+            return View(vm);
+        }
 
     }
 }

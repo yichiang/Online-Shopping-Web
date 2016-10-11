@@ -12,6 +12,7 @@ namespace OnlineShoppingWeb.Enities
 
         public DbSet<ShoppingOrder> ShoppingOrder { get; set; }
         public DbSet<ShoppingCart> ShoppingCart { get; set; }
+        public DbSet<ProductReview> ProductReview { get; set; }
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<SubDepartment> SubDepartments { get; set; }

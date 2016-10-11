@@ -9,11 +9,9 @@ namespace OnlineShoppingWeb.ViewModels
 
         public ClientProductPageViewModel() : base()
         {
-            IsDetailAreaVisible = false;
         }
 
 
-        public bool IsDetailAreaVisible { get; set; }
         public int SaveToCartProductId { get; set; }
         public string ProductType { get; set; }
    

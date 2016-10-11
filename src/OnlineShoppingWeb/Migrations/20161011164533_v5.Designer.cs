@@ -8,8 +8,8 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20161010234803_v3")]
-    partial class v3
+    [Migration("20161011164533_v5")]
+    partial class v5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -168,6 +168,30 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("Products");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Product");
+                });
+
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.ProductReview", b =>
+                {
+                    b.Property<int>("ReviewId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Context");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("Score");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("ReviewId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductReviews");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingCart", b =>
@@ -371,6 +395,18 @@ namespace OnlineShoppingWeb.Migrations
                         .WithMany("Products")
                         .HasForeignKey("SubDepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.ProductReview", b =>
+                {
+                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Proudct")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("OnlineShoppingWeb.Enities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingCart", b =>
