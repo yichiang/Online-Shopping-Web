@@ -63,14 +63,20 @@ namespace OnlineShoppingWeb.Services
         public IEnumerable<Product> GetPorductsofNum(int SkipNum,int TakeNum)
         {
 
-                var number = _context.Products.Count();
-                return _context.Products.Skip(SkipNum).Take(TakeNum).ToList();
+            var number = _context.Products.Count();
+            return _context.Products.Skip(SkipNum).Take(TakeNum).ToList();
 
         }
 
         public IEnumerable<Product> GetProductsbySubDepartment(int SubDepartmentId)
         {
             return _context.Products.Where(computer => computer.SubDepartmentId== SubDepartmentId);
+        }
+
+        public void SaveReview(ProductReview ProductReview)
+        {
+            _context.Add(ProductReview);
+            _context.SaveChanges();
         }
 
         public void SaveToCart(int ProductId, string UserId)

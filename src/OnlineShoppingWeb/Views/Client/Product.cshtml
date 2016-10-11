@@ -74,8 +74,7 @@
 
 @using (Html.BeginForm("Review", "Client", FormMethod.Post, new { @class = "" }))
 {
-    @Html.TextBoxFor(model => model.ProductReview.ProductId, new { @Value=Model.Product.ProductId})
-
+    <input type="text" value="@Model.Product.ProductId" name="ProductReview.ProductId">
     @Html.LabelFor(model => model.ProductReview.Title)
     @Html.TextBoxFor(model => model.ProductReview.Title)
 

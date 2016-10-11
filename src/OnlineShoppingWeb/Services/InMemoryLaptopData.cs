@@ -64,6 +64,11 @@ namespace OnlineShoppingWeb.Services
             return _allTestLaptop.Where(n => n.SubDepartmentId == SubDepartmentId).ToList();
         }
 
+        public void SaveReview(ProductReview ProductReview)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SaveToCart(int ProductId, string UserId)
         {
             throw new NotImplementedException();

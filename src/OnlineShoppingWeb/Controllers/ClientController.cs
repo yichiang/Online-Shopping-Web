@@ -98,6 +98,15 @@ namespace OnlineShoppingWeb.Controllers
             }
             return View(vm);
         }
+
+        [HttpPost]
+        public  IActionResult Review(ClientProductPageViewModel vm)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            vm.ProductReview.UserId = userId;
+            _ProductData.SaveReview(vm.ProductReview);
+            return Json(new { qty = vm.ProductReview });
+        }
     }
 }
 

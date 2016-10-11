@@ -19,5 +19,6 @@ namespace OnlineShoppingWeb.Services
         void SaveToCart(int ProductId, string UserId);
 
         Product FindProductByIdIncludedReview(int ProductId);
+        void SaveReview(ProductReview ProductReview);
     }
 }
