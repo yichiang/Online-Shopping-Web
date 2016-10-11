@@ -72,14 +72,16 @@
                
             </tr>
 
-            <tr>
+            
                 @foreach (var review in Model.Product.ProductReviews)
                 {
-                    <th>@Html.Partial("_StarReview", review.Score)@review.Title</th>
-                    <th>@review.Context</th>
+                    <tr>
+                        <th>@Html.Partial("_StarReview", review.Score)@review.Title</th>
+                        <th>@review.Context</th>
+                    </tr>
+
                 }
-         
-            </tr>
+
         </table>
     </div>
 </div>
@@ -115,8 +117,12 @@
                 success: function (result) {
                     console.log("Review");
                     console.log(result.review);
+                    var star = "";
+                    for (var i = 0; i < result.review.score; i++) {
+                        star+="<span class='glyphicon glyphicon-star' aria-hidden='true'></span>"
+                    }
                     $("#JsonReview").html(
-                        "<th>" + @Html.Partial("_StarReview", result.review.Score) result.review.title + "</th>" +
+                        "<th>" + star + result.review.title + "</th>" +
                         "<th>" + result.review.context + "</th>");
                 }
             });
