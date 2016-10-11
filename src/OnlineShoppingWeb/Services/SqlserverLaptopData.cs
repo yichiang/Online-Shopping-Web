@@ -61,7 +61,7 @@ namespace OnlineShoppingWeb.Services
 
         public double GetAverageReview(int ProductId)
         {
-            var temp = _context.ProductReview.Select(c => c.Score);
+            var temp = _context.ProductReview.Where(c => c.ProductId==ProductId).Select(c => c.Score);
             var sum = temp.Sum();
             if (sum != 0)
             {
@@ -81,6 +81,13 @@ namespace OnlineShoppingWeb.Services
         public IEnumerable<Product> GetProductsbySubDepartment(int SubDepartmentId)
         {
             return _context.Products.Where(computer => computer.SubDepartmentId== SubDepartmentId);
+        }
+
+        public void SaveAverageScore(int ProductId, double newReviewScore)
+        {
+            Product oneProduct=this.FindProductById(ProductId);
+            oneProduct.AvgCustomerReview = newReviewScore;
+            _context.SaveChanges();
         }
 
         public void SaveReview(ProductReview ProductReview)

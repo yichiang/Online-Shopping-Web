@@ -86,7 +86,7 @@ namespace OnlineShoppingWeb.Controllers
             var temp2 = vm.ProductType;
      
             var foundProduct = _ProductData.FindProductByIdIncludedReview(productId);
-            foundProduct.AvgCustomerReview = _ProductData.GetAverageReview(productId);
+            //foundProduct.AvgCustomerReview = _ProductData.GetAverageReview(productId);
             vm.Product = foundProduct;
 
             if (temp2 == "Laptop")
@@ -107,7 +107,8 @@ namespace OnlineShoppingWeb.Controllers
             vm.ProductReview.UserId = userId;
             _ProductData.SaveReview(vm.ProductReview);
             var newReviewScore = _ProductData.GetAverageReview(vm.ProductReview.ProductId);
-            return Json(new { review = vm.ProductReview, score=newReviewScore });
+            _ProductData.SaveAverageScore(vm.ProductReview.ProductId, newReviewScore);
+            return Json(new {score = newReviewScore,review = vm.ProductReview });
         }
     }
 }

@@ -114,12 +114,13 @@
                 dataType: "json",
                 success: function (result) {
                     console.log("Review");
-                    console.log(result.review);
+                    console.log(result);
                     var star = generateStart(result.review.score);
                 
                     $(".review-table").prepend(
                         "<tr><th>" + star + result.review.title + "</th>" +
                         "<th>" + result.review.context + "</th></tr>");
+                    console.log(generateStart(result.score));
                     $("#productTotalScore").html(generateStart(result.score));
                 }
             });

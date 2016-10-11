@@ -69,6 +69,11 @@ namespace OnlineShoppingWeb.Services
             return _allTestLaptop.Where(n => n.SubDepartmentId == SubDepartmentId).ToList();
         }
 
+        public void SaveAverageScore(int ProductId, double newReviewScore)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SaveReview(ProductReview ProductReview)
         {
             throw new NotImplementedException();
