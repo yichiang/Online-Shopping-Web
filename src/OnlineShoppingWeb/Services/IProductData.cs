@@ -20,5 +20,6 @@ namespace OnlineShoppingWeb.Services
 
         Product FindProductByIdIncludedReview(int ProductId);
         void SaveReview(ProductReview ProductReview);
+        double GetAverageReview(int ProductId);
     }
 }

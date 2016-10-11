@@ -86,6 +86,7 @@ namespace OnlineShoppingWeb.Controllers
             var temp2 = vm.ProductType;
      
             var foundProduct = _ProductData.FindProductByIdIncludedReview(productId);
+            foundProduct.AvgCustomerReview = _ProductData.GetAverageReview(productId);
             vm.Product = foundProduct;
 
             if (temp2 == "Laptop")

@@ -59,6 +59,10 @@ namespace OnlineShoppingWeb.Services
             return _context.Products.ToList();
         }
 
+        public double GetAverageReview(int ProductId)
+        {
+            return _context.ProductReview.Select(c => c.Score).Average();
+        }
 
         public IEnumerable<Product> GetPorductsofNum(int SkipNum,int TakeNum)
         {

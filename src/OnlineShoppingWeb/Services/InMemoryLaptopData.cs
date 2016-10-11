@@ -54,6 +54,11 @@ namespace OnlineShoppingWeb.Services
             return _allTestLaptop;
         }
 
+        public double GetAverageReview(int ProductId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Product> GetPorductsofNum(int SkipNum, int TakeNum)
         {
             throw new NotImplementedException();
