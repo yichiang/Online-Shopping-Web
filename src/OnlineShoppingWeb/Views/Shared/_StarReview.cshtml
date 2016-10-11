@@ -1,6 +1,13 @@
 ﻿@model double
-@for (var i=1; i<= Model ; i++)
-{
-    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 
+@if (Model != 0)
+{
+    for (var i = 1; i <= Model; i++)
+    {
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    }
+}
+else
+{
+    <span>None</span>
 }

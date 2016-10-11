@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShoppingWeb.Services;
+using System.Linq;
+using System.Security.Claims;
 
 namespace OnlineShoppingWeb.ViewComponents
 {
@@ -15,7 +17,8 @@ namespace OnlineShoppingWeb.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var model = _cartData.GetAll();
+            var userName = this.User.Identity.Name;
+            var model = _cartData.GetAll().Where(c =>c.User.UserName== userName).ToList();
             return View("Default", model);
         }
 

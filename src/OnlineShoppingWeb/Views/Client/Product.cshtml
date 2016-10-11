@@ -89,51 +89,58 @@
 
 @using (Html.BeginForm("Review", "Client", FormMethod.Post, new { @class = "SaveReviewForm" }))
 {
-    <input type="text" value="@Model.Product.ProductId" name="ProductReview.ProductId">
-    @Html.LabelFor(model => model.ProductReview.Title)
-    @Html.TextBoxFor(model => model.ProductReview.Title)
+    <input type="hidden" value="@Model.Product.ProductId" name="ProductReview.ProductId">
 
-    @Html.LabelFor(model => model.ProductReview.Score)
-    @Html.TextBoxFor(model => model.ProductReview.Score)
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductReview.Title)
+        @Html.TextBoxFor(model => model.ProductReview.Title, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductReview.Score)
+        @Html.TextBoxFor(model => model.ProductReview.Score, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductReview.Context)
+        @Html.TextBoxFor(model => model.ProductReview.Context, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <button class="btn" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Review</button>
+    </div>
 
-    @Html.LabelFor(model => model.ProductReview.Context)
-    @Html.TextBoxFor(model => model.ProductReview.Context)
-    <button class="btn" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Review</button>
-
-}
-@section ownScript
-{
-<script>
-    $(document).ready(function () {
-        $(".SaveReviewForm").submit(function (event) {
-            event.preventDefault();
-            $.ajax({
-                url: "@Url.Action("Review")",
-                type: "Post",
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function (result) {
-                    console.log("Review");
-                    console.log(result);
-                    var star = generateStart(result.review.score);
-                
-                    $(".review-table").prepend(
-                        "<tr><th>" + star + result.review.title + "</th>" +
-                        "<th>" + result.review.context + "</th></tr>");
-                    console.log(generateStart(result.score));
-                    $("#productTotalScore").html(generateStart(result.score));
-                }
-            });
-        });
-    });
-
-    var generateStart = function (num) {
-
-        var star = "";
-        for (var i = 1; i <= num; i++) {
-            star += "<span class='glyphicon glyphicon-star' aria-hidden='true'></span>"
         }
-        return star;
-     };
-</script>
-}
+        @section ownScript
+{
+            <script>
+                $(document).ready(function () {
+                    $(".SaveReviewForm").submit(function (event) {
+                        event.preventDefault();
+                        $.ajax({
+                            url: "@Url.Action("Review")",
+                            type: "Post",
+                            data: $(this).serialize(),
+                            dataType: "json",
+                            success: function (result) {
+                                console.log("Review");
+                                console.log(result);
+                                var star = generateStart(result.review.score);
+
+                                $(".review-table").prepend(
+                                    "<tr><th>" + star + result.review.title + "</th>" +
+                                    "<th>" + result.review.context + "</th></tr>");
+                                console.log(generateStart(result.score));
+                                $("#productTotalScore").html(generateStart(result.score));
+                            }
+                        });
+                    });
+                });
+
+                var generateStart = function (num) {
+
+                    var star = "";
+                    for (var i = 1; i <= num; i++) {
+                        star += "<span class='glyphicon glyphicon-star' aria-hidden='true'></span>"
+                    }
+                    return star;
+                };
+            </script>
+        }

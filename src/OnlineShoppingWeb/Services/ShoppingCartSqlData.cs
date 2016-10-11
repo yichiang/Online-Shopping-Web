@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OnlineShoppingWeb.Enities;
+using Microsoft.EntityFrameworkCore;
 
 namespace OnlineShoppingWeb.Services
 {
@@ -27,7 +28,7 @@ namespace OnlineShoppingWeb.Services
 
         public IEnumerable<ShoppingCart> GetAll()
         {
-            return _context.ShoppingCart.ToList();
+            return _context.ShoppingCart.Include(m => m.User).ToList();
         }
 
         public IEnumerable<ShoppingCart> GetAllByUser(User User)
