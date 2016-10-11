@@ -8,7 +8,7 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20161007172734_v1")]
+    [Migration("20161010234204_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -143,6 +143,9 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<double>("AvgCustomerReview");
 
+                    b.Property<string>("Brand")
+                        .HasAnnotation("MaxLength", 20);
+
                     b.Property<int>("Condition");
 
                     b.Property<string>("Discriminator")
@@ -176,6 +179,8 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<int>("ProductId");
 
+                    b.Property<int>("Qty");
+
                     b.Property<string>("UserId");
 
                     b.HasKey("ShoppingCartId");
@@ -207,6 +212,8 @@ namespace OnlineShoppingWeb.Migrations
                     b.Property<string>("Payment");
 
                     b.Property<int>("ProductId");
+
+                    b.Property<int>("Qty");
 
                     b.Property<string>("UserId");
 
@@ -292,9 +299,6 @@ namespace OnlineShoppingWeb.Migrations
                 {
                     b.HasBaseType("OnlineShoppingWeb.Enities.Product");
 
-                    b.Property<string>("Brand")
-                        .HasAnnotation("MaxLength", 20);
-
                     b.Property<int>("HardDrive");
 
                     b.Property<string>("HardDriveSize")
@@ -314,9 +318,6 @@ namespace OnlineShoppingWeb.Migrations
             modelBuilder.Entity("OnlineShoppingWeb.Enities.Phone", b =>
                 {
                     b.HasBaseType("OnlineShoppingWeb.Enities.Product");
-
-                    b.Property<string>("Brand")
-                        .HasAnnotation("MaxLength", 20);
 
                     b.Property<string>("Carrier");
 

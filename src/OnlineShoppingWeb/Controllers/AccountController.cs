@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
 using System.Collections.Generic;
@@ -43,7 +44,10 @@ namespace OnlineShoppingWeb.Controllers
         public IActionResult AllUsers()
         {
 
-            return View(_db.Users.ToList());
+            RoleViewModel vm = new RoleViewModel();
+            vm.Users = _db.Users.Include(u => u.Roles).ToList();
+            vm.Roles = _db.Roles.ToList();
+            return View(vm);
         }
 
         [HttpGet]
@@ -153,7 +157,7 @@ namespace OnlineShoppingWeb.Controllers
             return NotFound();
 
         }
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         [Route("account/createRole")]
         public ActionResult CreateRole()
@@ -164,7 +168,7 @@ namespace OnlineShoppingWeb.Controllers
             return View(vm);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("account/createRole")]
         public async Task<ActionResult> CreateRole(RoleViewModel vm)

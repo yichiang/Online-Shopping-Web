@@ -190,13 +190,13 @@ namespace OnlineShoppingWeb.Migrations
                     ProductId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AvgCustomerReview = table.Column<double>(nullable: false),
+                    Brand = table.Column<string>(maxLength: 20, nullable: true),
                     Condition = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     SubDepartmentId = table.Column<int>(nullable: false),
                     Title = table.Column<string>(maxLength: 255, nullable: false),
-                    Brand = table.Column<string>(maxLength: 20, nullable: true),
                     HardDrive = table.Column<int>(nullable: true),
                     HardDriveSize = table.Column<string>(nullable: true),
                     LaptopModel = table.Column<string>(nullable: true),
@@ -223,6 +223,7 @@ namespace OnlineShoppingWeb.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AddToCartDate = table.Column<DateTime>(nullable: false),
                     ProductId = table.Column<int>(nullable: false),
+                    Qty = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -256,6 +257,7 @@ namespace OnlineShoppingWeb.Migrations
                     OrderConfirmation = table.Column<string>(nullable: true),
                     Payment = table.Column<string>(nullable: true),
                     ProductId = table.Column<int>(nullable: false),
+                    Qty = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

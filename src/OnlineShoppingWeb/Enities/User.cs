@@ -11,6 +11,5 @@ namespace OnlineShoppingWeb.Enities
         public DateTime JoinDate { get; set; }
         public virtual ICollection<ShoppingOrder> ShoppingOrders { get; set; }
 
-        List<string> Roles;
     }
 }

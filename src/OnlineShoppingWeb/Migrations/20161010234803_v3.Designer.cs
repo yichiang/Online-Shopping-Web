@@ -8,8 +8,8 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20161007233438_v2")]
-    partial class v2
+    [Migration("20161010234803_v3")]
+    partial class v3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -179,6 +179,8 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<int>("ProductId");
 
+                    b.Property<int>("Qty");
+
                     b.Property<string>("UserId");
 
                     b.HasKey("ShoppingCartId");
@@ -210,6 +212,8 @@ namespace OnlineShoppingWeb.Migrations
                     b.Property<string>("Payment");
 
                     b.Property<int>("ProductId");
+
+                    b.Property<int>("Qty");
 
                     b.Property<string>("UserId");
 

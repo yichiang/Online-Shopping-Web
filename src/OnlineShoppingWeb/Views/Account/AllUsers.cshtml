@@ -1,14 +1,14 @@
 ﻿@using OnlineShoppingWeb.Enities
-@model IEnumerable<User>
+@model RoleViewModel
 <h1>List of User In the account</h1>
 
-@foreach (var user in Model)
+@foreach (var user in Model.Users)
 {
     <h2>@user.UserName</h2>
     <h2>@user.JoinDate</h2>
-    @foreach (var role in user.Roles)
+    @foreach (var role in @Model.GetUserHasRoles(user.Roles,Model.Roles))
     {
-        <h2>@role</h2>
+        <h2>@role.RoleId</h2>
 
     }
 }
