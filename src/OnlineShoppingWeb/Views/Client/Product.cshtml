@@ -62,13 +62,26 @@
     </table>
 </div>
 <div class="viewReview">
-    <div id="JsonReview"></div>
+    <h1>Customer Reviews</h1>
+    <h2>@Html.Partial("_StarReview", Model.Product.AvgCustomerReview)</h2>
 
-    @foreach (var review in Model.Product.ProductReviews)
-    {
-        <h2>Title: @review.Title</h2>
-        <h2>Context: @review.Context</h2>
-    }
+    <div class="table-responsive">
+
+        <table class="table">
+            <tr id="JsonReview">
+               
+            </tr>
+
+            <tr>
+                @foreach (var review in Model.Product.ProductReviews)
+                {
+                    <th>@Html.Partial("_StarReview", review.Score)@review.Title</th>
+                    <th>@review.Context</th>
+                }
+         
+            </tr>
+        </table>
+    </div>
 </div>
 
  }
@@ -103,8 +116,8 @@
                     console.log("Review");
                     console.log(result.review);
                     $("#JsonReview").html(
-                        "<h2> Title:" + result.review.title + "</h2>" +
-                        "<h2> Context:" + result.review.context + "</h2>");
+                        "<th>" + @Html.Partial("_StarReview", result.review.Score) result.review.title + "</th>" +
+                        "<th>" + result.review.context + "</th>");
                 }
             });
          });
