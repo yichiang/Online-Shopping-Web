@@ -62,17 +62,19 @@
     </table>
 </div>
 <div class="viewReview">
+    <div id="JsonReview"></div>
+
     @foreach (var review in Model.Product.ProductReviews)
     {
-        <h2>review.Title</h2>
-        <h2>review.Context</h2>
+        <h2>Title: @review.Title</h2>
+        <h2>Context: @review.Context</h2>
     }
 </div>
 
  }
 
 
-@using (Html.BeginForm("Review", "Client", FormMethod.Post, new { @class = "" }))
+@using (Html.BeginForm("Review", "Client", FormMethod.Post, new { @class = "SaveReviewForm" }))
 {
     <input type="text" value="@Model.Product.ProductId" name="ProductReview.ProductId">
     @Html.LabelFor(model => model.ProductReview.Title)
@@ -85,4 +87,27 @@
     @Html.TextBoxFor(model => model.ProductReview.Context)
     <button class="btn" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Review</button>
 
+}
+@section ownScript
+{
+<script>
+    $(document).ready(function () {
+        $(".SaveReviewForm").submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: "@Url.Action("Review")",
+                type: "Post",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (result) {
+                    console.log("Review");
+                    console.log(result.review);
+                    $("#JsonReview").html(
+                        "<h2> Title:" + result.review.title + "</h2>" +
+                        "<h2> Context:" + result.review.context + "</h2>");
+                }
+            });
+         });
+    });
+</script>
 }
