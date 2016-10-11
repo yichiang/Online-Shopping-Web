@@ -63,7 +63,7 @@
 </div>
 <div class="viewReview">
     <h1>Customer Reviews</h1>
-    <h2>@Html.Partial("_StarReview", Model.Product.AvgCustomerReview)</h2>
+    <h2 id="productTotalScore">@Html.Partial("_StarReview", Model.Product.AvgCustomerReview)</h2>
 
     <div class="table-responsive">
 
@@ -115,16 +115,24 @@
                 success: function (result) {
                     console.log("Review");
                     console.log(result.review);
-                    var star = "";
-                    for (var i = 0; i < result.review.score; i++) {
-                        star+="<span class='glyphicon glyphicon-star' aria-hidden='true'></span>"
-                    }
+                    var star = generateStart(result.review.score);
+                
                     $(".review-table").prepend(
                         "<tr><th>" + star + result.review.title + "</th>" +
                         "<th>" + result.review.context + "</th></tr>");
+                    $("#productTotalScore").html(generateStart(result.score));
                 }
             });
-         });
+        });
     });
+
+    var generateStart = function (num) {
+
+        var star = "";
+        for (var i = 1; i <= num; i++) {
+            star += "<span class='glyphicon glyphicon-star' aria-hidden='true'></span>"
+        }
+        return star;
+     };
 </script>
 }

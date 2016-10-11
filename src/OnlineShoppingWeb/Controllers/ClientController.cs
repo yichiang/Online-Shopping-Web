@@ -106,7 +106,8 @@ namespace OnlineShoppingWeb.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             vm.ProductReview.UserId = userId;
             _ProductData.SaveReview(vm.ProductReview);
-            return Json(new { review = vm.ProductReview });
+            var newReviewScore = _ProductData.GetAverageReview(vm.ProductReview.ProductId);
+            return Json(new { review = vm.ProductReview, score=newReviewScore });
         }
     }
 }
