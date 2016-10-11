@@ -49,15 +49,16 @@ namespace OnlineShoppingWeb.Services
             return _context.Products.FirstOrDefault(computer => computer.ProductId == ProductId);
         }
 
+        public Product FindProductByIdIncludedReview(int ProductId)
+        {
+            return _context.Products.Include(m =>m.ProductReviews).FirstOrDefault(computer => computer.ProductId == ProductId);
+        }
+
         public IEnumerable<Product> GetAll()
         {
             return _context.Products.ToList();
         }
 
-        public IProduct GetLaptopById(int id)
-        {
-            return _context.Products.FirstOrDefault(computer => computer.ProductId == id );
-        }
 
         public IEnumerable<Product> GetPorductsofNum(int SkipNum,int TakeNum)
         {

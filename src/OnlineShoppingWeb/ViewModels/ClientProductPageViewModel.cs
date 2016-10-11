@@ -14,6 +14,7 @@ namespace OnlineShoppingWeb.ViewModels
 
         public int SaveToCartProductId { get; set; }
         public string ProductType { get; set; }
-   
+        public ProductReview ProductReview { get; set; }
+
     }
 }

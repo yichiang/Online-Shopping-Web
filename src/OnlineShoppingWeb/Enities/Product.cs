@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineShoppingWeb.Enities
@@ -34,6 +35,8 @@ namespace OnlineShoppingWeb.Enities
         public string Discriminator { get; set; }
         [StringLength(20, MinimumLength = 2)]
         public string Brand { get; set; }
+        public virtual ICollection<ProductReview> ProductReviews { get; set; }
+
 
     }
 }

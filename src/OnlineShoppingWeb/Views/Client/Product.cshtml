@@ -61,4 +61,29 @@
         </tr>
     </table>
 </div>
+<div class="viewReview">
+    @foreach (var review in Model.Product.ProductReviews)
+    {
+        <h2>review.Title</h2>
+        <h2>review.Context</h2>
+    }
+</div>
+
+ }
+
+
+@using (Html.BeginForm("Review", "Client", FormMethod.Post, new { @class = "" }))
+{
+    @Html.TextBoxFor(model => model.ProductReview.ProductId, new { @Value=Model.Product.ProductId})
+
+    @Html.LabelFor(model => model.ProductReview.Title)
+    @Html.TextBoxFor(model => model.ProductReview.Title)
+
+    @Html.LabelFor(model => model.ProductReview.Score)
+    @Html.TextBoxFor(model => model.ProductReview.Score)
+
+    @Html.LabelFor(model => model.ProductReview.Context)
+    @Html.TextBoxFor(model => model.ProductReview.Context)
+    <button class="btn" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Review</button>
+
 }

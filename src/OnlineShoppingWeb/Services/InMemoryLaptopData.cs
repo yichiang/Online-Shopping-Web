@@ -44,6 +44,11 @@ namespace OnlineShoppingWeb.Services
             throw new NotImplementedException();
         }
 
+        public Product FindProductByIdIncludedReview(int ProductId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Product> GetAll()
         {
             return _allTestLaptop;

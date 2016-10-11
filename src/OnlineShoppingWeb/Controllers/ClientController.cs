@@ -85,7 +85,7 @@ namespace OnlineShoppingWeb.Controllers
             int productId = vm.SaveToCartProductId;
             var temp2 = vm.ProductType;
      
-            var foundProduct = _ProductData.FindProductById(productId);
+            var foundProduct = _ProductData.FindProductByIdIncludedReview(productId);
             vm.Product = foundProduct;
 
             if (temp2 == "Laptop")
@@ -98,7 +98,6 @@ namespace OnlineShoppingWeb.Controllers
             }
             return View(vm);
         }
-
     }
 }
 

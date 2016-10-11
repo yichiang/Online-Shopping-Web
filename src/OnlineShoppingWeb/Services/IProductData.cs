@@ -17,5 +17,7 @@ namespace OnlineShoppingWeb.Services
         IEnumerable<Product> GetPorductsofNum(int SkipNum, int TakeNum);
 
         void SaveToCart(int ProductId, string UserId);
+
+        Product FindProductByIdIncludedReview(int ProductId);
     }
 }
