@@ -1,5 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using OnlineShoppingWeb.ViewModels
+@model CheckoutPageViewModel
+<div class="row">
+    <div class="col-ms-8">
+        <h1>Shipping address</h1>
+    </div>
+    <div class="col-ms-4">
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-ms-8">
+        <h1>Payment method</h1>
+    </div>
+    <div class="col-ms-4">
+
+    </div>
+</div>
+<div class="">
+    <div class="">
+        <h1>Review items and shipping</h1>
+    </div>
+    <div class="">
+        @foreach (var product in Model.Products)
+        {
+            <h3>@product.Title</h3>
+            <h3>@product.Price</h3>
+            <h3>@product.Quantity</h3>
+
+        }
+    </div>
+</div>
