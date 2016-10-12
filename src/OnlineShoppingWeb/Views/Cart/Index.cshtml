@@ -41,7 +41,7 @@
                                 </tr>
                                 <tr>  
                                     <th colspan="2">                                
-                                    @using (Html.BeginForm("SaveForLater", "Cart", FormMethod.Post, new { @class = "SaveForLaterForm" }))
+                                    @using (Html.BeginForm("SaveForLater", "Cart", FormMethod.Post, new { @class = "save-for-later-form" }))
                                     {
                                         <input type="hidden" name="SaveForLater.ProductId" value="@product.ProductId" />
                                         <input type="hidden" name="ProductPrice" value="@product.Price" />
@@ -76,10 +76,25 @@
                         <h4>Porceed to Checkout</h4>
                     </div>
                 <hr>
-<div id="SaveForLater">
+<div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Saved for later (@Model.SaveForLaters.Count() items)</h4>
+        </div>
+    </div>
+    <div id="SaveForLater"></div>
     @foreach (var list in Model.SaveForLaters)
-    { 
-        <h3>@list.ProductId</h3>
+    {
+        <div class="row">
+            <div class="col-sm-8">
+                <h3>@list.Proudct.Title</h3>
+                <button>Delete</button> | <button>Move to Cart</button>
+            </div>
+            <div class="col-sm-4">
+                <h3>$ @list.Proudct.Price</h3>
+            </div>
+        </div>
+
     }
 </div>
 @section ownScript
@@ -123,6 +138,29 @@
                         $qtyDisplay.text(result.qty).css("color", "green").show();
                         var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
                         $(".total-price").text(newTotal);
+                    }
+                });
+            });
+
+            $(".save-for-later-form").submit(function (event) {
+                console.log("Save TO Later");
+
+                event.preventDefault();
+                $.ajax({
+                    url: "@Url.Action("SaveForLater")",
+                    type: "Post",
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function (result) {
+                        console.log(result.list.proudct);
+                        var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
+                        $(".total-price").text(newTotal);
+                        $("#SaveForLater").append(
+                            "<div class='row'><div class='col-sm-8'><h3>"
+                            + result.list.proudct.title +
+                            "</h3><button>Delete</button> | <button>Move to Cart</button></div><div class='col-sm-4'><h3> $"
+                            + result.list.proudct.price +
+                            "</h3></div></div>");
                     }
                 });
             });
