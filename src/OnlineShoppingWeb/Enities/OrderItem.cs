@@ -9,6 +9,7 @@ namespace OnlineShoppingWeb.Enities
     public class OrderItem
     {
         [Key]
+        public int OrderItemId { get; set; }
 
         public int Qty { get; set; }
         public int ProductId { get; set; }

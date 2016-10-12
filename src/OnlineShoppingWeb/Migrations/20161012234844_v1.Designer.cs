@@ -8,8 +8,8 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20161012153607_v6")]
-    partial class v6
+    [Migration("20161012234844_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -136,6 +136,26 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.OrderItem", b =>
+                {
+                    b.Property<int>("OrderItemId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<decimal>("CurrentPrice");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("Qty");
+
+                    b.Property<int?>("ShoppingOrderOrderId");
+
+                    b.HasKey("OrderItemId");
+
+                    b.HasIndex("ShoppingOrderOrderId");
+
+                    b.ToTable("OrderItem");
+                });
+
             modelBuilder.Entity("OnlineShoppingWeb.Enities.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -243,6 +263,8 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<DateTime>("Create_Date");
 
+                    b.Property<bool>("IsCanceled");
+
                     b.Property<bool>("IsReceived");
 
                     b.Property<bool>("IsRequestReturn");
@@ -251,19 +273,15 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<string>("Notes");
 
+                    b.Property<string>("OrderAddress");
+
                     b.Property<string>("OrderConfirmation");
 
                     b.Property<string>("Payment");
 
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("Qty");
-
                     b.Property<string>("UserId");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
 
@@ -321,6 +339,8 @@ namespace OnlineShoppingWeb.Migrations
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("ShippingAddress");
 
                     b.Property<bool>("TwoFactorEnabled");
 
@@ -409,6 +429,13 @@ namespace OnlineShoppingWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.OrderItem", b =>
+                {
+                    b.HasOne("OnlineShoppingWeb.Enities.ShoppingOrder")
+                        .WithMany("OrderItem")
+                        .HasForeignKey("ShoppingOrderOrderId");
+                });
+
             modelBuilder.Entity("OnlineShoppingWeb.Enities.Product", b =>
                 {
                     b.HasOne("OnlineShoppingWeb.Enities.SubDepartment", "SubDepartment")
@@ -455,11 +482,6 @@ namespace OnlineShoppingWeb.Migrations
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingOrder", b =>
                 {
-                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Proudct")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("OnlineShoppingWeb.Enities.User", "User")
                         .WithMany("ShoppingOrders")
                         .HasForeignKey("UserId");

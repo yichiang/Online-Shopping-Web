@@ -69,6 +69,7 @@ namespace OnlineShoppingWeb.Migrations
                     PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
                     SecurityStamp = table.Column<string>(nullable: true),
+                    ShippingAddress = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true)
                 },
@@ -184,6 +185,34 @@ namespace OnlineShoppingWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ShoppingOrder",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Create_Date = table.Column<DateTime>(nullable: false),
+                    IsCanceled = table.Column<bool>(nullable: false),
+                    IsReceived = table.Column<bool>(nullable: false),
+                    IsRequestReturn = table.Column<bool>(nullable: false),
+                    IsShipped = table.Column<bool>(nullable: false),
+                    Notes = table.Column<string>(nullable: true),
+                    OrderAddress = table.Column<string>(nullable: true),
+                    OrderConfirmation = table.Column<string>(nullable: true),
+                    Payment = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingOrder", x => x.OrderId);
+                    table.ForeignKey(
+                        name: "FK_ShoppingOrder_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -216,6 +245,84 @@ namespace OnlineShoppingWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrderItem",
+                columns: table => new
+                {
+                    OrderItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CurrentPrice = table.Column<decimal>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    Qty = table.Column<int>(nullable: false),
+                    ShoppingOrderOrderId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItem", x => x.OrderItemId);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_ShoppingOrder_ShoppingOrderOrderId",
+                        column: x => x.ShoppingOrderOrderId,
+                        principalTable: "ShoppingOrder",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductReviews",
+                columns: table => new
+                {
+                    ReviewId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Context = table.Column<string>(nullable: true),
+                    PostTime = table.Column<DateTime>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    Score = table.Column<double>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductReviews", x => x.ReviewId);
+                    table.ForeignKey(
+                        name: "FK_ProductReviews_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductReviews_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SaveForLaters",
+                columns: table => new
+                {
+                    SaveForLaterId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ProductId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SaveForLaters", x => x.SaveForLaterId);
+                    table.ForeignKey(
+                        name: "FK_SaveForLaters_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SaveForLaters_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ShoppingCart",
                 columns: table => new
                 {
@@ -237,40 +344,6 @@ namespace OnlineShoppingWeb.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ShoppingCart_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ShoppingOrder",
-                columns: table => new
-                {
-                    OrderId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Create_Date = table.Column<DateTime>(nullable: false),
-                    IsReceived = table.Column<bool>(nullable: false),
-                    IsRequestReturn = table.Column<bool>(nullable: false),
-                    IsShipped = table.Column<bool>(nullable: false),
-                    Notes = table.Column<string>(nullable: true),
-                    OrderConfirmation = table.Column<string>(nullable: true),
-                    Payment = table.Column<string>(nullable: true),
-                    ProductId = table.Column<int>(nullable: false),
-                    Qty = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ShoppingOrder", x => x.OrderId);
-                    table.ForeignKey(
-                        name: "FK_ShoppingOrder_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ShoppingOrder_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -308,9 +381,34 @@ namespace OnlineShoppingWeb.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_ShoppingOrderOrderId",
+                table: "OrderItem",
+                column: "ShoppingOrderOrderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_SubDepartmentId",
                 table: "Products",
                 column: "SubDepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductReviews_ProductId",
+                table: "ProductReviews",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductReviews_UserId",
+                table: "ProductReviews",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SaveForLaters_ProductId",
+                table: "SaveForLaters",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SaveForLaters_UserId",
+                table: "SaveForLaters",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCart_ProductId",
@@ -321,11 +419,6 @@ namespace OnlineShoppingWeb.Migrations
                 name: "IX_ShoppingCart_UserId",
                 table: "ShoppingCart",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ShoppingOrder_ProductId",
-                table: "ShoppingOrder",
-                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingOrder_UserId",
@@ -367,13 +460,22 @@ namespace OnlineShoppingWeb.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "OrderItem");
+
+            migrationBuilder.DropTable(
+                name: "ProductReviews");
+
+            migrationBuilder.DropTable(
+                name: "SaveForLaters");
+
+            migrationBuilder.DropTable(
                 name: "ShoppingCart");
 
             migrationBuilder.DropTable(
-                name: "ShoppingOrder");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "ShoppingOrder");
 
             migrationBuilder.DropTable(
                 name: "Products");

@@ -137,16 +137,18 @@ namespace OnlineShoppingWeb.Migrations
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.OrderItem", b =>
                 {
-                    b.Property<int>("Qty")
+                    b.Property<int>("OrderItemId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("CurrentPrice");
 
                     b.Property<int>("ProductId");
 
+                    b.Property<int>("Qty");
+
                     b.Property<int?>("ShoppingOrderOrderId");
 
-                    b.HasKey("Qty");
+                    b.HasKey("OrderItemId");
 
                     b.HasIndex("ShoppingOrderOrderId");
 
