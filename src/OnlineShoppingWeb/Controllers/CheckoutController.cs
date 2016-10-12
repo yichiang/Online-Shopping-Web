@@ -43,9 +43,9 @@ namespace OnlineShoppingWeb.Controllers
                 allSavedProduct.Add(foundProduct);
             }
             vm.Products = allSavedProduct;
-            if (!string.IsNullOrEmpty(currentUser.Address))
+            if (!string.IsNullOrEmpty(currentUser.ShippingAddress))
             {
-                vm.ShippingAddress = currentUser.Address;
+                vm.ShippingAddress = currentUser.ShippingAddress;
             }
             return View(vm);
         }
@@ -54,7 +54,14 @@ namespace OnlineShoppingWeb.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             ShoppingOrder newOrder = new ShoppingOrder();
-
+            newOrder.OrderAddress = vm.ShippingAddress;
+            foreach (var product in vm.Products)
+            {
+                OrderItem Item = new OrderItem();
+                Item.CurrentPrice = product.Price;
+                Item.ProductId = product.ProductId;
+                Item.Qty = product.Quantity;
+            }
             return RedirectToAction("Index", "Cart");
         }
         [HttpPost]
@@ -62,9 +69,9 @@ namespace OnlineShoppingWeb.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
-            currentUser.Address =vm.ShippingAddress;
+            currentUser.ShippingAddress = vm.ShippingAddress;
             await _userManager.UpdateAsync(currentUser);
-            return View(vm);
+            return RedirectToAction("Index", "Checkout");
         }
 
     }
