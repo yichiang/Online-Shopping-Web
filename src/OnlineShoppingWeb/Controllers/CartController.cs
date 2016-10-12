@@ -39,6 +39,7 @@ namespace OnlineShoppingWeb.Controllers
             }
             vm.Products = allSavedProduct;
             vm.totalPrice = vm.Products.Sum(p => p.Price * p.Quantity);
+            vm.SaveForLaters = _shoppingCartData.GetAllSaveForLaterByUserId(userId);
             return View(vm);
         }
         [HttpPost]
@@ -61,6 +62,18 @@ namespace OnlineShoppingWeb.Controllers
 
             _shoppingCartData.ModifyQty(foundShoppingProduct, vm.ShoppingCart.Qty);
             return Json(new { qty= vm.ShoppingCart.Qty, totalChangePrice = totalChangePrice });
+        }
+        [HttpPost]
+        public IActionResult SaveForLater(CartPageViewModel vm)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.SaveForLater.ProductId, userId);
+
+            Product foundProduct = _productData.FindProductById(vm.SaveForLater.ProductId);
+            decimal totalChangePrice = (- foundShoppingProduct.Qty) * vm.ProductPrice;
+            _shoppingCartData.Delete(foundShoppingProduct);
+            SaveForLater foundSaveForLater=_shoppingCartData.SaveForLater(vm.SaveForLater.ProductId, userId);
+            return Json(new { list = foundSaveForLater, totalChangePrice = totalChangePrice });
         }
     }
 }

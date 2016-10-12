@@ -39,9 +39,17 @@
 
                                     </th>
                                 </tr>
-                                <tr>                                  
-                                    <th colspan="2">Save For later</th>
-                                </tr>
+                                <tr>  
+                                    <th colspan="2">                                
+                                    @using (Html.BeginForm("SaveForLater", "Cart", FormMethod.Post, new { @class = "SaveForLaterForm" }))
+                                    {
+                                        <input type="hidden" name="SaveForLater.ProductId" value="@product.ProductId" />
+                                        <input type="hidden" name="ProductPrice" value="@product.Price" />
+
+                                        <button class="change-qty-submit-button" type="submit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Save For Later</button>
+                                    }                                
+                                  </th>
+                                 </tr>
                             </table>
                         </div>
                         <div class="panel-footer">
@@ -67,7 +75,13 @@
                         <h4><a href="/Client">Continue Shopping</a></h4>
                         <h4>Porceed to Checkout</h4>
                     </div>
-                
+                <hr>
+<div id="SaveForLater">
+    @foreach (var list in Model.SaveForLaters)
+    { 
+        <h3>@list.ProductId</h3>
+    }
+</div>
 @section ownScript
 {
     <script>

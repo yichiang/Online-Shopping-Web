@@ -12,6 +12,8 @@ namespace OnlineShoppingWeb.Services
         void ModifyQty(ShoppingCart product, int newQty);
         ShoppingCart FindCartProductById(int ProductId, string UserId);
         void Delete(ShoppingCart ShoppingCartproduct);
+        SaveForLater SaveForLater(int ProductId, string userId);
+        IEnumerable<SaveForLater> GetAllSaveForLaterByUserId(string UserId);
 
     }
 }

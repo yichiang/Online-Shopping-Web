@@ -36,6 +36,11 @@ namespace OnlineShoppingWeb.Services
             return _context.ShoppingCart.Where(c =>c.User== User).ToList();
         }
 
+        public IEnumerable<SaveForLater> GetAllSaveForLaterByUserId(string UserId)
+        {
+            return _context.SaveForLaters.Include(m => m.Proudct).ToList();
+        }
+
         public int GetUserTotalSavedItems(string UserId)
         {
             return _context.ShoppingCart.Where(c => c.UserId == UserId).Sum(c => c.Qty);
@@ -61,6 +66,16 @@ namespace OnlineShoppingWeb.Services
             product.AddToCartDate = DateTime.Now;
             _context.SaveChanges();
 
+        }
+
+        public SaveForLater SaveForLater(int ProductId, string userId)
+        {
+            SaveForLater newProduct = new SaveForLater();
+            newProduct.ProductId = ProductId;
+            newProduct.UserId = userId;
+            _context.Add(newProduct);
+            _context.SaveChanges();
+            return newProduct;
         }
     }
 }
