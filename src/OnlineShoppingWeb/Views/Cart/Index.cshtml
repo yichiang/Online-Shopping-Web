@@ -92,8 +92,15 @@
                 {
                     <input type="hidden" name="SaveForLater.ProductId" value="@list.Proudct.ProductId" />
 
-                    <button type="submit" value="Delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
-                } | <button>Move to Cart</button>
+                    <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+                } 
+
+                @using (Html.BeginForm("MoveToCartFromList", "Cart", FormMethod.Post))
+                {
+                    <input type="hidden" name="SaveForLater.ProductId" value="@list.Proudct.ProductId" />
+
+                    <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Movie To Cart</button>
+                } 
             </div>
             <div class="col-sm-4">
                 <h3>$ @list.Proudct.Price</h3>
@@ -169,7 +176,8 @@
                                 "<div class='row'><div class='col-sm-8'><h3>"
                                 + result.list.proudct.title +
                                 "</h3><form method='post' action='/Cart/SaveForLaterDelete'><input type='hidden' name='SaveForLater.ProductId' value='"
-                                + result.list.proudct.productId+"'><button type='submit' value='Delete'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Delete</button></form> | <button>Move to Cart</button></div><div class='col-sm-4'><h3> $"
+                                + result.list.proudct.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Delete</button></form> <form method='post' action='/Cart/MoveToCartFromList'><input type='hidden' name='SaveForLater.ProductId' value='"
+                                + result.list.proudct.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Move To Cart</button></form> </div><div class='col-sm-4'><h3> $"
                                 + result.list.proudct.price +
                                 "</div></div>");
                         } else {

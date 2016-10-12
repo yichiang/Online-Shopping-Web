@@ -92,6 +92,15 @@ namespace OnlineShoppingWeb.Controllers
             _shoppingCartData.DelteSaveToList(vm.SaveForLater.ProductId,userId);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult MoveToCartFromList(CartPageViewModel vm)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _productData.SaveToCart(vm.SaveForLater.ProductId, userId);
+            _shoppingCartData.DelteSaveToList(vm.SaveForLater.ProductId, userId);
+            return RedirectToAction("Index");
+        }
     }
 }
 
