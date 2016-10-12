@@ -10,7 +10,7 @@ namespace OnlineShoppingWeb.ViewModels
     {
         public IEnumerable<ShoppingCart> ShoppingCarts { get; set; }
         public IEnumerable<Product> Products { get; set; }
-
+        public string ShippingAddress { get; set; }
         public ShoppingOrder ShoppingOrder { get; set; }
     }
 }

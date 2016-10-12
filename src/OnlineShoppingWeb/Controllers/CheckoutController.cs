@@ -43,7 +43,29 @@ namespace OnlineShoppingWeb.Controllers
                 allSavedProduct.Add(foundProduct);
             }
             vm.Products = allSavedProduct;
+            if (!string.IsNullOrEmpty(currentUser.Address))
+            {
+                vm.ShippingAddress = currentUser.Address;
+            }
             return View(vm);
         }
+        [HttpPost]
+        public IActionResult PlaceOrder(CheckoutPageViewModel vm)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            ShoppingOrder newOrder = new ShoppingOrder();
+
+            return RedirectToAction("Index", "Cart");
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddShippingAddress(CheckoutPageViewModel vm)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            currentUser.Address =vm.ShippingAddress;
+            await _userManager.UpdateAsync(currentUser);
+            return View(vm);
+        }
+
     }
 }
