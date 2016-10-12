@@ -144,7 +144,7 @@
 
             $(".save-for-later-form").submit(function (event) {
                 console.log("Save TO Later");
-
+                var $clickedForm = $(this).parent().parent().parent().parent().parent().parent();
                 event.preventDefault();
                 $.ajax({
                     url: "@Url.Action("SaveForLater")",
@@ -154,6 +154,9 @@
                   
                     success: function (result) {
                         if (result.success) {
+
+                            $clickedForm.remove();
+
                             console.log(result.list.proudct);
                             var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
                             $(".total-price").text(newTotal);
