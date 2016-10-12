@@ -15,9 +15,21 @@ namespace OnlineShoppingWeb.Services
             _context = context;
         }
 
+        public bool CheckIsExistedInList(int ProductId, string userId)
+        {
+            return this.GetSaveForLater(ProductId, userId) == null ? false : true;
+        }
+
         public void Delete(ShoppingCart ShoppingCartproduct)
         {
             _context.Remove(ShoppingCartproduct);
+            _context.SaveChanges();
+        }
+
+        public void DelteSaveToList(int ProductId, string userId)
+        {
+            SaveForLater DeleteProductList = this.GetSaveForLater(ProductId, userId); 
+            _context.Remove(DeleteProductList);
             _context.SaveChanges();
         }
 
@@ -38,7 +50,14 @@ namespace OnlineShoppingWeb.Services
 
         public IEnumerable<SaveForLater> GetAllSaveForLaterByUserId(string UserId)
         {
+
             return _context.SaveForLaters.Include(m => m.Proudct).ToList();
+        }
+
+        public SaveForLater GetSaveForLater(int ProductId, string userId)
+        {
+            return  _context.SaveForLaters.FirstOrDefault(c => c.UserId == userId && c.ProductId == ProductId);
+
         }
 
         public int GetUserTotalSavedItems(string UserId)

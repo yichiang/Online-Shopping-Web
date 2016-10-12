@@ -151,16 +151,23 @@
                     type: "Post",
                     data: $(this).serialize(),
                     dataType: "json",
+                  
                     success: function (result) {
-                        console.log(result.list.proudct);
-                        var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
-                        $(".total-price").text(newTotal);
-                        $("#SaveForLater").append(
-                            "<div class='row'><div class='col-sm-8'><h3>"
-                            + result.list.proudct.title +
-                            "</h3><button>Delete</button> | <button>Move to Cart</button></div><div class='col-sm-4'><h3> $"
-                            + result.list.proudct.price +
-                            "</h3></div></div>");
+                        if (result.success) {
+                            console.log(result.list.proudct);
+                            var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
+                            $(".total-price").text(newTotal);
+                            $("#SaveForLater").append(
+                                "<div class='row'><div class='col-sm-8'><h3>"
+                                + result.list.proudct.title +
+                                "</h3><button>Delete</button> | <button>Move to Cart</button></div><div class='col-sm-4'><h3> $"
+                                + result.list.proudct.price +
+                                "</h3></div></div>");
+                        } else {
+
+                            alert("already In save for later list");
+                        }
+                        
                     }
                 });
             });

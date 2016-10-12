@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using OnlineShoppingWeb.Enities;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace OnlineShoppingWeb.Controllers
 {
@@ -67,13 +68,30 @@ namespace OnlineShoppingWeb.Controllers
         public IActionResult SaveForLater(CartPageViewModel vm)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.SaveForLater.ProductId, userId);
+ 
+            if (_shoppingCartData.CheckIsExistedInList(vm.SaveForLater.ProductId, userId))
+            {
+                return Json(new { success = false, responseText = "The attached file is not supported." });
+            }
+            else
+            {
+                var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.SaveForLater.ProductId, userId);
 
-            Product foundProduct = _productData.FindProductById(vm.SaveForLater.ProductId);
-            decimal totalChangePrice = (- foundShoppingProduct.Qty) * vm.ProductPrice;
-            _shoppingCartData.Delete(foundShoppingProduct);
-            SaveForLater foundSaveForLater=_shoppingCartData.SaveForLater(vm.SaveForLater.ProductId, userId);
-            return Json(new { list = foundSaveForLater, totalChangePrice = totalChangePrice });
+                Product foundProduct = _productData.FindProductById(vm.SaveForLater.ProductId);
+                decimal totalChangePrice = (-foundShoppingProduct.Qty) * vm.ProductPrice;
+                _shoppingCartData.Delete(foundShoppingProduct);
+                SaveForLater foundSaveForLater = _shoppingCartData.SaveForLater(vm.SaveForLater.ProductId, userId);
+                return Json(new { success = true, list = foundSaveForLater, totalChangePrice = totalChangePrice });
+            }
+   
+        }
+        [HttpPost]
+        public IActionResult SaveForLaterDelete(CartPageViewModel vm)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _shoppingCartData.DelteSaveToList(vm.SaveForLater.ProductId,userId);
+            return Json(new { });
         }
     }
 }
+

@@ -14,6 +14,10 @@ namespace OnlineShoppingWeb.Services
         void Delete(ShoppingCart ShoppingCartproduct);
         SaveForLater SaveForLater(int ProductId, string userId);
         IEnumerable<SaveForLater> GetAllSaveForLaterByUserId(string UserId);
+        void DelteSaveToList(int ProductId, string userId);
+        bool CheckIsExistedInList(int ProductId, string userId);
+        SaveForLater GetSaveForLater(int ProductId, string userId);
+
 
     }
 }
