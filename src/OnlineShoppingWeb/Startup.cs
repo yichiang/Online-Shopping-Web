@@ -51,7 +51,7 @@ namespace OnlineShoppingWeb
                            .AddDefaultTokenProviders();
             services.AddScoped<IProductData, SqlServerLaptopData>();
             services.AddScoped<IShoppingCartData, ShoppingCartSqlData>();
-
+            services.AddScoped<ICheckoutData, SqlCheckoutData>();
             services.AddScoped<IDepartmentData, SqlDepartmentData>();
         }
 

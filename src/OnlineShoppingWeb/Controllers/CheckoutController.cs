@@ -21,12 +21,14 @@ namespace OnlineShoppingWeb.Controllers
         private IProductData _productData;
         private IShoppingCartData _shoppingCartData;
         private UserManager<User> _userManager;
+        private ICheckoutData _checkoutData;
 
-        public CheckoutController(IShoppingCartData shoppingCartData, IProductData productData, UserManager<User> userManager)
+        public CheckoutController(ICheckoutData checkoutData, IShoppingCartData shoppingCartData, IProductData productData, UserManager<User> userManager)
         {
             _userManager = userManager;
             _shoppingCartData = shoppingCartData;
             _productData = productData;
+            _checkoutData = checkoutData;
         }
         // GET: /<controller>/
         public async Task<IActionResult> Index()
@@ -61,6 +63,7 @@ namespace OnlineShoppingWeb.Controllers
                 Item.CurrentPrice = product.Price;
                 Item.ProductId = product.ProductId;
                 Item.Qty = product.Quantity;
+                
             }
             return RedirectToAction("Index", "Cart");
         }
