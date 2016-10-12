@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineShoppingWeb.Enities
@@ -10,13 +11,15 @@ namespace OnlineShoppingWeb.Enities
         public string OrderConfirmation { get; set; }
         public DateTime Create_Date { get; set; } = DateTime.UtcNow;
         public string Notes { get; set; }
+        public string OrderAddress { get; set; }
+
         public string Payment { get; set; }
-        public bool IsShipped { get; set; }
-        public bool IsReceived { get; set; }
-        public bool IsRequestReturn { get; set; }
-        public int Qty { get; set; }
-        public int ProductId { get; set; }
-        public virtual Product Proudct { get; set; }
+        public bool IsCanceled { get; set; } = false;
+        public bool IsShipped { get; set; } = false;
+        public bool IsReceived { get; set; } = false;
+        public bool IsRequestReturn { get; set; } = false;
+
+        public virtual ICollection<OrderItem> OrderItem { get; set; }
         public virtual User User { get; set; }
     }
 }
