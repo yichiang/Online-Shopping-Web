@@ -90,7 +90,7 @@ namespace OnlineShoppingWeb.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             _shoppingCartData.DelteSaveToList(vm.SaveForLater.ProductId,userId);
-            return Json(new { });
+            return RedirectToAction("Index");
         }
     }
 }
