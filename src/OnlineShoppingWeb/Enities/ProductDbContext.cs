@@ -16,7 +16,7 @@ namespace OnlineShoppingWeb.Enities
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<SubDepartment> SubDepartments { get; set; }
-
+        public DbSet<SaveForLater> SaveForLaters { get; set; }
         public ProductDbContext(DbContextOptions<ProductDbContext> options):base(options)
         {
 

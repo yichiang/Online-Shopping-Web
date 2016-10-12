@@ -1,7 +1,6 @@
 ﻿@using OnlineShoppingWeb.ViewModels
 @model CartPageViewModel
 
-<h1>You have @Model.Products.Count() in your cart</h1>
 @{ int i = 1;
     foreach (var product in Model.Products)
     {
@@ -40,7 +39,9 @@
 
                                     </th>
                                 </tr>
-
+                                <tr>                                  
+                                    <th colspan="2">Save For later</th>
+                                </tr>
                             </table>
                         </div>
                         <div class="panel-footer">
@@ -61,17 +62,12 @@
                 i++;
    }
 }
-                <div class="row">
                     <div class="col-sm-4">
                         <h2>Subtotal (@Model.Products.Count() Items): $<span class="total-price">@Model.totalPrice</span></h2>
+                        <h4><a href="/Client">Continue Shopping</a></h4>
+                        <h4>Porceed to Checkout</h4>
                     </div>
-                    <div class="col-sm-4">
-                        <a href="/Client">Continue Shopping</a>
-                    </div>
-                    <div class="col-sm-4">
-                        Porceed to Checkout
-                    </div>
-                </div>
+                
 @section ownScript
 {
     <script>
