@@ -112,12 +112,12 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddMeToMailList()
+        public async Task<IActionResult> AddMeToMailList(ClientProductPageViewModel vm)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             SendEmailService oneEmail = new SendEmailService();
-            await oneEmail.SendEmailAsync("yichiang00@gmail.com","Join us Today","Thanks you for join us");
+            await oneEmail.SendEmailAsync(vm.MailEmailAddress, "Join us Today","Thanks you for join us");
             return Json(new { message = "Success" });
         }
     }

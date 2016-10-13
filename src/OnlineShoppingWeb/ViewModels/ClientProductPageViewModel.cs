@@ -11,7 +11,7 @@ namespace OnlineShoppingWeb.ViewModels
         {
         }
 
-
+        public string MailEmailAddress { get; set; }
         public int SaveToCartProductId { get; set; }
         public string ProductType { get; set; }
         public ProductReview ProductReview { get; set; }

@@ -74,7 +74,7 @@ namespace OnlineShoppingWeb.Services
         {
 
             var number = _context.Products.Count();
-            return _context.Products.Skip(SkipNum).Take(TakeNum).ToList();
+            return _context.Products.Include(p => p.ProductImages).Skip(SkipNum).Take(TakeNum).ToList();
 
         }
 
@@ -117,7 +117,7 @@ namespace OnlineShoppingWeb.Services
 
         public IEnumerable<Product> SearchByTitle(string SearchTitle)
         {
-            return _context.Products.Where(product => product.Title.Contains(SearchTitle)).ToList();
+            return _context.Products.Include(p => p.ProductImages).Where(product => product.Title.Contains(SearchTitle)).ToList();
         }
     }
 }

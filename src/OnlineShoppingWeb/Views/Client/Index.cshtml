@@ -108,6 +108,8 @@
 
 @using (Html.BeginForm("AddMeToMailList", "Client", FormMethod.Post, new { @class = "" }))
 {
+    <input type="email"  name="MailEmailAddress" />
+
     <button class="btn" type="submit" value="detail">Add ME Now</button>
 
 }
