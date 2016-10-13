@@ -106,7 +106,11 @@
 @Html.Partial("_PageControlForm", Model)
 }
 
+@using (Html.BeginForm("AddMeToMailList", "Client", FormMethod.Post, new { @class = "" }))
+{
+    <button class="btn" type="submit" value="detail">Add ME Now</button>
 
+}
 
 @section ownScript
 {

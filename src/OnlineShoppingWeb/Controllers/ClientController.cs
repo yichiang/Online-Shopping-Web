@@ -110,6 +110,16 @@ namespace OnlineShoppingWeb.Controllers
             _ProductData.SaveAverageScore(vm.ProductReview.ProductId, newReviewScore);
             return Json(new {score = newReviewScore,review = vm.ProductReview });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMeToMailList()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            SendEmailService oneEmail = new SendEmailService();
+            await oneEmail.SendEmailAsync("yichiang00@gmail.com","Join us Today","Thanks you for join us");
+            return Json(new { message = "Success" });
+        }
     }
 }
 
