@@ -55,6 +55,9 @@
     background-color: gainsboro;
     padding-top: 20px;
     padding-bottom: 20px;
+    background:url("https://static.pexels.com/photos/80000/panorama-mountain-montagne-pyrenees-80000-large.jpeg");
+    background-size:cover;
+    margin-top: 0;
 }
 .product-image {
 width:5vw;
