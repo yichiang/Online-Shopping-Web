@@ -34,6 +34,7 @@
 
         <table class="table">
             <tr>
+                <th>Image</th>
                 <th>Title</th>
                 <th>Price</th>
                 <th>SubDepartment</th>
@@ -46,7 +47,11 @@
             </tr>
             @foreach (var product in Model.Products)
             {
+
                 <tr>
+                    @Html.Partial("_ProductImage", product.ProductImages.ToList())
+
+
                     @if (@product.Title.Length > 60)
                     {
                         <th>@product.Title.Substring(0, 59) ...</th>

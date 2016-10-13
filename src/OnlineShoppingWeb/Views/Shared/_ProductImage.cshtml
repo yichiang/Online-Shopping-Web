@@ -1,0 +1,14 @@
+﻿@using OnlineShoppingWeb.Enities;
+@model List<ProductImage>
+
+@if (Model.Count() != 0)
+{
+    var base64 = Convert.ToBase64String(Model.First().Content);
+    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+    <th><img src="@imgSrc" class="product-image"></th>
+}
+else
+{
+    <th><img src="/img/ProductDefault.jpg" class="product-image"></th>
+}
