@@ -106,13 +106,14 @@
 @Html.Partial("_PageControlForm", Model)
 }
 
-@using (Html.BeginForm("AddMeToMailList", "Client", FormMethod.Post, new { @class = "" }))
+@using (Html.BeginForm("AddMeToMailList", "Client", FormMethod.Post, new { @class = "MailForm" }))
 {
     <input type="email"  name="MailEmailAddress" />
 
     <button class="btn" type="submit" value="detail">Add ME Now</button>
 
 }
+<div id="MailSuccess"></div>
 
 @section ownScript
 {
@@ -132,7 +133,22 @@
                     $(".CartQtyDisplay").text(result.qty);
                 }
             });
-         });
+        });
+        $(".MailForm").submit(function (event) {
+            var $self=$(this)
+            event.preventDefault();
+            $.ajax({
+                url: "@Url.Action("AddMeToMailList")",
+                type: "Post",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function (result) {
+                $self.hide();
+                $("#MailSuccess").text("Thank you for signing up");
+            }
+        });
+    });
+
     });
 </script>
 }
