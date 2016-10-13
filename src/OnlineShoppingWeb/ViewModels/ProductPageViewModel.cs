@@ -1,4 +1,5 @@
-﻿using OnlineShoppingWeb.Enities;
+﻿using Microsoft.AspNet.Http;
+using OnlineShoppingWeb.Enities;
 using System.Collections.Generic;
 
 
@@ -29,6 +30,7 @@ namespace OnlineShoppingWeb.ViewModels
         public int TakeDisplayList { get; set; }
         public int SkipDisplayList { get; set; }
         public int AllProductsCount { get; set; }
+        public ICollection<IFormFile> UploadFile  { get; set; }
 
     }
 }

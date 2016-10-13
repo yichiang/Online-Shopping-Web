@@ -76,7 +76,11 @@ namespace OnlineShoppingWeb.Controllers
                 Item.ShoppingOrderId = newOrder.OrderId;
                 _checkoutData.SaveOrderItem(Item);
             }
-            //Delete all item
+            //Delete all item in shopping cart
+            foreach (var product in allSavedProducts)
+            {
+                _shoppingCartData.Delete(product);
+            }
             return RedirectToAction("Index", "Cart");
         }
         [HttpPost]

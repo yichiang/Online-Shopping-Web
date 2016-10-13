@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNet.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -37,6 +38,7 @@ namespace OnlineShoppingWeb.Enities
         public string Brand { get; set; }
         public virtual ICollection<ProductReview> ProductReviews { get; set; }
 
+        public virtual ICollection<File> Files { get; set; }
 
     }
 }

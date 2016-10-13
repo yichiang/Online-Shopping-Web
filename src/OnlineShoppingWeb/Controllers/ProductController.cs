@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-
+using Microsoft.Net.Http.Headers;
+using Microsoft.AspNet.Http;
 
 namespace OnlineShoppingWeb.Controllers
 {
@@ -111,16 +112,31 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateLaptop(ManagerProductViewModel viewModel)
+        public async Task<IActionResult> CreateLaptop(ManagerProductViewModel viewModel, ICollection<Microsoft.AspNet.Http.IFormFile> UploadFile)
         {
             viewModel.Laptop.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Laptop.SubDepartmentId);
+            var usersfiles = HttpContext.Request.Form.Files;
+
             if (ModelState.IsValid)
             {
+
+                foreach (var file in usersfiles)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    if (fileName.EndsWith(".jpg"))
+                    {
+                        var filePath = _env.ContentRootPath + "\\wwwroot\\" + fileName;
+                        await file.CopyToAsync(new FileStream(Path.Combine(Path.Combine(_env.WebRootPath, "uploads"), file.FileName), FileMode.Create));
+                    }
+
+                }
+
                 //Product newProduct = (Product) viewModel.Laptop;
                 _ProductData.AddNewProduct(viewModel.Laptop);
                 return RedirectToAction("Index");
 
             }
+
             ManagerProductViewModel newviewModel = new ManagerProductViewModel();
             newviewModel.SubDepartments = _DepartmentData.GetAllSubDepartments();
             return View(newviewModel);
@@ -173,7 +189,7 @@ namespace OnlineShoppingWeb.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> UploadFile(ICollection<IFormFile> filesInput)
+        public async Task<IActionResult> UploadFile(ICollection<Microsoft.AspNetCore.Http.IFormFile> filesInput)
         {
             var usersfiles = HttpContext.Request.Form.Files;
 

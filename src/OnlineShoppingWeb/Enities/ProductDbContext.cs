@@ -27,6 +27,7 @@ namespace OnlineShoppingWeb.Enities
         {
             base.OnModelCreating(builder);
             //builder.Entity<ShoppingOrder>().HasKey(x => new { x.ProductId, x.UserId });
+            //builder.Entity<Product>().HasMany(b => b.Files);
 
         }
     }

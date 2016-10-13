@@ -21,7 +21,8 @@
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
     "Microsoft.AspNetCore.Mvc.Razor": "1.0.1",
-    "Microsoft.AspNetCore.Razor": "1.0.0"
+    "Microsoft.AspNetCore.Razor": "1.0.0",
+    "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-final"
    },
 
   "tools": {
