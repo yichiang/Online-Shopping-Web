@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.Net.Http.Headers;
 using Microsoft.AspNet.Http;
+using System;
 
 namespace OnlineShoppingWeb.Controllers
 {
@@ -131,17 +132,17 @@ namespace OnlineShoppingWeb.Controllers
 
                 foreach (var file in usersfiles)
                 {
-                    //viewModel.Laptop.Files.Add((Enities.File) file);
-                    //List<ProductImage> allImages = new List<ProductImage>();
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    //Make sure File is Jpg
                     if (fileName.EndsWith(".jpg"))
                     {
-                        byte[] m_Bytes = ReadToEnd(file.OpenReadStream());
-
-                        var filePath = _env.ContentRootPath + "\\wwwroot\\" + fileName;
+                        //Save Files To WWWRoot/UpLoads Folder
+                        var filePath = _env.ContentRootPath + "\\wwwroot\\" + fileName+DateTime.Now;
                         await file.CopyToAsync(new FileStream(Path.Combine(Path.Combine(_env.WebRootPath, "uploads"), file.FileName), FileMode.Create));
 
-                        ProductImage oneImage=new ProductImage { Content = m_Bytes, FileName = fileName, FileType=FileType.Photo, ProductId= viewModel.Laptop.ProductId,ContentType= file.ContentType};
+                        //Save Images to DataBase
+                        byte[] m_Bytes = ReadToEnd(file.OpenReadStream());
+                        ProductImage oneImage =new ProductImage { Content = m_Bytes, FileName = fileName, FileType=FileType.Photo, ProductId= viewModel.Laptop.ProductId,ContentType= file.ContentType};
                         _ProductData.SaveProductImages(oneImage);
                     }
 
@@ -195,34 +196,7 @@ namespace OnlineShoppingWeb.Controllers
             return RedirectToAction("Index");
 
         }
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult UploadFile()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> UploadFile(ICollection<Microsoft.AspNetCore.Http.IFormFile> filesInput)
-        {
-            var usersfiles = HttpContext.Request.Form.Files;
-
-            var uploads = Path.Combine(_env.WebRootPath, "uploads");
-            foreach (var file in usersfiles)
-            {
-                if (file.Length >0)
-                {
-                    using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
-                    {
-                        await file.CopyToAsync(fileStream);
-                        file.CopyTo(fileStream);
-
-                    }
-                }
-            }
-            return View();
-        }
+      
 
         //Phone
         [HttpGet]
