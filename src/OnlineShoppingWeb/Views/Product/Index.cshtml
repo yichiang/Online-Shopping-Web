@@ -39,6 +39,8 @@
 
         <table class="table">
             <tr>
+                <th>Image</th>
+
                 <th>Title</th>
                 <th>Price</th>
                 <th>SubDepartment</th>
@@ -51,7 +53,21 @@
             </tr>
             @foreach (var product in Model.Products)
             {
+    
                 <tr>
+                    @if (product.ProductImages.ToList().Count() != 0)
+                    {
+                    var base64 = Convert.ToBase64String(product.ProductImages.ToList().First().Content);
+                    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+                        <th><img src="@imgSrc"></th>
+                    }
+                    else
+                    {
+                        <th><img src="/img/ProductDefault.jpg"></th>
+                    }
+
+
                     @if (@product.Title.Length > 60)
                     {
                         <th>@product.Title.Substring(0, 59) ...</th>
