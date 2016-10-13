@@ -137,8 +137,8 @@ namespace OnlineShoppingWeb.Controllers
                     if (fileName.EndsWith(".jpg"))
                     {
                         //Save Files To WWWRoot/UpLoads Folder
-                        var filePath = _env.ContentRootPath + "\\wwwroot\\" + fileName+DateTime.Now;
-                        await file.CopyToAsync(new FileStream(Path.Combine(Path.Combine(_env.WebRootPath, "uploads"), file.FileName), FileMode.Create));
+                        var filePath = _env.ContentRootPath + "\\wwwroot\\" + fileName;
+                        await file.CopyToAsync(new FileStream(Path.Combine(Path.Combine(_env.WebRootPath, "uploads"), file.FileName+ viewModel.Laptop.ProductId), FileMode.Create));
 
                         //Save Images to DataBase
                         byte[] m_Bytes = ReadToEnd(file.OpenReadStream());
@@ -148,7 +148,6 @@ namespace OnlineShoppingWeb.Controllers
 
                 }
 
-                //Product newProduct = (Product) viewModel.Laptop;
                 return RedirectToAction("Index");
 
             }

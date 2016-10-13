@@ -56,7 +56,7 @@ namespace OnlineShoppingWeb.Services
 
         public IEnumerable<Product> GetAll()
         {
-            return _context.Products.ToList();
+            return _context.Products.Include(p =>p.ProductImages).ToList();
         }
 
         public double GetAverageReview(int ProductId)
