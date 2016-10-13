@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNet.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using System.Threading;
 
 namespace OnlineShoppingWeb.Enities
 {
@@ -51,7 +51,25 @@ namespace OnlineShoppingWeb.Enities
             }
         }
 
+        public string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public Stream OpenReadStream()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(Stream target)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CopyToAsync(Stream target, CancellationToken cancellationToken = default(CancellationToken))
         {
             throw new NotImplementedException();
         }

@@ -7,7 +7,6 @@ using OnlineShoppingWeb.Enities;
 using OnlineShoppingWeb.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Net.Http.Headers;
 using Microsoft.AspNet.Http;
@@ -112,7 +111,7 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateLaptop(ManagerProductViewModel viewModel, ICollection<Microsoft.AspNet.Http.IFormFile> UploadFile)
+        public async Task<IActionResult> CreateLaptop(ManagerProductViewModel viewModel, ICollection<IFormFile> UploadFile)
         {
             viewModel.Laptop.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Laptop.SubDepartmentId);
             var usersfiles = HttpContext.Request.Form.Files;
@@ -122,6 +121,8 @@ namespace OnlineShoppingWeb.Controllers
 
                 foreach (var file in usersfiles)
                 {
+                    //viewModel.Laptop.Files.Add((Enities.File) file);
+
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     if (fileName.EndsWith(".jpg"))
                     {
