@@ -18,7 +18,6 @@ namespace OnlineShoppingWeb.Services
 
             using (var client = new SmtpClient())
             {
-                //client.LocalDomain = "some.domain.com";
                 client.Connect("smtp.gmail.com", 465);
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
@@ -26,9 +25,7 @@ namespace OnlineShoppingWeb.Services
                 client.Authenticate("Your_Email_Address", "Your_Email_Password");
                 client.Send(emailMessage);
                 client.Disconnect(true);
-                //await client.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.None).ConfigureAwait(false);
-                //await client.SendAsync(emailMessage).ConfigureAwait(false);
-                //await client.DisconnectAsync(true).ConfigureAwait(false);
+           
             }
         }
     }
