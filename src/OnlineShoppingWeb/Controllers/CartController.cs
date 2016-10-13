@@ -34,9 +34,8 @@ namespace OnlineShoppingWeb.Controllers
             List<Product> allSavedProduct = new List<Product>();
             foreach (var item in allSavedProducts)
             {
-                Product foundProduct = _productData.FindProductById(item.ProductId);
-                foundProduct.Quantity = item.Qty;
-                allSavedProduct.Add(foundProduct);
+                item.Proudct.Quantity = item.Qty;
+                allSavedProduct.Add(item.Proudct);
             }
             vm.Products = allSavedProduct;
             vm.totalPrice = vm.Products.Sum(p => p.Price * p.Quantity);

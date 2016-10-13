@@ -45,7 +45,7 @@ namespace OnlineShoppingWeb.Services
 
         public IEnumerable<ShoppingCart> GetAllByUser(User User)
         {
-            return _context.ShoppingCart.Where(c =>c.User== User).ToList();
+            return _context.ShoppingCart.Include(m => m.Proudct). Where(c =>c.User== User).ToList();
         }
 
         public IEnumerable<SaveForLater> GetAllSaveForLaterByUserId(string UserId)

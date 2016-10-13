@@ -40,9 +40,8 @@ namespace OnlineShoppingWeb.Controllers
             List<Product> allSavedProduct = new List<Product>();
             foreach (var item in allSavedProducts)
             {
-                Product foundProduct = _productData.FindProductById(item.ProductId);
-                foundProduct.Quantity = item.Qty;
-                allSavedProduct.Add(foundProduct);
+                item.Proudct.Quantity = item.Qty;
+                allSavedProduct.Add(item.Proudct);
             }
             vm.Products = allSavedProduct;
             if (!string.IsNullOrEmpty(currentUser.ShippingAddress))
@@ -52,14 +51,23 @@ namespace OnlineShoppingWeb.Controllers
             return View(vm);
         }
         [HttpPost]
-        public IActionResult PlaceOrder(CheckoutPageViewModel vm)
+        public async Task<IActionResult> PlaceOrder(CheckoutPageViewModel vm)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+
+            IEnumerable<ShoppingCart> allSavedProducts = _shoppingCartData.GetAllByUser(currentUser);
+            List<Product> allSavedProduct = new List<Product>();
+            foreach (var item in allSavedProducts)
+            {
+                item.Proudct.Quantity = item.Qty;
+                allSavedProduct.Add(item.Proudct);
+            }
             ShoppingOrder newOrder = new ShoppingOrder();
             newOrder.OrderAddress = vm.ShippingAddress;
             _checkoutData.SaveOrder(newOrder);
 
-            foreach (var product in vm.Products)
+            foreach (var product in allSavedProduct)
             {
                 OrderItem Item = new OrderItem();
                 Item.CurrentPrice = product.Price;
@@ -68,6 +76,7 @@ namespace OnlineShoppingWeb.Controllers
                 Item.ShoppingOrderId = newOrder.OrderId;
                 _checkoutData.SaveOrderItem(Item);
             }
+            //Delete all item
             return RedirectToAction("Index", "Cart");
         }
         [HttpPost]
