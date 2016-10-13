@@ -10,9 +10,11 @@ namespace OnlineShoppingWeb.Enities
     {
         [Key]
         public int OrderItemId { get; set; }
-
         public int Qty { get; set; }
         public int ProductId { get; set; }
         public decimal CurrentPrice { get; set; }
+        public int ShoppingOrderId { get; set; }
+        public virtual ShoppingOrder ShoppingOrder { get; set; }
+
     }
 }

@@ -57,13 +57,16 @@ namespace OnlineShoppingWeb.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             ShoppingOrder newOrder = new ShoppingOrder();
             newOrder.OrderAddress = vm.ShippingAddress;
+            _checkoutData.SaveOrder(newOrder);
+
             foreach (var product in vm.Products)
             {
                 OrderItem Item = new OrderItem();
                 Item.CurrentPrice = product.Price;
                 Item.ProductId = product.ProductId;
                 Item.Qty = product.Quantity;
-                
+                Item.ShoppingOrderId = newOrder.OrderId;
+                _checkoutData.SaveOrderItem(Item);
             }
             return RedirectToAction("Index", "Cart");
         }

@@ -8,7 +8,6 @@ namespace OnlineShoppingWeb.Enities
     {
         [Key]
         public int OrderId { get; set; }
-        public string OrderConfirmation { get; set; }
         public DateTime Create_Date { get; set; } = DateTime.UtcNow;
         public string Notes { get; set; }
         public string OrderAddress { get; set; }
