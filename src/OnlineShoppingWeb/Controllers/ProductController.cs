@@ -16,6 +16,15 @@ namespace OnlineShoppingWeb.Controllers
     [Authorize]
     public class ProductController : Controller
     {
+        public static byte[] ReadToEnd(System.IO.Stream stream)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+
         private IProductData _ProductData;
         private IDepartmentData _DepartmentData;
         private IHostingEnvironment _env;
@@ -111,29 +120,34 @@ namespace OnlineShoppingWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateLaptop(ManagerProductViewModel viewModel, ICollection<IFormFile> UploadFile)
+        public async Task<IActionResult> CreateLaptop(ManagerProductViewModel viewModel)
         {
             viewModel.Laptop.SubDepartment = _DepartmentData.GetSubDepartmentById(viewModel.Laptop.SubDepartmentId);
             var usersfiles = HttpContext.Request.Form.Files;
 
             if (ModelState.IsValid)
             {
+                _ProductData.AddNewProduct(viewModel.Laptop);
 
                 foreach (var file in usersfiles)
                 {
                     //viewModel.Laptop.Files.Add((Enities.File) file);
-
+                    //List<ProductImage> allImages = new List<ProductImage>();
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     if (fileName.EndsWith(".jpg"))
                     {
+                        byte[] m_Bytes = ReadToEnd(file.OpenReadStream());
+
                         var filePath = _env.ContentRootPath + "\\wwwroot\\" + fileName;
                         await file.CopyToAsync(new FileStream(Path.Combine(Path.Combine(_env.WebRootPath, "uploads"), file.FileName), FileMode.Create));
+
+                        ProductImage oneImage=new ProductImage { Content = m_Bytes, FileName = fileName, FileType=FileType.Photo, ProductId= viewModel.Laptop.ProductId,ContentType= file.ContentType};
+                        _ProductData.SaveProductImages(oneImage);
                     }
 
                 }
 
                 //Product newProduct = (Product) viewModel.Laptop;
-                _ProductData.AddNewProduct(viewModel.Laptop);
                 return RedirectToAction("Index");
 
             }

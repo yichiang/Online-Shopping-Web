@@ -74,6 +74,11 @@ namespace OnlineShoppingWeb.Services
             throw new NotImplementedException();
         }
 
+        public void SaveProductImages(ProductImage productImage)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SaveReview(ProductReview ProductReview)
         {
             throw new NotImplementedException();

@@ -38,7 +38,7 @@ namespace OnlineShoppingWeb.Enities
         public string Brand { get; set; }
         public virtual ICollection<ProductReview> ProductReviews { get; set; }
 
-        public virtual ICollection<File> Files { get; set; }
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
 
     }
 }

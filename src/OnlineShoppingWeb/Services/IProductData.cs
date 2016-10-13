@@ -22,5 +22,6 @@ namespace OnlineShoppingWeb.Services
         void SaveReview(ProductReview ProductReview);
         double GetAverageReview(int ProductId);
         void SaveAverageScore(int ProductId,double newReviewScore);
+        void SaveProductImages(ProductImage productImage);
     }
 }

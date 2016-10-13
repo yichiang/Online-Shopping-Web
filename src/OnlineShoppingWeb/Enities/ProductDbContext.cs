@@ -9,6 +9,7 @@ namespace OnlineShoppingWeb.Enities
         public DbSet<Laptop> Laptops { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
 
         public DbSet<ShoppingOrder> ShoppingOrder { get; set; }
         public DbSet<ShoppingCart> ShoppingCart { get; set; }
@@ -27,7 +28,7 @@ namespace OnlineShoppingWeb.Enities
         {
             base.OnModelCreating(builder);
             //builder.Entity<ShoppingOrder>().HasKey(x => new { x.ProductId, x.UserId });
-            //builder.Entity<Product>().HasMany(b => b.Files);
+            //builder.Entity<Product>().HasMany(b => b.Contents);
 
         }
     }

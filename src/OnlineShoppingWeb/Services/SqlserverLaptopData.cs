@@ -90,6 +90,12 @@ namespace OnlineShoppingWeb.Services
             _context.SaveChanges();
         }
 
+        public void SaveProductImages(ProductImage productImage)
+        {
+            _context.Add(productImage);
+            _context.SaveChanges();
+        }
+
         public void SaveReview(ProductReview ProductReview)
         {
             _context.Add(ProductReview);

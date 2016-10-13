@@ -8,9 +8,10 @@ using OnlineShoppingWeb.Enities;
 namespace OnlineShoppingWeb.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161013171242_v6")]
+    partial class v6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -135,6 +136,36 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.File", b =>
+                {
+                    b.Property<int>("FileId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<byte[]>("Content");
+
+                    b.Property<string>("ContentType")
+                        .HasAnnotation("MaxLength", 100);
+
+                    b.Property<string>("FileName")
+                        .HasAnnotation("MaxLength", 255);
+
+                    b.Property<int>("FileType");
+
+                    b.Property<int?>("ProductId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("UserId1");
+
+                    b.HasKey("FileId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("File");
+                });
+
             modelBuilder.Entity("OnlineShoppingWeb.Enities.OrderItem", b =>
                 {
                     b.Property<int>("OrderItemId")
@@ -167,6 +198,8 @@ namespace OnlineShoppingWeb.Migrations
 
                     b.Property<int>("Condition");
 
+                    b.Property<byte[]>("Content");
+
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
@@ -187,30 +220,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.ToTable("Products");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Product");
-                });
-
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.ProductImage", b =>
-                {
-                    b.Property<int>("ImageId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<byte[]>("Content");
-
-                    b.Property<string>("ContentType")
-                        .HasAnnotation("MaxLength", 100);
-
-                    b.Property<string>("FileName")
-                        .HasAnnotation("MaxLength", 255);
-
-                    b.Property<int>("FileType");
-
-                    b.Property<int>("ProductId");
-
-                    b.HasKey("ImageId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ProductReview", b =>
@@ -450,6 +459,17 @@ namespace OnlineShoppingWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("OnlineShoppingWeb.Enities.File", b =>
+                {
+                    b.HasOne("OnlineShoppingWeb.Enities.Product")
+                        .WithMany("Files")
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("OnlineShoppingWeb.Enities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1");
+                });
+
             modelBuilder.Entity("OnlineShoppingWeb.Enities.OrderItem", b =>
                 {
                     b.HasOne("OnlineShoppingWeb.Enities.ShoppingOrder", "ShoppingOrder")
@@ -463,14 +483,6 @@ namespace OnlineShoppingWeb.Migrations
                     b.HasOne("OnlineShoppingWeb.Enities.SubDepartment", "SubDepartment")
                         .WithMany("Products")
                         .HasForeignKey("SubDepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("OnlineShoppingWeb.Enities.ProductImage", b =>
-                {
-                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
