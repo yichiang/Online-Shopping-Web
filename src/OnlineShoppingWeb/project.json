@@ -21,7 +21,8 @@
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
     "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-final",
-    "NETCore.MailKit": "1.0.0"
+    "NETCore.MailKit": "1.0.0",
+    "Stripe.net": "6.8.0"
   },
 
   "tools": {
