@@ -82,41 +82,7 @@ namespace OnlineShoppingWeb.Controllers
             {
                 _shoppingCartData.Delete(product);
             }
-            var myCharge = new StripeChargeCreateOptions();
-
-            // always set these properties
-            myCharge.Amount = 5153;
-            myCharge.Currency = "usd";
-
-            // set this if you want to
-            myCharge.Description = "Charge it like it's hot";
-
-            myCharge.SourceCard = new SourceCard()
-            {
-                Number = "4242424242424242",
-                ExpirationYear = "2022",
-                ExpirationMonth = "10",
-                AddressCountry = "US",                // optional
-                AddressLine1 = "24 Beef Flank St",    // optional
-                AddressLine2 = "Apt 24",              // optional
-                AddressCity = "Biggie Smalls",        // optional
-                AddressState = "NC",                  // optional
-                AddressZip = "27617",                 // optional
-                Name = "Joe Meatballs",               // optional
-                Cvc = "1223"                          // optional
-            };
-
-            // set this property if using a customer
-            myCharge.CustomerId = userId;
-
-            // set this if you have your own application fees (you must have your application configured first within Stripe)
-            myCharge.ApplicationFee = 25;
-
-            // (not required) set this to false if you don't want to capture the charge yet - requires you call capture later
-            myCharge.Capture = true;
-
-            var chargeService = new StripeChargeService("Key");
-            StripeCharge stripeCharge = chargeService.Create(myCharge);
+         
             return RedirectToAction("Index", "Cart");
         }
 

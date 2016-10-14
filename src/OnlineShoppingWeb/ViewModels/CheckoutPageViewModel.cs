@@ -1,4 +1,5 @@
-﻿using OnlineShoppingWeb.Enities;
+﻿using Microsoft.AspNet.Http;
+using OnlineShoppingWeb.Enities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShoppingWeb.ViewModels
 {
+
     public class CheckoutPageViewModel
     {
         public IEnumerable<ShoppingCart> ShoppingCarts { get; set; }
@@ -13,5 +15,6 @@ namespace OnlineShoppingWeb.ViewModels
         public string ShippingAddress { get; set; }
         public ShoppingOrder ShoppingOrder { get; set; }
         public string Key { get; set; }
+
     }
 }
