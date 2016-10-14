@@ -42,6 +42,7 @@ namespace OnlineShoppingWeb.Controllers
             foreach (var item in allSavedProducts)
             {
                 item.Proudct.Quantity = item.Qty;
+                vm.Total += item.Proudct.Quantity * item.Proudct.Price;
                 allSavedProduct.Add(item.Proudct);
             }
             vm.Products = allSavedProduct;
@@ -82,7 +83,35 @@ namespace OnlineShoppingWeb.Controllers
             {
                 _shoppingCartData.Delete(product);
             }
-         
+            // setting up the card
+            var myCharge = new StripeChargeCreateOptions();
+
+            // always set these properties
+            myCharge.Amount = (int) vm.Total*100;
+            myCharge.Currency = "usd";
+
+            // set this if you want to
+            myCharge.Description = "Charge it like it's hot";
+
+            myCharge.SourceCard = new SourceCard()
+            {
+                Number = "4242424242424242",
+                ExpirationYear = "2022",
+                ExpirationMonth = "10"
+       
+            };
+
+            // set this property if using a customer
+            //myCharge.CustomerId = *customerId *;
+
+            // set this if you have your own application fees (you must have your application configured first within Stripe)
+            //myCharge.ApplicationFee = 25;
+
+            // (not required) set this to false if you don't want to capture the charge yet - requires you call capture later
+            myCharge.Capture = true;
+
+            var chargeService = new StripeChargeService("sk_test_dELM1UPpob64ORfGvAcgybGM");
+            StripeCharge stripeCharge = chargeService.Create(myCharge);
             return RedirectToAction("Index", "Cart");
         }
 

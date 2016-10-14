@@ -28,39 +28,38 @@
 
     </div>
 </div>
+
 <div class="">
     <div class="">
         <h1>Review items and shipping</h1>
     </div>
+
     <div class="">
+
+
         @foreach (var product in Model.Products)
         {
             <h3>@product.Title</h3>
             <h3>@product.Price</h3>
             <h3>@product.Quantity</h3>
-
         }
     </div>
 </div>
 <div>
-    @using (Html.BeginForm("PlaceOrder", "Checkout", FormMethod.Post, new { @class = "" }))
-    {
-        <input type="hidden" name="ShippingAddress" value="@Model.ShippingAddress" />
-
-        <button class="change-qty-submit-button" type="submit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Place Order</button>
-    }
+    <div>Total is @Model.Total</div>
 
     <form action="Checkout/PlaceOrder" method="POST">
         <input type="hidden" name="ShippingAddress" value="@Model.ShippingAddress" />
+        <input type="hidden" name="Total" value="@Model.Total" />
 
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key=""
-                data-amount="2011"
+                data-amount="@(Model.Total*100)"
                 data-name="Online Shopping Website"
                 data-description="2 widgets"
                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                 data-locale="auto">
         </script>
     </form>
-    
+ 
 </div>
