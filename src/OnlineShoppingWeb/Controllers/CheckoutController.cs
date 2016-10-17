@@ -16,7 +16,6 @@ using Stripe;
 namespace OnlineShoppingWeb.Controllers
 {
     [Authorize]
-
     public class CheckoutController : Controller
     {
         private IProductData _productData;
@@ -66,20 +65,13 @@ namespace OnlineShoppingWeb.Controllers
             List<Product> allSavedProduct = new List<Product>();
             foreach (var item in allSavedProducts)
             {
-                //Modify Inventory of Product Qty
-                item.Proudct.Quantity -= item.Qty;
-                if (item.Proudct.Quantity == 0) {
-                    //If user bought all stocks, change property of availiablity to false
-                    item.Proudct.IsAvailiable = false;
-                }
-                _productData.EditQty(item.Proudct);
-
                 //Change Item.Product qty to user's intended purchase qty
                 item.Proudct.Quantity = item.Qty;
                 //add modified-Qty Product to list of products
                 allSavedProduct.Add(item.Proudct);
             }
             ShoppingOrder newOrder = new ShoppingOrder();
+            newOrder.User = currentUser;
             newOrder.OrderAddress = vm.ShippingAddress;
             _checkoutData.SaveOrder(newOrder);
 
@@ -90,6 +82,15 @@ namespace OnlineShoppingWeb.Controllers
                 Item.ProductId = product.ProductId;
                 Item.Qty = product.Quantity;
                 Item.ShoppingOrderId = newOrder.OrderId;
+                //Modify Inventory of Product Qty
+
+                product.Quantity -= Item.Qty;
+                if (product.Quantity == 0)
+                {
+                    //If user bought all stocks, change property of availiablity to false
+                    product.IsAvailiable = false;
+                }
+                _productData.EditQty(product);
                 _checkoutData.SaveOrderItem(Item);
 
             }
@@ -103,7 +104,10 @@ namespace OnlineShoppingWeb.Controllers
             var myCharge = new StripeChargeCreateOptions();
 
             // always set these properties
-            myCharge.Amount = (int) vm.Total*100;
+            //myCharge.Amount = (int) vm.Total*100;
+            //Charge $1 for testing
+            myCharge.Amount = 100;
+
             myCharge.Currency = "usd";
 
             // set this if you want to

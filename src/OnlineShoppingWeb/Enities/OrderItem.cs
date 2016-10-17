@@ -15,6 +15,7 @@ namespace OnlineShoppingWeb.Enities
         public decimal CurrentPrice { get; set; }
         public int ShoppingOrderId { get; set; }
         public virtual ShoppingOrder ShoppingOrder { get; set; }
+        public virtual Product Product { get; set; }
 
     }
 }
