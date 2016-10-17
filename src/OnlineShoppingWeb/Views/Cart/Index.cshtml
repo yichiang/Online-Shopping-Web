@@ -1,6 +1,6 @@
 ﻿@using OnlineShoppingWeb.ViewModels
 @model CartPageViewModel
-
+<div class="action-message"></div>
 @{ int i = 1;
     foreach (var product in Model.Products)
     {
@@ -145,8 +145,8 @@
                     data: $(this).serialize(),
                     dataType: "json",
                     success: function (result) {
-                        console.log("AddToCart");
-                        console.log("result" + result.qty);
+                        $(".action-message").text(result.message);
+
                         $qtyDisplay.text(result.qty).css("color", "green").show();
                         var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
                         $(".total-price").text(newTotal);

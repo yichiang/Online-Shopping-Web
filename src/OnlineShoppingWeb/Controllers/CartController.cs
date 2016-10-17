@@ -56,12 +56,21 @@ namespace OnlineShoppingWeb.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.ShoppingCart.ProductId, userId);
-
             Product foundProduct = _productData.FindProductById(vm.ShoppingCart.ProductId);
-            decimal totalChangePrice = (vm.ShoppingCart.Qty - foundShoppingProduct.Qty) * foundProduct.Price;
+            var intendedChangeQty = vm.ShoppingCart.Qty;
+            var originalQty = foundProduct.Quantity;
+            if (intendedChangeQty <= originalQty)
+            {
+                decimal totalChangePrice = (intendedChangeQty - originalQty) * foundProduct.Price;
 
-            _shoppingCartData.ModifyQty(foundShoppingProduct, vm.ShoppingCart.Qty);
-            return Json(new { qty= vm.ShoppingCart.Qty, totalChangePrice = totalChangePrice });
+                _shoppingCartData.ModifyQty(foundShoppingProduct, intendedChangeQty);
+                return Json(new { qty = intendedChangeQty, totalChangePrice = totalChangePrice, message="success to change qty from "+ originalQty + "to"+ intendedChangeQty });
+            }
+            else
+            {
+                return Json(new { qty = originalQty, totalChangePrice = 0, message="Sorry, We Don't have too much in stock" });
+
+            }
         }
         [HttpPost]
         public IActionResult SaveForLater(CartPageViewModel vm)
