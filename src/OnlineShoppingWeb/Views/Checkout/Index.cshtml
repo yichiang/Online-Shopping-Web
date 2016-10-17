@@ -22,13 +22,17 @@
 <div class="panel panel-default">
     <div class="panel-heading">Review items and shipping</div>
     <div class="panel-body">
-
-        @foreach (var product in Model.Products)
-        {
-            <h3>@product.Title</h3>
-            <h3>@product.Price</h3>
-            <h3>@product.Quantity</h3>
-        }
+        <table class="table">
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                <th>@product.Title</th>
+                <th>@product.Price</th>
+                <th>@product.Quantity</th>
+               </tr>
+            }
+        </table>
+  
     </div>
 </div>
 <div class="panel panel-default">
