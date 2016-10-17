@@ -37,7 +37,9 @@
 .overlay-btn{
         font-family: 'PT Sans Narrow', sans-serif;
 }
-
+.own-nav {
+    margin-bottom:0;
+}
 
 .font-page-image img{
     width:100%;
@@ -50,7 +52,8 @@
     font-size: 2rem;
 }
 .font-page-header{
-    height: 10vh;
+    height: 40vh;
+    width: 100vw;
     text-align: center;
     background-color: gainsboro;
     padding-top: 20px;
@@ -62,4 +65,16 @@
 .product-image {
 width:5vw;
 height:10vh;
+}
+
+@media screen and (min-width: 831px) {
+    ul.nav li.dropdown:hover > ul.dropdown-menu {
+        display: block; 
+     }
+}
+
+@media screen and (max-width: 830px) {
+    ul.nav li.dropdown:hover > ul.dropdown-menu {
+        display: inline; 
+     }
 }
