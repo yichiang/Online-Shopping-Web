@@ -2,6 +2,7 @@
 @using System.Linq;
 
 @model ClientProductPageViewModel
+<div class="action-message"></div>
 @if (Model.IsSearchAreaVisible)
 {
     @using (Html.BeginForm("Index", "Client", FormMethod.Get, new { @class = "SearchForm" }))
@@ -128,6 +129,7 @@
                 data: $(this).serialize(),
                 dataType: "json",
                 success: function (result) {
+                    $(".action-message").text(result.message);
                     console.log("AddToCart");
                     console.log("result" + result.qty);
                     $(".CartQtyDisplay").text(result.qty);

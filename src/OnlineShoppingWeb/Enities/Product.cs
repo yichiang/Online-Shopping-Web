@@ -28,6 +28,8 @@ namespace OnlineShoppingWeb.Enities
         [Display(Name = "Average Review")]
         [Range(0.0, 5.0)]
         public double AvgCustomerReview { get; set; } = 0;
+
+        public bool IsAvailiable { get; set; } = true;
         [Required]
         public int SubDepartmentId { get; set; }
         public virtual SubDepartment SubDepartment { get; set; }

@@ -62,20 +62,33 @@ namespace OnlineShoppingWeb.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
+            var foundProduct = _ProductData.FindProductById(vm.SaveToCartProductId);
             var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.SaveToCartProductId, userId);
-            if (foundShoppingProduct != null)
+            vm.EventCommand = "list";
+
+            if (foundShoppingProduct != null && foundProduct.Quantity > foundShoppingProduct.Qty)
             {
 
                 _shoppingCartData.ModifyQty(foundShoppingProduct, foundShoppingProduct.Qty + 1);
+                var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
+                return Json(new { success = true, message = "Add To Our Cart Now", qty = foundqQty });
+            }
+            else if (foundShoppingProduct != null && foundProduct.Quantity == foundShoppingProduct.Qty)
+            {
+
+                vm.EventCommand = "list";
+                var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
+                return Json(new { success = false, message = "We don't have too much in stock for now", qty = foundqQty });
+
             }
             else
             {
+          
                 _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser.Id);
-
+                var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
+                return Json(new { success = true, message = "Add To Our Cart Now", qty = foundqQty });
             }
-            vm.EventCommand = "list";
-            var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
-            return Json(new { qty= foundqQty });
+         
         }
 
         [HttpGet]
