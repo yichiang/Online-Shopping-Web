@@ -50,19 +50,33 @@ namespace OnlineShoppingWeb.Controllers
             {
                 vm.ShippingAddress = currentUser.ShippingAddress;
             }
+
             return View(vm);
         }
         [HttpPost]
         public async Task<IActionResult> PlaceOrder(CheckoutPageViewModel vm)
         {
+            //Find UserId
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            //Find User Object
             var currentUser = await _userManager.FindByIdAsync(userId);
-
+            //Find all CartItem and ready to process checkout
             IEnumerable<ShoppingCart> allSavedProducts = _shoppingCartData.GetAllByUser(currentUser);
+            //Find all Product Detail by viewing cart
             List<Product> allSavedProduct = new List<Product>();
             foreach (var item in allSavedProducts)
             {
+                //Modify Inventory of Product Qty
+                item.Proudct.Quantity -= item.Qty;
+                if (item.Proudct.Quantity == 0) {
+                    //If user bought all stocks, change property of availiablity to false
+                    item.Proudct.IsAvailiable = false;
+                }
+                _productData.EditQty(item.Proudct);
+
+                //Change Item.Product qty to user's intended purchase qty
                 item.Proudct.Quantity = item.Qty;
+                //add modified-Qty Product to list of products
                 allSavedProduct.Add(item.Proudct);
             }
             ShoppingOrder newOrder = new ShoppingOrder();
@@ -77,10 +91,12 @@ namespace OnlineShoppingWeb.Controllers
                 Item.Qty = product.Quantity;
                 Item.ShoppingOrderId = newOrder.OrderId;
                 _checkoutData.SaveOrderItem(Item);
+
             }
             //Delete all item in shopping cart
             foreach (var product in allSavedProducts)
             {
+                
                 _shoppingCartData.Delete(product);
             }
             // setting up the card
@@ -109,8 +125,8 @@ namespace OnlineShoppingWeb.Controllers
 
             // (not required) set this to false if you don't want to capture the charge yet - requires you call capture later
             myCharge.Capture = true;
-
-            var chargeService = new StripeChargeService("sk_test_dELM1UPpob64ORfGvAcgybGM");
+            var StripeKey = Environment.GetEnvironmentVariable("StripeSecretKey");
+            var chargeService = new StripeChargeService(StripeKey);
             StripeCharge stripeCharge = chargeService.Create(myCharge);
             return RedirectToAction("Index", "Cart");
         }

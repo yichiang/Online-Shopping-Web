@@ -12,8 +12,9 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "StripeApiKey": "Value"
+        "StripePublicKey": "pk_test_1Lbssal8MBIej9tDkKLwrgA2",
+        "StripeSecretKey": "sk_test_Uv9pM8cBQstb5MGsDwdazzWb",
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "OnlineShoppingWeb": {
