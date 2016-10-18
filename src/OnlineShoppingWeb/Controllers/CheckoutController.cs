@@ -104,7 +104,7 @@ namespace OnlineShoppingWeb.Controllers
             var myCharge = new StripeChargeCreateOptions();
 
             // always set these properties
-            myCharge.Amount = 100;
+            myCharge.Amount = (int) vm.Total*100;
             myCharge.Currency = "usd";
 
             // set this if you want to

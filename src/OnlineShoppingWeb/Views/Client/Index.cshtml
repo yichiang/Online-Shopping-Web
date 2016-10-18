@@ -10,6 +10,8 @@
         @using (Html.BeginForm("Index", "Client", FormMethod.Get, new { @class = "SearchForm" }))
         {
             @Html.HiddenFor(model => model.EventCommand)
+            @Html.HiddenFor(model => model.AllProductsCount)
+
             <div class="panel panel-default">
                 <div class="panel-heading">Product</div>
                 <div class="panel-body">

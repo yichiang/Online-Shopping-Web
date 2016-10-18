@@ -34,9 +34,10 @@ namespace OnlineShoppingWeb.Controllers
         [AllowAnonymous]
         public IActionResult Index(ClientProductPageViewModel vm)
         {
+            vm.AllProductsCount = _ProductData.GetAll().Count();
+
             if (vm.EventCommand == "list")
             {
-                vm.AllProductsCount = _ProductData.GetAll().Count();
                 vm.IsListAreaVisible = true;
                 vm.IsSearchAreaVisible = true;
                 vm.Products = _ProductData.GetPorductsofNum(vm.SkipDisplayList, vm.TakeDisplayList);
