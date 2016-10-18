@@ -17,7 +17,7 @@ namespace OnlineShoppingWeb.Enities
         public bool IsShipped { get; set; } = false;
         public bool IsReceived { get; set; } = false;
         public bool IsRequestReturn { get; set; } = false;
-
+        public decimal Total { get; set; }
         public virtual ICollection<OrderItem> OrderItem { get; set; }
         public virtual User User { get; set; }
     }
