@@ -36,7 +36,7 @@ namespace OnlineShoppingWeb
             services.AddMvc().AddJsonOptions(config => config.SerializerSettings.ContractResolver=new CamelCasePropertyNamesContractResolver());
             services.AddEntityFramework()
                 .AddDbContext<ProductDbContext>(options =>
-                    options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                    options.UseSqlServer(Configuration["ConnectionStrings:OnlineConnection"]));
 
             services.AddIdentity<User, IdentityRole>(config =>
             {
