@@ -1,12 +1,15 @@
-﻿<h1>Welcome to Account Center</h1>
+﻿<div class="container">
 
-@if (Model != null)
-{
-    <span>@Model.Email</span>
-}
-<hr>
-<h2>You have to Login in as Admin to be able to browser it. </h2>
+    <h1>Welcome to Account Center</h1>
+
+    @if (Model != null)
+    {
+        <span>@Model.Email</span>
+    }
+    <hr>
+    <h2>You have to Login in as Admin to be able to browser it. </h2>
     <h4>@Html.ActionLink("View All Existin User And Manager them", "AllUsers", "Account") </h4>
     <h4>@Html.ActionLink("Create New Roles", "createRole", "Account") </h4>
     <h4>@Html.ActionLink("Department/SubDepartment Tool", "Index", "Department") </h4>
 
+</div>    

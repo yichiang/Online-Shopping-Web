@@ -4,9 +4,10 @@
 @using OnlineShoppingWeb.ViewModels
 
 @model LoginViewModel
+<div class="container">
 
-<h2>Log in with your account</h2>
-<hr />
+    <h2>Log in with your account</h2>
+    <hr />
     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post))
     {
         @Html.ValidationSummary()
@@ -21,4 +22,5 @@
         @Html.EditorFor(m => m.RememberMe)
 
         <input type="submit" value="Log in" class="btn btn-default" />
-}
+    }
+</div>

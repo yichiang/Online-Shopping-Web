@@ -4,220 +4,222 @@
 
 
 @model ManagerProductViewModel
-@if(Model.IsSearchAreaVisible)
-{
-    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "SearchForm" }))
-    {
-        @Html.ValidationSummary()
-        @Html.HiddenFor(model => model.EventCommand)
-        <div class="panel panel-default">
-            <div class="panel-heading">Product</div>
-            <div class="panel-body">
+<div class="container">
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ProductSearchName)
-                    @Html.TextBoxFor(model => model.ProductSearchName, new { @class = "form-control" })
+    @if (Model.IsSearchAreaVisible)
+    {
+        @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "SearchForm" }))
+        {
+            @Html.ValidationSummary()
+            @Html.HiddenFor(model => model.EventCommand)
+            <div class="panel panel-default">
+                <div class="panel-heading">Product</div>
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductSearchName)
+                        @Html.TextBoxFor(model => model.ProductSearchName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn own-btn-action" value="search"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
+                    <button class="btn own-btn-action" value="list"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Reset</button>
+                    <button class="btn own-btn-action" value="addPhone"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add New Phone</button>
+                    <button class="btn own-btn-action" value="addLaptop"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add New Laptop</button>
+
                 </div>
             </div>
-            <div class="panel-footer">
-                <button class="btn own-btn-action" value="search"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
-                <button class="btn own-btn-action" value="list"> <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>Reset</button>
-                <button class="btn own-btn-action" value="addPhone"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add New Phone</button>
-                <button class="btn own-btn-action" value="addLaptop"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add New Laptop</button>
 
-            </div>
-        </div>
-
+        }
     }
-}
 
-@if (Model.IsListAreaVisible)
-{
-    <h1>Product Manage Tool -Admin</h1>
+    @if (Model.IsListAreaVisible)
+    {
+        <h1>Product Manage Tool -Admin</h1>
 
-    <div class="table-responsive">
+        <div class="table-responsive">
 
-        <table class="table">
-            <tr>
-                <th>Image</th>
-
-                <th>Title</th>
-                <th>Price</th>
-                <th>SubDepartment</th>
-                <th>Condition</th>
-                <th>Rating</th>
-                <th>Quantity</th>
-                <th>Edit</th>
-                <th>Delete</th>
-
-            </tr>
-            @foreach (var product in Model.Products)
-            {
-    
+            <table class="table">
                 <tr>
-                    @Html.Partial("_ProductImage", product.ProductImages.ToList())
-                   
+                    <th>Image</th>
 
-                    @if (@product.Title.Length > 60)
-                    {
-                        <th>@product.Title.Substring(0, 59) ...</th>
-                    }
-                    else
-                    {
-                        <th>@product.Title</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>SubDepartment</th>
+                    <th>Condition</th>
+                    <th>Rating</th>
+                    <th>Quantity</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
-                    }
-                    <th>$ @product.Price</th>
-                    <th>@product.Discriminator</th>
-                    <th>@product.Condition</th>
-
-                    <th>@Html.Partial("_StarReview", product.AvgCustomerReview)</th>
-                    <th>
-                        @using (Html.BeginForm("EditQty", "Product", FormMethod.Post))
-                        {
-                            <input type="hidden" name="Product.ProductId" value="@product.ProductId"/>
-                            <input type="hidden" name="Product.Quantity" value="@(product.Quantity -1)" />
-           
-                            <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-
-                        }
-                        @product.Quantity 
-                        @using (Html.BeginForm("EditQty", "Product", FormMethod.Post))
-                        {
-                            <input type="hidden" name="Product.ProductId" value="@product.ProductId" />
-   
-
-                            <input type="hidden" name="Product.Quantity" value="@(product.Quantity +1)" />
-
-                            <button type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-
-                        }
-                    
-                    </th>
-
-                    <th>
-                            <button class="btn own-btn-action" value=@string.Format("edit{0}/{1}", product.Discriminator,product.ProductId)> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Edit</button>
-                    </th>
-                    <th>
-                        @using (Html.BeginForm("Delete", "Product", FormMethod.Post))
-                        { 
-                            <input type="hidden" name="Product.ProductId" value="@product.ProductId" />
-
-                            <button><span type="submit" value="Delete" class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
-                        }
-                    </th>
                 </tr>
-            }
+                @foreach (var product in Model.Products)
+                {
+
+                    <tr>
+                        @Html.Partial("_ProductImage", product.ProductImages.ToList())
+
+
+                        @if (@product.Title.Length > 60)
+                    {
+                            <th>@product.Title.Substring(0, 59) ...</th>
+                        }
+                        else
+                        {
+                            <th>@product.Title</th>
+
+                        }
+                        <th>$ @product.Price</th>
+                        <th>@product.Discriminator</th>
+                        <th>@product.Condition</th>
+
+                        <th>@Html.Partial("_StarReview", product.AvgCustomerReview)</th>
+                        <th>
+                            @using (Html.BeginForm("EditQty", "Product", FormMethod.Post))
+                            {
+                                <input type="hidden" name="Product.ProductId" value="@product.ProductId" />
+                                <input type="hidden" name="Product.Quantity" value="@(product.Quantity -1)" />
+
+                                <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+
+                            }
+                            @product.Quantity
+                            @using (Html.BeginForm("EditQty", "Product", FormMethod.Post))
+                            {
+                                <input type="hidden" name="Product.ProductId" value="@product.ProductId" />
+
+
+                                <input type="hidden" name="Product.Quantity" value="@(product.Quantity +1)" />
+
+                                <button type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+
+                            }
+
+                        </th>
+
+                        <th>
+                            <button class="btn own-btn-action" value=@string.Format("edit{0}/{1}", product.Discriminator,product.ProductId)> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Edit</button>
+                        </th>
+                        <th>
+                            @using (Html.BeginForm("Delete", "Product", FormMethod.Post))
+                            {
+                                <input type="hidden" name="Product.ProductId" value="@product.ProductId" />
+
+                                <button><span type="submit" value="Delete" class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+                            }
+                        </th>
+                    </tr>
+                }
                 @if (Model.EventCommand != "search")
                 {
 
-                  @Html.Partial("_PageDisplay", Model.AllProductsCount)
+                    @Html.Partial("_PageDisplay", Model.AllProductsCount)
                 }
-         
-        </table>
-    </div>
 
-}
-
-
-@if (Model.IsAddPhoneFormAreaVisible)
-{
-    @Html.Partial("_ResetToListForm", "Product")
-
-    @Html.Partial("_CreatePhoneForm", Model)
-
-}
-
-@if (Model.IsEditPhoneFormAreaVisible)
-{
-    @Html.Partial("_ResetToListForm", "Product")
-
-    <h2> Edit Phone</h2>
-    @using (Html.BeginForm("EditPhone", "Product", FormMethod.Post))
-    {
-        @Html.ValidationSummary()
-        @Html.HiddenFor(model => model.Phone.ProductId, new { @Value = @Model.Phone.ProductId })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone.Title)
-            @Html.TextBoxFor(model => model.Phone.Title, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Phone.Title)
+            </table>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone.Price)
-            @Html.TextBoxFor(model => model.Phone.Price, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Phone.Price)
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone.Brand)
-            @Html.TextBoxFor(model => model.Phone.Brand, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Phone.Brand)
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone.AvgCustomerReview)
-            @Html.TextBoxFor(model => model.Phone.AvgCustomerReview, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Phone.AvgCustomerReview)
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone.Carrier)
-            @Html.TextBoxFor(model => model.Phone.Carrier, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Phone.Carrier)
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone.Quantity)
-            @Html.TextBoxFor(model => model.Phone.Quantity, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Phone.Quantity)
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone.Condition)
-            @Html.DropDownListFor(model => model.Phone.Condition, Html.GetEnumSelectList(typeof(ConditionType)))
-            @Html.ValidationMessageFor(model => model.Phone.Condition)
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone.SubDepartment)
-            @Html.DropDownListFor(model => model.Phone.SubDepartmentId, Model.SubDepartments.Select(x => new SelectListItem { Text = x.SubDepartmentId.ToString() + x.Description, Value = x.SubDepartmentId.ToString() }))
-            @Html.ValidationMessageFor(model => model.Phone.SubDepartment)
-        </div>
-
-        <div class="form-group">
-            <input type="submit" value="Edit" />
-        </div>
     }
 
-}
 
-@if (Model.IsAddLaptopFormAreaVisible)
-{
-    @Html.Partial("_ResetToListForm", "Product")
-
-    @Html.Partial("_CreateLaptopForm", Model)
-
-  
-
-}
-
-
-@if (Model.IsEditLaptopFormAreaVisible)
-{
-  @Html.Partial("_ResetToListForm", "Product")
-
-    <h1>Edit Laptop</h1>
-
-    @using (Html.BeginForm("EditLaptop", "Product", FormMethod.Post))
+    @if (Model.IsAddPhoneFormAreaVisible)
     {
-        @Html.ValidationSummary()
-        @Html.HiddenFor(model => model.Laptop.ProductId, new { @Value = @Model.Laptop.ProductId })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Laptop.Title)
-            @Html.TextBoxFor(model => model.Laptop.Title, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Laptop.Title)
-        </div>
+        @Html.Partial("_ResetToListForm", "Product")
+
+        @Html.Partial("_CreatePhoneForm", Model)
+
+    }
+
+    @if (Model.IsEditPhoneFormAreaVisible)
+    {
+        @Html.Partial("_ResetToListForm", "Product")
+
+        <h2> Edit Phone</h2>
+        @using (Html.BeginForm("EditPhone", "Product", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            @Html.HiddenFor(model => model.Phone.ProductId, new { @Value = @Model.Phone.ProductId })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone.Title)
+                @Html.TextBoxFor(model => model.Phone.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Phone.Title)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone.Price)
+                @Html.TextBoxFor(model => model.Phone.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Phone.Price)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone.Brand)
+                @Html.TextBoxFor(model => model.Phone.Brand, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Phone.Brand)
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone.AvgCustomerReview)
+                @Html.TextBoxFor(model => model.Phone.AvgCustomerReview, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Phone.AvgCustomerReview)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone.Carrier)
+                @Html.TextBoxFor(model => model.Phone.Carrier, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Phone.Carrier)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone.Quantity)
+                @Html.TextBoxFor(model => model.Phone.Quantity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Phone.Quantity)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone.Condition)
+                @Html.DropDownListFor(model => model.Phone.Condition, Html.GetEnumSelectList(typeof(ConditionType)))
+                @Html.ValidationMessageFor(model => model.Phone.Condition)
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone.SubDepartment)
+                @Html.DropDownListFor(model => model.Phone.SubDepartmentId, Model.SubDepartments.Select(x => new SelectListItem { Text = x.SubDepartmentId.ToString() + x.Description, Value = x.SubDepartmentId.ToString() }))
+                @Html.ValidationMessageFor(model => model.Phone.SubDepartment)
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Edit" />
+            </div>
+        }
+
+    }
+
+    @if (Model.IsAddLaptopFormAreaVisible)
+    {
+        @Html.Partial("_ResetToListForm", "Product")
+
+        @Html.Partial("_CreateLaptopForm", Model)
+
+
+
+    }
+
+
+    @if (Model.IsEditLaptopFormAreaVisible)
+    {
+        @Html.Partial("_ResetToListForm", "Product")
+
+        <h1>Edit Laptop</h1>
+
+        @using (Html.BeginForm("EditLaptop", "Product", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            @Html.HiddenFor(model => model.Laptop.ProductId, new { @Value = @Model.Laptop.ProductId })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Laptop.Title)
+                @Html.TextBoxFor(model => model.Laptop.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Laptop.Title)
+            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Laptop.Price)
@@ -283,17 +285,17 @@
             <div class="form-group">
                 <input type="submit" value="Add New Laptop" />
             </div>
+        }
     }
-}
-@Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
-@Html.ActionLink("Create New Phone", "CreatePhone", "Product")
-@using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "addMoretoListForm" }))
+    @Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
+    @Html.ActionLink("Create New Phone", "CreatePhone", "Product")
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "addMoretoListForm" }))
+    {
+        @Html.Partial("_PageControlForm", Model)
+    }
+    @Html.HiddenFor(model => model.AllProductsCount, new { @Value = Model.AllProductsCount })
+</div>
+    @section ownScript
 {
-@Html.Partial("_PageControlForm", Model)
-}
-@Html.HiddenFor(model => model.AllProductsCount, new { @Value = Model.AllProductsCount })
-
-@section ownScript
-{
-    <script src="/js/productView.js"></script>
-}
+        <script src="/js/productView.js"></script>
+    }

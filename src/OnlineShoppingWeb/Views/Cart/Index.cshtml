@@ -1,117 +1,123 @@
 ﻿@using OnlineShoppingWeb.ViewModels
 @model CartPageViewModel
-<div class="action-message"></div>
-@{ int i = 1;
-    foreach (var product in Model.Products)
-    {
-        if (i % 3 == 1)
+<div class="container">
+
+    <div class="action-message"></div>
+    @{ int i = 1;
+        foreach (var product in Model.Products)
         {
-            @:<div class="row">
+            if (i % 3 == 1)
+            {
+                @:<div class="row">
 
-        }
-                <div class="col-sm-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Product Details</div>
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <th>Title</th>
-                                    <th>@product.Title</th>
-                                </tr>
-                                <tr>
-                                    <th>Price</th>
-                                    <th>$@product.Price</th>
-                                </tr>
-                                <tr>
-                                    <th>Quantity</th>
-                                    <th>
-                                        <span>@product.Quantity</span>
-                                        <button class="change-qty-button">Change Qty</button>
 
-                                        @using (Html.BeginForm("ChangeQty", "Cart", FormMethod.Post, new { @class = "change-qty-form" }))
-                                        {
-                                            <input type="hidden" name="ShoppingCart.ProductId" value="@product.ProductId" />
-                                            <input type="text" name="ShoppingCart.Qty" value="@product.Quantity" />
+
+
+            }
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Product Details</div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>Title</th>
+                                <th>@product.Title</th>
+                            </tr>
+                            <tr>
+                                <th>Price</th>
+                                <th>$@product.Price</th>
+                            </tr>
+                            <tr>
+                                <th>Quantity</th>
+                                <th>
+                                    <span>@product.Quantity</span>
+                                    <button class="change-qty-button">Change Qty</button>
+
+                                    @using (Html.BeginForm("ChangeQty", "Cart", FormMethod.Post, new { @class = "change-qty-form" }))
+                                    {
+                                        <input type="hidden" name="ShoppingCart.ProductId" value="@product.ProductId" />
+                                        <input type="text" name="ShoppingCart.Qty" value="@product.Quantity" />
 
                                             <button class="change-qty-submit-button" type="submit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Update</button>
-                                        }
-                                        <button class="change-qty-cancel-button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>Cancel</button>
+                                    }
+                                    <button class="change-qty-cancel-button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>Cancel</button>
 
-                                    </th>
-                                </tr>
-                                <tr>  
-                                    <th colspan="2">                                
+                                </th>
+                            </tr>
+                            <tr>
+                                <th colspan="2">
                                     @using (Html.BeginForm("SaveForLater", "Cart", FormMethod.Post, new { @class = "save-for-later-form" }))
                                     {
                                         <input type="hidden" name="SaveForLater.ProductId" value="@product.ProductId" />
                                         <input type="hidden" name="ProductPrice" value="@product.Price" />
 
                                         <button class="change-qty-submit-button" type="submit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Save For Later</button>
-                                    }                                
-                                  </th>
-                                 </tr>
-                            </table>
-                        </div>
-                        <div class="panel-footer">
-                            @using (Html.BeginForm("Delete", "Cart", FormMethod.Post))
-                            {
-                                <input type="hidden" name="ShoppingCart.ProductId" value="@product.ProductId" />
+                                    }
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        @using (Html.BeginForm("Delete", "Cart", FormMethod.Post))
+                        {
+                            <input type="hidden" name="ShoppingCart.ProductId" value="@product.ProductId" />
 
-                                <button type="submit" value="Delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
-                            }
-                        </div>
+                            <button type="submit" value="Delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+                        }
                     </div>
                 </div>
-                @if (i % 3 == 0)
-                {
-                    @:</div>
-
-                }
-                i++;
-   }
-}
-                    <div class="col-sm-4">
-                        <h2>Subtotal (@Model.Products.Count() Items): $<span class="total-price">@Model.totalPrice</span></h2>
-                        <h4><a href="/Client">Continue Shopping</a></h4>
-                        <h4><a href="/Checkout">Proceed to Checkout</a></h4>
-                    </div>
-                <hr>
-<div>
-    <div class="row">
-        <div class="col-sm-12">
-            <h4>Saved for later (@Model.SaveForLaters.Count() items)</h4>
-        </div>
-    </div>
-    <div id="SaveForLater"></div>
-    @foreach (var list in Model.SaveForLaters)
-    {
-        <div class="row">
-            <div class="col-sm-8">
-                <h3>@list.Proudct.Title</h3>
-                @using (Html.BeginForm("SaveForLaterDelete", "Cart", FormMethod.Post))
-                {
-                    <input type="hidden" name="SaveForLater.ProductId" value="@list.Proudct.ProductId" />
-
-                    <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
-                } 
-
-                @using (Html.BeginForm("MoveToCartFromList", "Cart", FormMethod.Post))
-                {
-                    <input type="hidden" name="SaveForLater.ProductId" value="@list.Proudct.ProductId" />
-
-                    <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Move To Cart</button>
-                } 
             </div>
-            <div class="col-sm-4">
-                <h3>$ @list.Proudct.Price</h3>
-            </div>
-        </div>
+            @if (i % 3 == 0)
+                {
+                @:</div>
 
+
+            }
+            i++;
+        }
     }
-</div>
-@section ownScript
+    <div class="col-sm-4">
+        <h2>Subtotal (@Model.Products.Count() Items): $<span class="total-price">@Model.totalPrice</span></h2>
+        <h4><a href="/Client">Continue Shopping</a></h4>
+        <h4><a href="/Checkout">Proceed to Checkout</a></h4>
+    </div>
+    <hr>
+    <div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h4>Saved for later (@Model.SaveForLaters.Count() items)</h4>
+            </div>
+        </div>
+        <div id="SaveForLater"></div>
+        @foreach (var list in Model.SaveForLaters)
+        {
+            <div class="row">
+                <div class="col-sm-8">
+                    <h3>@list.Proudct.Title</h3>
+                    @using (Html.BeginForm("SaveForLaterDelete", "Cart", FormMethod.Post))
+                {
+                        <input type="hidden" name="SaveForLater.ProductId" value="@list.Proudct.ProductId" />
+
+                        <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+                    }
+
+                    @using (Html.BeginForm("MoveToCartFromList", "Cart", FormMethod.Post))
+                {
+                        <input type="hidden" name="SaveForLater.ProductId" value="@list.Proudct.ProductId" />
+
+                        <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Move To Cart</button>
+                    }
+                </div>
+                <div class="col-sm-4">
+                    <h3>$ @list.Proudct.Price</h3>
+                </div>
+            </div>
+
+        }
+    </div>
+    @section ownScript
 {
-    <script>
+        <script>
         $(document).ready(function () {
             $(".change-qty-form").hide();
             $(".change-qty-cancel-button").hide();
@@ -189,5 +195,6 @@
                 });
             });
         });
-    </script>
-}
+        </script>
+    }
+</div>

@@ -4,25 +4,28 @@
 }
 @using OnlineShoppingWeb.ViewModels
 @model RoleViewModel
-<h2>Create Role</h2>
-@Html.ActionLink("List Roles", "Index") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
-<hr />
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<div class="container">
 
-    <div>
-        Role name
-    </div>
-    <p>
-        @Html.TextBoxFor(model => model.Role.Name)
-    </p>
-    <input type="submit" value="Save" />
-}
+            <h2>Create Role</h2>
+            @Html.ActionLink("List Roles", "Index") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
 
-@foreach (var role in Model.Roles)
-{
-    <h1>@role.NormalizedName</h1>
-}
+                <div>
+                    Role name
+                </div>
+                <p>
+                    @Html.TextBoxFor(model => model.Role.Name)
+                </p>
+                <input type="submit" value="Save" />
+            }
 
+            @foreach (var role in Model.Roles)
+            {
+                <h1>@role.NormalizedName</h1>
+            }
+
+</div>

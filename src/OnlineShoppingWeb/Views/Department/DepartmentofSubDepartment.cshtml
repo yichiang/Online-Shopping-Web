@@ -1,28 +1,31 @@
 ﻿
 @using OnlineShoppingWeb.ViewModels;
 @model DepartmentViewModel
-<h1> Here is all list under @Model.DepartmentOfSub.Description </h1>
-@foreach (var sub in Model.SubDepartments)
-{
+<div class="container">
+
+    <h1> Here is all list under @Model.DepartmentOfSub.Description </h1>
+    @foreach (var sub in Model.SubDepartments)
+    {
 
 
-    <h1><a href="/department/@Model.DepartmentOfSub.DepartmentId/allSubDepartmentProduct/@sub.SubDepartmentId">@sub.Description</a></h1>
-    <button class="editButtonForDepartment">Edit</button>
+        <h1><a href="/department/@Model.DepartmentOfSub.DepartmentId/allSubDepartmentProduct/@sub.SubDepartmentId">@sub.Description</a></h1>
+        <button class="editButtonForDepartment">Edit</button>
 
-    <form action="/Department/EditSubDepartment/@sub.SubDepartmentId" method="post" class="editFormForDepartment">
-        <input type="hidden" name="SubDepartment.DepartmentId" value="@Model.DepartmentOfSub.DepartmentId" />
-        <input type="hidden" name="SubDepartment.SubDepartmentId" value="@sub.SubDepartmentId" />
-        <input name="SubDepartment.Description" class="form-control" type="text" value="@sub.Description" />
-        <input type="submit" value="Edit" />
-    </form>
+        <form action="/Department/EditSubDepartment/@sub.SubDepartmentId" method="post" class="editFormForDepartment">
+            <input type="hidden" name="SubDepartment.DepartmentId" value="@Model.DepartmentOfSub.DepartmentId" />
+            <input type="hidden" name="SubDepartment.SubDepartmentId" value="@sub.SubDepartmentId" />
+            <input name="SubDepartment.Description" class="form-control" type="text" value="@sub.Description" />
+            <input type="submit" value="Edit" />
+        </form>
 
-    <form action="/Department/deleteSubDepartment/@sub.SubDepartmentId" method="post" class="">
-        <input type="hidden" name="DepartmentId" value="@Model.DepartmentOfSub.DepartmentId" />
-        <input type="submit" value="Delete" />
-    </form>
-}
+        <form action="/Department/deleteSubDepartment/@sub.SubDepartmentId" method="post" class="">
+            <input type="hidden" name="DepartmentId" value="@Model.DepartmentOfSub.DepartmentId" />
+            <input type="submit" value="Delete" />
+        </form>
+    }
 
-@Html.ActionLink("Create New SubDepartment", "AddSubDepartment", "Department",new { departmentId = Model.DepartmentOfSub.DepartmentId });
-@section ownScript{
-    <script src="/js/DepartmentIndex.js"></script>
-}
+    @Html.ActionLink("Create New SubDepartment", "AddSubDepartment", "Department", new { departmentId = Model.DepartmentOfSub.DepartmentId });
+    </div>
+    @section ownScript{
+        <script src="/js/DepartmentIndex.js"></script>
+    }

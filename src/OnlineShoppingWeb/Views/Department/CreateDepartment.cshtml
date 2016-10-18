@@ -1,14 +1,17 @@
-﻿<h1> Add New Product to our store</h1>
+﻿<div class="container">
 
-@using OnlineShoppingWeb.Enities;
-@model Department
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary()
+    <h1> Add New Product to our store</h1>
 
-    @Html.LabelFor(model => model.Description)
-    @Html.TextBoxFor(model => model.Description)
-    @Html.ValidationMessageFor(model => model.Description)
+    @using OnlineShoppingWeb.Enities;
+    @model Department
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
 
-    <input type="submit" value="Add New Department" />
-}
+        @Html.LabelFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description)
+        @Html.ValidationMessageFor(model => model.Description)
+
+        <input type="submit" value="Add New Department" />
+    }
+    </div>

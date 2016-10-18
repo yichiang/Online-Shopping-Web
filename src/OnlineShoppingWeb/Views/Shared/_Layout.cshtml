@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow|Source+Sans+Pro" rel="stylesheet">
     <link href="~/css/full-width-pics.css" rel="stylesheet">
-
     <link href="~/css/StyleSheet.css" rel="stylesheet"/>
     <title>@ViewBag.Title</title>
 </head>
@@ -32,7 +31,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class=""><a href="/">Home <span class="sr-only">(current)</span></a></li>
+                    <li class=""><a href="/">Home</a></li>
                     <li><a href="/Client">Product</a></li>
                     <li><a href="/Cart">View My Cart</a></li>
 
@@ -51,6 +50,7 @@
 
                         </ul>
                     </li>
+                    
                     <li>
                         @if (SignInManager.IsSignedIn(User))
                         {
@@ -81,14 +81,16 @@
             @RenderBody()
    
         </div>
-    <environment name="Development">
+    @*<environment name="Development">
     <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         @RenderSection("ownScript",required:false)
-    </environment>
+    </environment>*@
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @RenderSection("ownScript", required: false)
 
-
-    <environment names="Staging, Production">
+    @*<environment names="Staging, Production">
         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.js"
                 asp-fallback-src="/node_modules/jquery/dist/jquery.js"
                 asp-fallback-test="window.jQuery"></script>
@@ -99,6 +101,6 @@
                 asp-fallback-src="/node_modules/jquery/dist/jquery.validate.unobtrusive.js"
                 asp-fallback-test="window.jQuery & window.JQuery.Validator && window.JQuery.Validator.Unobtrusive"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </environment>
+    </environment>*@
 </body>
     </html>
