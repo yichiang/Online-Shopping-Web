@@ -65,28 +65,32 @@ namespace OnlineShoppingWeb.Controllers
             var foundProduct = _ProductData.FindProductById(vm.SaveToCartProductId);
             var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.SaveToCartProductId, userId);
             vm.EventCommand = "list";
-             if (foundProduct.Quantity == 0|| foundProduct.Quantity== foundShoppingProduct.Qty)
+
+            //if shopping cart dosen't have this product and product inventory is greater than 0
+            //simply save to cart
+            if (foundShoppingProduct == null && foundProduct.Quantity > 0)
             {
 
+                _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser.Id);
+                var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
+                return Json(new { success = true, message = "Add To Our Cart Now", qty = foundqQty });
+            }
+            //if we don't have any instcok or custom already put all qty in her/his cart
+            //we don't nothing
+            else if (foundProduct.Quantity == 0 || foundProduct.Quantity == foundShoppingProduct.Qty)
+            {
                 vm.EventCommand = "list";
                 var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
                 return Json(new { success = false, message = "We don't have too much in stock for now", qty = foundqQty });
 
             }
-            else if(foundShoppingProduct != null && foundProduct.Quantity > foundShoppingProduct.Qty)
+            else
             {
-
                 _shoppingCartData.ModifyQty(foundShoppingProduct, foundShoppingProduct.Qty + 1);
                 var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
                 return Json(new { success = true, message = "You already add this in your cart. I add one more qty for you", qty = foundqQty });
-            }   
-            else
-            {
-          
-                _ProductData.SaveToCart(vm.SaveToCartProductId, currentUser.Id);
-                var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
-                return Json(new { success = true, message = "Add To Our Cart Now", qty = foundqQty });
             }
+            
          
         }
 
