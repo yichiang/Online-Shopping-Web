@@ -101,35 +101,24 @@ namespace OnlineShoppingWeb.Controllers
                 
                 _shoppingCartData.Delete(product);
             }
-            // setting up the card
             var myCharge = new StripeChargeCreateOptions();
 
             // always set these properties
-            //myCharge.Amount = (int) vm.Total*100;
-            //Charge $1 for testing
             myCharge.Amount = 100;
-
             myCharge.Currency = "usd";
 
             // set this if you want to
             myCharge.Description = "Charge it like it's hot";
 
-            myCharge.SourceCard = new SourceCard()
-            {
-                Number = "4242424242424242",
-                ExpirationYear = "2022",
-                ExpirationMonth = "10"
-       
-            };
+            myCharge.SourceTokenOrExistingSourceId = vm.StripeToken;
 
-            // set this property if using a customer
-            //myCharge.CustomerId = *customerId *;
+            // set this property if using a customer - this MUST be set if you are using an existing source!
 
-            // set this if you have your own application fees (you must have your application configured first within Stripe)
-            //myCharge.ApplicationFee = 25;
 
             // (not required) set this to false if you don't want to capture the charge yet - requires you call capture later
             myCharge.Capture = true;
+
+   
             var StripeKey = Environment.GetEnvironmentVariable("StripeSecretKey");
             var chargeService = new StripeChargeService(StripeKey);
             StripeCharge stripeCharge = chargeService.Create(myCharge);

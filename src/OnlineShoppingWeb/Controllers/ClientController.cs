@@ -65,15 +65,7 @@ namespace OnlineShoppingWeb.Controllers
             var foundProduct = _ProductData.FindProductById(vm.SaveToCartProductId);
             var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.SaveToCartProductId, userId);
             vm.EventCommand = "list";
-
-            if (foundShoppingProduct != null && foundProduct.Quantity > foundShoppingProduct.Qty)
-            {
-
-                _shoppingCartData.ModifyQty(foundShoppingProduct, foundShoppingProduct.Qty + 1);
-                var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
-                return Json(new { success = true, message = "Add To Our Cart Now", qty = foundqQty });
-            }
-            else if (foundShoppingProduct != null && foundProduct.Quantity == foundShoppingProduct.Qty)
+             if (foundProduct.Quantity == 0|| foundProduct.Quantity== foundShoppingProduct.Qty)
             {
 
                 vm.EventCommand = "list";
@@ -81,6 +73,13 @@ namespace OnlineShoppingWeb.Controllers
                 return Json(new { success = false, message = "We don't have too much in stock for now", qty = foundqQty });
 
             }
+            else if(foundShoppingProduct != null && foundProduct.Quantity > foundShoppingProduct.Qty)
+            {
+
+                _shoppingCartData.ModifyQty(foundShoppingProduct, foundShoppingProduct.Qty + 1);
+                var foundqQty = _shoppingCartData.GetUserTotalSavedItems(userId);
+                return Json(new { success = true, message = "You already add this in your cart. I add one more qty for you", qty = foundqQty });
+            }   
             else
             {
           
