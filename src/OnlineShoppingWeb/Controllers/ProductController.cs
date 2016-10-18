@@ -192,7 +192,7 @@ namespace OnlineShoppingWeb.Controllers
                 _ProductData.EditQty(viewModel.Product);
 
             }
-            return RedirectToAction("Index");
+            return Json(new { qty= viewModel.Product.Quantity , message="success" });
 
         }
       

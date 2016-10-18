@@ -1,5 +1,4 @@
-﻿
-        $(document).ready(function () {
+﻿ $(document).ready(function () {
             //window.scrollTo(0, parseInt($("#windowPostiton").val()));
             $(".own-btn-action").click(function (e) {
                 e.preventDefault();
@@ -25,4 +24,6 @@
                 $("form.addMoretoListForm").submit();
 
             });
-        });
+
+
+});
