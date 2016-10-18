@@ -1,10 +1,67 @@
 ﻿body{
     font-family: 'Source Sans Pro', sans-serif;
+    margin-top: 50px;
+}
+
+.image-bg-fluid-height,
+.image-bg-fixed-height {
+    text-align: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.image-bg-fluid-height {
+	background: url('https://static.pexels.com/photos/158385/lake-mcdonald-landscape-panorama-sunset-158385-large.jpeg') no-repeat center center scroll;
+    padding: 100px 0;
+
+}
+
+.image-bg-fixed-height {
+	background: url('https://static.pexels.com/photos/1147/apple-iphone-desk-office-large.jpg') no-repeat center center scroll;
+    height: 450px;
+}
+
+.img-center {
+	margin: 0 auto;
+}
+
+section {
+    padding: 75px 0;
+}
+
+.section-heading {
+    margin: 30px 0;
+    font-size: 4em;
+}
+
+.section-lead {
+    margin: 30px 0;
+}
+
+.section-paragraph {
+    margin: 30px 0;
+}
+
+
+
+@media(max-width:768px) {
+    section {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    .section-heading {
+        font-size: 2em;
+    }
 }
 .hideAction{
     display:none;
 }
-
+.userName-nav{
+    color:white;
+}
 .font-image-overlay{
     width:100%;
 	color: #fff;
