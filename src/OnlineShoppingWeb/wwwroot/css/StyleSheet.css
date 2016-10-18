@@ -2,7 +2,51 @@
     font-family: 'Source Sans Pro', sans-serif;
     margin-top: 50px;
 }
+/*payment forms*/
+ .has-error input {
+    border-width: 2px;
+}
 
+.validation.text-danger:after {
+    content: 'Looks good.';
+    content: 'Please check invalid fields.';
+}
+
+.validation.text-success:after {
+    content: 'Looks good.';
+}
+span.glyphicon-credit-card {
+    font-size: 1.2em; 
+}
+
+span.glyphicon-envelope {
+    font-size:1.2em;
+}
+
+span.glyphicon-lock {
+    font-size:1.2em;
+}
+ 
+
+
+/*credit card images*/
+.card-images img.disabled {
+    opacity: .2;
+}
+#payment-form span.glyphicon.glyphicon-lock.form-control-feedback {
+    line-height:95px; 
+}
+label.error {
+	display: block;
+	color: #d9230f;
+	font-style: italic;
+	font-weight: normal;
+}
+
+input.error {
+	border: 2px solid #d9230f;
+    border-width: 2px;
+}
 .image-bg-fluid-height,
 .image-bg-fixed-height {
     text-align: center;

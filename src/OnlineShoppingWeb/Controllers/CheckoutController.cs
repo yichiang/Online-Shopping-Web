@@ -135,6 +135,6 @@ namespace OnlineShoppingWeb.Controllers
             await _userManager.UpdateAsync(currentUser);
             return RedirectToAction("Index", "Checkout");
         }
-
+  
     }
 }
