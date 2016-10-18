@@ -10,15 +10,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow|Source+Sans+Pro" rel="stylesheet">
+    <link href="~/css/full-width-pics.css" rel="stylesheet">
+
     <link href="~/css/StyleSheet.css" rel="stylesheet"/>
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -35,7 +37,7 @@
                     <li><a href="/Cart">View My Cart</a></li>
 
                 </ul>
-       
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/Cart">@await Component.InvokeAsync("ShoppingCart")</a></li>
 
@@ -68,7 +70,7 @@
                         }
                     </li>
 
-             
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

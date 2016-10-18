@@ -68,13 +68,9 @@ height:10vh;
 }
 
 @media screen and (min-width: 831px) {
-    ul.nav li.dropdown:hover > ul.dropdown-menu {
-        display: block; 
-     }
+ 
 }
 
 @media screen and (max-width: 830px) {
-    ul.nav li.dropdown:hover > ul.dropdown-menu {
-        display: inline; 
-     }
+
 }
