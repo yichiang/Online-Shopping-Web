@@ -59,7 +59,8 @@
                     @Html.AntiForgeryToken()
 
 
-
+                    <input type="hidden" name="ShippingAddress" value="@Model.ShippingAddress" />
+                    <input type="hidden" name="Total" value="@Model.Total" />
                     <div class="form-group">
                         <label class="control-label">Accepted</label>
                         <div class="row">
