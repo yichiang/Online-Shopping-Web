@@ -90,8 +90,7 @@ namespace OnlineShoppingWeb.Services
   _Contact the authors if you have any questions or comments._
 
 ## Technologies Used
-
-    _MVC, Stripe_
+ _MVC, Stripe_
 
 ### License
 
