@@ -51,12 +51,13 @@
                     
                     
                 @if (SignInManager.IsSignedIn(User))
-                {
+                { <li>
                     @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "navbar-form" }))
                     {
-                        <li><span class="userName-nav">@UserManager.GetUserName(User)</span>
-                                            <input type="submit" value="Logout" /></li>
+                        <span class="userName-nav">@UserManager.GetUserName(User)</span>
+                                            <input type="submit" value="Logout" />
                     }
+                   </li>
                 }
                 else
                 {
