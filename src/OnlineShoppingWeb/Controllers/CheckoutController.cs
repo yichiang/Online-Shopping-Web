@@ -53,6 +53,7 @@ namespace OnlineShoppingWeb.Controllers
             return View(vm);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public async Task<IActionResult> PlaceOrder(CheckoutPageViewModel vm)
         {
             //Find UserId

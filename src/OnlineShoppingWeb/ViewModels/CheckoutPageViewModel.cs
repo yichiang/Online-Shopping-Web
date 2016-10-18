@@ -17,5 +17,7 @@ namespace OnlineShoppingWeb.ViewModels
         public decimal Total { get; set; }
         public string Key { get; set; }
 
+        public string StripeToken { get; set; }
+        public string StripeEmail { get; set; }
     }
 }
