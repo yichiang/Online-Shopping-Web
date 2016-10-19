@@ -12,6 +12,10 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "EmailPassword": "Joseph_0205",
+        "Key": "Value",
+        "StripePublicKey": "pk_test_1Lbssal8MBIej9tDkKLwrgA2",
+        "StripeSecretKey": " sk_test_Uv9pM8cBQstb5MGsDwdazzWb",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }

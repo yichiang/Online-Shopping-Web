@@ -2,6 +2,7 @@
 using MimeKit;
 using MailKit.Security;
 using System.Threading.Tasks;
+using System;
 
 namespace OnlineShoppingWeb.Services
 {
@@ -22,7 +23,7 @@ namespace OnlineShoppingWeb.Services
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                 // Note: only needed if the SMTP server requires authentication
-                client.Authenticate("Your_Email_Address", "Your_Email_Password");
+                client.Authenticate("Your_Email_Address", Environment.GetEnvironmentVariable("EmailPassword"));
                 client.Send(emailMessage);
                 client.Disconnect(true);
            

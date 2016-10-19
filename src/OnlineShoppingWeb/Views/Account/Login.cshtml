@@ -8,19 +8,24 @@
 
     <h2>Log in with your account</h2>
     <hr />
-    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post))
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, true, new { @class = "form-inline" }))
     {
         @Html.ValidationSummary()
 
-        @Html.LabelFor(m => m.Username)
-        @Html.TextBoxFor(m => m.Username)
+        <div class="form-group">
+            @Html.LabelFor(m => m.Username)
+            @Html.TextBoxFor(m => m.Username)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)
 
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.RememberMe)
+            @Html.EditorFor(m => m.RememberMe)
+        </div>
 
-        @Html.LabelFor(m => m.RememberMe)
-        @Html.EditorFor(m => m.RememberMe)
-
-        <input type="submit" value="Log in" class="btn btn-default" />
+        <input class="btn btn-primary" type="submit" value="Log in" class="btn btn-default" />
     }
 </div>

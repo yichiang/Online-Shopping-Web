@@ -173,5 +173,17 @@ height:10vh;
 }
 
 @media screen and (max-width: 830px) {
+    .section-heading {
+        font-size:1.5em;
+    }
+    .product-image {
+        width:10vw;
+    }
+    .search-panel-button {
+        width:40vw;
+        margin-bottom:20px;
+        background-color: cornflowerblue;
+        color: antiquewhite;
+    }
 
 }
