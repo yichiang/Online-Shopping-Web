@@ -319,7 +319,7 @@
                         $form.next(".qty-display").text(result.qty);
                         $form.children(".qty-input").val(parseInt(result.qty)-1);
                     }
-                    $(".action-message").text(result.message);
+                    $(".action-message").text(result.message).addClass("message-style");
 
                 }
             });

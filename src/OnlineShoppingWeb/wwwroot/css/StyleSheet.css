@@ -164,8 +164,16 @@ section {
     margin-top: 0;
 }
 .product-image {
-width:5vw;
-height:10vh;
+    width:5vw;
+    height:10vh;
+}
+.message-style {
+    background-color: lightslategray;
+    padding: 12px;
+    text-align: center;
+    font-family: cursive;
+    color: white;
+    letter-spacing: 2px;
 }
 
 @media screen and (min-width: 831px) {

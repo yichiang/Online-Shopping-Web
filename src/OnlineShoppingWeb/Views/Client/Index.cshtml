@@ -135,7 +135,7 @@
                         data: $(this).serialize(),
                         dataType: "json",
                         success: function (result) {
-                            $(".action-message").text(result.message);
+                            $(".action-message").html(result.message+"<span class='dismiss-message'> X </span>").addClass("message-style");
                             console.log("AddToCart");
                             console.log("result" + result.qty);
                             $(".CartQtyDisplay").text(result.qty);
