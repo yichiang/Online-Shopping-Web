@@ -61,7 +61,7 @@ namespace OnlineShoppingWeb.Controllers
             var originalQty = foundProduct.Quantity;
             if (intendedChangeQty <= originalQty)
             {
-                decimal totalChangePrice = (intendedChangeQty - originalQty) * foundProduct.Price;
+                decimal totalChangePrice = (intendedChangeQty - foundShoppingProduct.Qty) * foundProduct.Price;
 
                 _shoppingCartData.ModifyQty(foundShoppingProduct, intendedChangeQty);
                 return Json(new { qty = intendedChangeQty, totalChangePrice = totalChangePrice, message="success to change qty from "+ originalQty + "to"+ intendedChangeQty });

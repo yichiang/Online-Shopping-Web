@@ -176,7 +176,7 @@
                             $clickedForm.remove();
 
                             console.log(result.list.proudct);
-                            var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
+                            var newTotal = parseInt($(".total-price").text()) + parseInt(result.totalChangePrice);
                             $(".total-price").text(newTotal);
                             $("#SaveForLater").append(
                                 "<div class='row'><div class='col-sm-8'><h3>"
