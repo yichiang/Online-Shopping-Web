@@ -1,0 +1,11 @@
+﻿@model ProductPageViewModel
+<h1>It is product list</h1>
+@foreach (var product in Model.Products)
+{
+<h2>@product.Title |$ @product.Price|@product.SubDepartmentId</h2>
+<form action="/Product/DeleteProduct/@product.ProductId" method="post" class="">
+    <input type="submit" value="Delete" />
+</form>
+}
+
+@Html.ActionLink("Create New Laptop", "CreateLaptop", "Product")
