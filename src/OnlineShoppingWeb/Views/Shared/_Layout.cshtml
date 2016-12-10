@@ -96,5 +96,37 @@
                 asp-fallback-test="window.jQuery & window.JQuery.Validator && window.JQuery.Validator.Unobtrusive"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </environment>*@
+    <div class="container">
+        <my-app>Loading...</my-app>
+    </div>
+
+    <script src="lib/es6-shim/es6-shim.js"></script>
+    <script src="lib/es6-promise/es6-promise.js"></script>
+    <script src="lib/systemjs/system-polyfills.src.js"></script>
+    <script src="lib/angular2/angular2-polyfills.js"></script>
+    <script src="lib/systemjs/system.src.js"></script>
+    <script src="lib/rxjs/Rx.js"></script>
+    <script src="lib/angular2/angular2.js"></script>
+    <script src="lib/angular2/router.js"></script>
+    <script src="lib/angular2/http.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+
+    <script>
+            System.config({
+                "transpiler": false,
+                "packages": {
+                    "app": { defaultExtension: "js" },
+                    "lib": {defaultExtension: "js"}
+                }
+            });
+
+            System.import("./app/main").then(
+                null,
+                console.error.bind(console)
+            );
+    </script>
 </body>
     </html>

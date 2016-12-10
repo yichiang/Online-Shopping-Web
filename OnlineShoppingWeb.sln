@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OnlineShoppingWeb", "src\OnlineShoppingWeb\OnlineShoppingWeb.xproj", "{4C654259-5DE9-480F-AD03-D1202B1C9808}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6097244E-F570-4590-8497-1B3F0896D379}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{1460C46F-6920-4A89-91B0-2D724E4A2F48}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "onlineShoppingWeb.Tests", "onlineShoppingWeb.Tests\onlineShoppingWeb.Tests.xproj", "{CB2C4A7C-38B7-4368-BBBC-BB0294F0E415}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "onlineShoppingWeb.Tests", "src\onlineShoppingWeb.Tests\onlineShoppingWeb.Tests.xproj", "{CB2C4A7C-38B7-4368-BBBC-BB0294F0E415}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +36,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4C654259-5DE9-480F-AD03-D1202B1C9808} = {855C4268-CA69-4609-A5C1-A2AEE09769F2}
-		{CB2C4A7C-38B7-4368-BBBC-BB0294F0E415} = {6097244E-F570-4590-8497-1B3F0896D379}
+		{CB2C4A7C-38B7-4368-BBBC-BB0294F0E415} = {1460C46F-6920-4A89-91B0-2D724E4A2F48}
 	EndGlobalSection
 EndGlobal

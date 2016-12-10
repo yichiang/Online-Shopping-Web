@@ -56,7 +56,7 @@ namespace OnlineShoppingWeb.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.ShoppingCart.ProductId, userId);
-            Product foundProduct = _productData.FindProductById(vm.ShoppingCart.ProductId);
+            var foundProduct = _productData.FindProductById(vm.ShoppingCart.ProductId);
             var intendedChangeQty = vm.ShoppingCart.Qty;
             var originalQty = foundProduct.Quantity;
             if (intendedChangeQty <= originalQty)

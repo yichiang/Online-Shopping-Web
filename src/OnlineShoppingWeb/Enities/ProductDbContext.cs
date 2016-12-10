@@ -29,7 +29,9 @@ namespace OnlineShoppingWeb.Enities
             base.OnModelCreating(builder);
             //builder.Entity<ShoppingOrder>().HasKey(x => new { x.ProductId, x.UserId });
             //builder.Entity<Product>().HasMany(b => b.Contents);
-
+            //model.builder.Enity<Body>().ToTable.... fluent API in one spot to generate db.
+            //has alter key e.g ssn
+            //use inMemoryDatabase ()
         }
     }
 
