@@ -1,7 +1,8 @@
 ﻿@using OnlineShoppingWeb.ViewModels
 @model CartPageViewModel
-<div class="container">
 
+<div class="container">
+    <my-cart products="@Model.Products"></my-cart>
     <div class="action-message"></div>
     @{ int i = 1;
         foreach (var product in Model.Products)

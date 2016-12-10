@@ -119,6 +119,7 @@
                 "transpiler": false,
                 "packages": {
                     "app": { defaultExtension: "js" },
+                    "cart": { defaultExtension: "js" },
                     "lib": {defaultExtension: "js"}
                 }
             });
@@ -127,6 +128,10 @@
                 null,
                 console.error.bind(console)
             );
+            System.import("./cart/main").then(
+                    null,
+                    console.error.bind(console)
+                );
     </script>
 </body>
     </html>

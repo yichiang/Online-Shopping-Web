@@ -4,7 +4,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 
 @Component({
     selector: "my-app",
-    template: "Hi",
+    template: "Hi From Angular2",
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS

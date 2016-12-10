@@ -1,3 +1,4 @@
+/// <binding />
 // JavaScript source code
 /// <binding ProjectOpened='build, bundle' />
 var gulp = require('gulp'),
@@ -6,15 +7,24 @@ var gulp = require('gulp'),
 
 var paths = {
     ts: {
-        src: ["ts/*.ts", "typings/main.d.ts"],
+        src: ["app-ts/*.ts", "typings/main.d.ts"],
         dest: "wwwroot/app"
     },
     npm: "node_modules/",
     libDest: "wwwroot",
     lib: "wwwroot/lib/"
 };
+var paths2 = {
+    ts: {
+        src: ["cart-ts/*.ts", "typings/main.d.ts"],
+        dest: "wwwroot/cart"
+    },
+    npm: "node_modules/",
+    libDest: "wwwroot",
+    lib: "wwwroot/lib/"
+};
 
-gulp.task("build", function () {
+gulp.task("build1", function () {
 
     var tsProject = tsc.createProject("tsConfig.json");
 
@@ -24,7 +34,16 @@ gulp.task("build", function () {
 
 
 });
+gulp.task("build2", function () {
 
+    var tsProject = tsc.createProject("tsConfig.json");
+
+    return gulp.src(paths2.ts.src)
+            .pipe(tsc(tsProject))
+            .pipe(gulp.dest(paths2.ts.dest));
+
+
+});
 gulp.task("bundle", function () {
 
     gulp.src(paths.npm + "systemjs/dist/**/*.*", { base: paths.npm + "systemjs/dist/" })
@@ -59,11 +78,13 @@ gulp.task("bundle:css", function () {
 
 gulp.task("watch", function () {
 
-    return gulp.watch(paths.ts.src, ["build"]);
-
+    //return gulp.watch(paths.ts.src, ['build1', 'build2']);
+    return gulp.watch(['paths.ts.src', 'paths2.ts.src'], function () {
+        gulp.run(['build1','build2']);
+    });
 });
 
 
-gulp.task('default', ['build', 'bundle', 'bundle:css', 'watch'], function () {
+gulp.task('default', ['build1', 'build2', 'bundle', 'bundle:css', 'watch'], function () {
     // place code for your default task here
 });

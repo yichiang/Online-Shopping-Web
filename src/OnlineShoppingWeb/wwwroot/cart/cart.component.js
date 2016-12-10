@@ -10,20 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
-var AppComponent = (function () {
-    function AppComponent() {
+var CartComponent = (function () {
+    function CartComponent(elementRef) {
+        this.elementRef = elementRef;
+        this.products = this.elementRef.nativeElement.getAttribute('products');
     }
-    AppComponent = __decorate([
+    CartComponent = __decorate([
         core_1.Component({
-            selector: "my-app",
-            template: "Hi From Angular2",
+            selector: "my-cart",
+            template: "\n    cart components !!!!!!!!!!!!!!!!!!!\n    <ul>\n        <li *ngFor=\"#item of products; #i = index\">\n            {{item.name}} {{i}} !!!\n        </li>\n    </ul>\n    {{products}}!!!!",
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [
                 router_1.ROUTER_PROVIDERS
             ]
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], CartComponent);
+    return CartComponent;
 }());
-exports.AppComponent = AppComponent;
+exports.CartComponent = CartComponent;
