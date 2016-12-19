@@ -48,23 +48,26 @@
 
                         </ul>
                     </li>
-                    
-                    
-                @if (SignInManager.IsSignedIn(User))
-                { <li>
-                    @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "navbar-form" }))
+
+
+                    @if (SignInManager.IsSignedIn(User))
                     {
-                        <span class="userName-nav">@UserManager.GetUserName(User)</span>
-                                            <input type="submit" value="Logout" />
+                    <li>
+                        @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "navbar-form" }))
+                        {
+                            <span class="userName-nav">
+                                @UserManager.GetUserName(User)
+                            </span>
+                            <input type="submit" value="Logout" />
+                        }
+                    </li>
                     }
-                   </li>
-                }
-                else
-                {
-                            <li>@Html.ActionLink("Login In", "Login", "Account")</li>
+                    else
+                    {
+                        <li>@Html.ActionLink("Login In", "Login", "Account")</li>
                             <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                }
-                    
+                    }
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -133,5 +136,5 @@
                     console.error.bind(console)
                 );
     </script>
-</body>
-    </html>
+   </body>
+ </html>

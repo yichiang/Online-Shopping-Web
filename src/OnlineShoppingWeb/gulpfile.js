@@ -78,10 +78,8 @@ gulp.task("bundle:css", function () {
 
 gulp.task("watch", function () {
 
-    //return gulp.watch(paths.ts.src, ['build1', 'build2']);
-    return gulp.watch(['paths.ts.src', 'paths2.ts.src'], function () {
-        gulp.run(['build1','build2']);
-    });
+    gulp.watch('paths.ts.src', ['build1']);
+    gulp.watch('paths2.ts.src', ['build2']);
 });
 
 

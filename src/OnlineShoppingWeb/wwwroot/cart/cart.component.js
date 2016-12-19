@@ -18,7 +18,7 @@ var CartComponent = (function () {
     CartComponent = __decorate([
         core_1.Component({
             selector: "my-cart",
-            template: "\n    cart components !!!!!!!!!!!!!!!!!!!\n    <ul>\n        <li *ngFor=\"#item of products; #i = index\">\n            {{item.name}} {{i}} !!!\n        </li>\n    </ul>\n    {{products}}!!!!",
+            template: "\n    cart components {{products}}\n    <ul>\n        <li *ngFor=\"#item of products; #i = index\">\n            {{item.name}} {{i}} !!!\n        </li>\n    </ul>\n    {{products}}!!!!",
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [
                 router_1.ROUTER_PROVIDERS

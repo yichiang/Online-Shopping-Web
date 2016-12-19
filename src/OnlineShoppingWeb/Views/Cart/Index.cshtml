@@ -2,7 +2,7 @@
 @model CartPageViewModel
 
 <div class="container">
-    <my-cart products="@Model.Products"></my-cart>
+    <my-cart>Loading</my-cart>
     <div class="action-message"></div>
     @{ int i = 1;
         foreach (var product in Model.Products)
