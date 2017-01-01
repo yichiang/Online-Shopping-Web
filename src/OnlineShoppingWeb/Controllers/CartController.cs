@@ -25,6 +25,7 @@ namespace OnlineShoppingWeb.Controllers
             _productData = productData;
             _userManager = userManager;
         }
+        [HttpGet("cart")]
         // GET: /<controller>/
         public async Task<IActionResult> Index(CartPageViewModel vm)
         {
@@ -48,7 +49,7 @@ namespace OnlineShoppingWeb.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var foundShoppingProduct = _shoppingCartData.FindCartProductById(vm.ShoppingCart.ProductId, userId);
             _shoppingCartData.Delete(foundShoppingProduct);
-            return RedirectToAction("Index", "Cart");
+            return RedirectToAction("Index","Cart");
         }
 
         [HttpPost]

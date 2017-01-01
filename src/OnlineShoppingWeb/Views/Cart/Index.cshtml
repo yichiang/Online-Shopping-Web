@@ -115,7 +115,27 @@
     </div>
     @section ownScript
 {
+      
         <script>
+                System.config({
+                    "transpiler": false,
+                    "packages": {
+                        //"app": { defaultExtension: "js" },
+                        "cart": { defaultExtension: "js" },
+                        "lib": {defaultExtension: "js"}
+                    }
+                });
+
+                //System.import("./app/main").then(
+                //    null,
+                //    console.error.bind(console)
+                //);
+                System.import("./app/cart-ts/main").then(
+                        null,
+                        console.error.bind(console)
+                );
+        </script>
+    <script>
         $(document).ready(function () {
             $(".change-qty-form").hide();
             $(".change-qty-cancel-button").hide();
@@ -193,25 +213,6 @@
                 });
             });
         });
-        </script>
-        <script>
-                System.config({
-                    "transpiler": false,
-                    "packages": {
-                        //"app": { defaultExtension: "js" },
-                        "cart": { defaultExtension: "js" },
-                        "lib": {defaultExtension: "js"}
-                    }
-                });
-
-                //System.import("./app/main").then(
-                //    null,
-                //    console.error.bind(console)
-                //);
-                System.import("./app/cart-ts/main").then(
-                        null,
-                        console.error.bind(console)
-                );
-        </script>
+    </script>
     }
 </div>

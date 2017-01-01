@@ -13,13 +13,13 @@ using System;
 namespace OnlineShoppingWeb.Controllers.Api
 {
     [Authorize]
-    public class CartController : Controller
+    public class CartDataController : Controller
     {
         private IProductData _productData;
         private IShoppingCartData _shoppingCartData;
         private UserManager<User> _userManager;
 
-        public CartController(IShoppingCartData shoppingCartData, IProductData productData, UserManager<User> userManager)
+        public CartDataController(IShoppingCartData shoppingCartData, IProductData productData, UserManager<User> userManager)
         {
             _shoppingCartData = shoppingCartData;
             _productData = productData;
