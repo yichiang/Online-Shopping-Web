@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
-using OnlineShoppingWeb.ViewModels;
+using OnlineShoppingWeb.ApiModel;
 using OnlineShoppingWeb.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +26,7 @@ namespace OnlineShoppingWeb.Controllers.Api
             _userManager = userManager;
         }
         [HttpGet("api/cart")]
-        public async Task<IActionResult> Index(CartPageViewModel vm)
+        public async Task<IActionResult> Index(CartModel vm)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);

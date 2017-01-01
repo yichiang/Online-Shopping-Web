@@ -10,6 +10,10 @@ var paths = {
         src: ["app-ts/*.ts", "typings/main.d.ts"],
         dest: "wwwroot/app"
     },
+    htmlandCSS: {
+        src: ["app-ts/*.html", "app-ts/*.css"],
+        dest: "wwwroot/app/app-ts"
+    },
     npm: "node_modules/",
     libDest: "wwwroot",
     lib: "wwwroot/lib/"
@@ -18,6 +22,10 @@ var paths2 = {
     ts: {
         src: ["cart-ts/*.ts", "typings/main.d.ts"],
         dest: "wwwroot/app"
+    },
+    htmlandCSS:{
+        src: ["cart-ts/*.html", "cart-ts/*.css"],
+        dest: "wwwroot/app/cart-ts"
     },
     npm: "node_modules/",
     libDest: "wwwroot",
@@ -30,20 +38,27 @@ gulp.task("build1", function () {
     return tsProject.src(paths.ts.src)
         .pipe(tsProject())
         .js.pipe(gulp.dest(paths.ts.dest));
-    //return gulp.src(paths.ts.src)
-    //        .pipe(tsc(tsProject))
-    //        .pipe(gulp.dest(paths.ts.dest));
 });
 
 gulp.task("build2", function () {
 
     var tsProject = tsc.createProject("tsConfig.json");
-    //return gulp.src(paths2.ts.src)
-    //        .pipe(tsc(tsProject))
-    //        .pipe(gulp.dest(paths2.ts.dest));
     return tsProject.src(paths2.ts.src)
        .pipe(tsProject())
        .js.pipe(gulp.dest(paths2.ts.dest));
+
+});
+gulp.task("build1HTMLandCSS", function () {
+
+    gulp.src(paths.htmlandCSS.src)
+         .pipe(gulp.dest(paths.htmlandCSS.dest));
+
+});
+
+gulp.task("build2HTMLandCSS", function () {
+
+    gulp.src(paths2.htmlandCSS.src)
+         .pipe(gulp.dest(paths2.htmlandCSS.dest));
 
 });
 gulp.task("bundle", function () {
@@ -82,9 +97,11 @@ gulp.task("watch", function () {
 
     gulp.watch(paths.ts.src, ['build1']);
     gulp.watch(paths2.ts.src, ['build2']);
+    gulp.watch(paths.htmlandCSS.src, ['build1HTMLandCSS']);
+    gulp.watch(paths2.htmlandCSS.src, ['build2HTMLandCSS']);
 });
 
 
-gulp.task('default', ['build1', 'build2', 'bundle', 'bundle:css', 'watch'], function () {
+gulp.task('default', ['build1', 'build1HTMLandCSS', 'build2HTMLandCSS', 'build2', 'bundle', 'bundle:css', 'watch'], function () {
     // place code for your default task here
 });

@@ -10,22 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
+var http_1 = require('angular2/http');
+var cart_service_1 = require('./cart.service');
 var CartComponent = (function () {
-    function CartComponent(elementRef) {
-        this.elementRef = elementRef;
+    function CartComponent(cartService) {
+        this.cartService = cartService;
     }
+    CartComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.cartService.getCartData().subscribe(function (data) { _this.data = data.products; console.log(data); }, function (error) { return _this.errorMessage = error; });
+    };
     CartComponent = __decorate([
         core_1.Component({
             selector: "my-cart",
-            template: "Good !!****",
+            templateUrl: 'app/cart-ts/cart.component.html',
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [
-                router_1.ROUTER_PROVIDERS
+                http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, cart_service_1.CartService
             ]
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef])
+        __metadata('design:paramtypes', [cart_service_1.CartService])
     ], CartComponent);
     return CartComponent;
 }());
 exports.CartComponent = CartComponent;
-//# sourceMappingURL=cart.component.js.map
