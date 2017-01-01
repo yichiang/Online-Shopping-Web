@@ -33,7 +33,7 @@
                     <li><a href="/Client">Product</a></li>
                     <li><a href="/Cart">Cart</a></li>
 
-                    
+
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -52,53 +52,48 @@
 
                     @if (SignInManager.IsSignedIn(User))
                     {
-                    <li>
-                        @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "navbar-form" }))
-                        {
-                            <span class="userName-nav">
-                                @UserManager.GetUserName(User)
-                            </span>
-                            <input type="submit" value="Logout" />
-                        }
-                    </li>
+                        <li>
+                            @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "navbar-form" }))
+                            {
+                                <span class="userName-nav">
+                                    @UserManager.GetUserName(User)
+                                </span>
+                                <input type="submit" value="Logout" />
+                            }
+                        </li>
                     }
                     else
                     {
                         <li>@Html.ActionLink("Login In", "Login", "Account")</li>
-                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
                     }
 
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-   
 
-        <div class="">
-            @RenderBody()
-   
-        </div>
+
+    <div class="">
+      @RenderBody()
+    </div>
     @*<environment name="Development">
-    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        @RenderSection("ownScript",required:false)
-    </environment>*@
-    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    @RenderSection("ownScript", required: false)
-
+        <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            @RenderSection("ownScript",required:false)
+        </environment>*@
     @*<environment names="Staging, Production">
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.js"
-                asp-fallback-src="/node_modules/jquery/dist/jquery.js"
-                asp-fallback-test="window.jQuery"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.1/jquery.validate.js"
-                asp-fallback-src="/node_modules/jquery/dist/jquery.validate.js"
-                asp-fallback-test="window.jQuery & window.JQuery.Validator"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"
-                asp-fallback-src="/node_modules/jquery/dist/jquery.validate.unobtrusive.js"
-                asp-fallback-test="window.jQuery & window.JQuery.Validator && window.JQuery.Validator.Unobtrusive"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </environment>*@
+            <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.js"
+                    asp-fallback-src="/node_modules/jquery/dist/jquery.js"
+                    asp-fallback-test="window.jQuery"></script>
+            <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.1/jquery.validate.js"
+                    asp-fallback-src="/node_modules/jquery/dist/jquery.validate.js"
+                    asp-fallback-test="window.jQuery & window.JQuery.Validator"></script>
+            <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"
+                    asp-fallback-src="/node_modules/jquery/dist/jquery.validate.unobtrusive.js"
+                    asp-fallback-test="window.jQuery & window.JQuery.Validator && window.JQuery.Validator.Unobtrusive"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        </environment>*@
     <div class="container">
         <my-app>Loading...</my-app>
     </div>
@@ -118,23 +113,26 @@
     <script src="lib/bootstrap/bootstrap.js"></script>
 
     <script>
-            System.config({
-                "transpiler": false,
-                "packages": {
-                    "app": { defaultExtension: "js" },
-                    "cart": { defaultExtension: "js" },
-                    "lib": {defaultExtension: "js"}
-                }
-            });
+        System.config({
+            "transpiler": false,
+            "packages": {
+                "app": { defaultExtension: "js" },
+                //"cart": { defaultExtension: "js" },
+                "lib": { defaultExtension: "js" }
+            }
+        });
 
-            System.import("./app/main").then(
-                null,
-                console.error.bind(console)
-            );
-            System.import("./cart/main").then(
-                    null,
-                    console.error.bind(console)
-                );
+        System.import("./app/main").then(
+            null,
+            console.error.bind(console)
+        );
+        //System.import("./cart/main").then(
+        //        null,
+        //        console.error.bind(console)
+        //    );
     </script>
-   </body>
+    @RenderSection("ownScript", required: false)
+
+</body>
+
  </html>

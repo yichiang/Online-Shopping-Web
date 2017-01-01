@@ -23,7 +23,7 @@ namespace OnlineShoppingWeb.Services
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                 // Note: only needed if the SMTP server requires authentication
-                client.Authenticate("Your_Email_Address", Environment.GetEnvironmentVariable("EmailPassword"));
+                client.Authenticate("yichiang00@gmail.com", Environment.GetEnvironmentVariable("EmailPassword"));
                 client.Send(emailMessage);
                 client.Disconnect(true);
            

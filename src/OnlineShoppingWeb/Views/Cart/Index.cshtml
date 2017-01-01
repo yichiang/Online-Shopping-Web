@@ -197,5 +197,24 @@
             });
         });
         </script>
+        <script>
+                System.config({
+                    "transpiler": false,
+                    "packages": {
+                        //"app": { defaultExtension: "js" },
+                        "cart": { defaultExtension: "js" },
+                        "lib": {defaultExtension: "js"}
+                    }
+                });
+
+                //System.import("./app/main").then(
+                //    null,
+                //    console.error.bind(console)
+                //);
+                System.import("./cart/main").then(
+                        null,
+                        console.error.bind(console)
+                );
+        </script>
     }
 </div>
