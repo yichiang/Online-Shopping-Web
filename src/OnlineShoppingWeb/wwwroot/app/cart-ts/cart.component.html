@@ -1,12 +1,13 @@
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Price</th>
-
-    </tr>
-    <tr *ngFor="#currentV of data">
-        <td>{{currentV.title}}</td>
-        <td>{{currentV.price}}</td>
-
-    </tr>
-</table>
+<div class="panel panel-default">
+  <div class="panel-heading">Cart Details with Angular2 +Web API</div>
+    <div class="panel-body">
+        <table class="table" *ngIf="data?.products">
+            <tr *ngFor="#currentV of data.products" class="tableRow">
+                <td>Title</td>
+                <td>{{currentV.title}}</td>
+                <td>Price</td>
+                <td>{{currentV.price}}</td>
+            </tr>            
+        </table>
+   </div>
+ </div>

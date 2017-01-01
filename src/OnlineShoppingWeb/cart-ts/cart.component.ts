@@ -11,6 +11,7 @@ import { CartService } from './cart.service';
 @Component({
     selector: "my-cart",
     templateUrl: 'app/cart-ts/cart.component.html',
+    styleUrls: ['app/cart-ts/cart.component.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [
         HTTP_PROVIDERS, ROUTER_PROVIDERS, CartService
@@ -18,11 +19,11 @@ import { CartService } from './cart.service';
 })
 
 export class CartComponent {
-    data: Array<Product>;
+    data: Cart;
     errorMessage: string;
     constructor(private cartService: CartService) { }
     ngOnInit(): void {
-        this.cartService.getCartData().subscribe(data => { this.data = data.products; console.log(data); },
+        this.cartService.getCartData().subscribe(data => { this.data = data; console.log(data); },
             error => this.errorMessage = <any>error);
     }
 }

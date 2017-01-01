@@ -18,12 +18,13 @@ var CartComponent = (function () {
     }
     CartComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.cartService.getCartData().subscribe(function (data) { _this.data = data.products; console.log(data); }, function (error) { return _this.errorMessage = error; });
+        this.cartService.getCartData().subscribe(function (data) { _this.data = data; console.log(data); }, function (error) { return _this.errorMessage = error; });
     };
     CartComponent = __decorate([
         core_1.Component({
             selector: "my-cart",
             templateUrl: 'app/cart-ts/cart.component.html',
+            styleUrls: ['app/cart-ts/cart.component.css'],
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [
                 http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, cart_service_1.CartService

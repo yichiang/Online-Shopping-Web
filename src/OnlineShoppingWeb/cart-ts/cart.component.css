@@ -1,0 +1,10 @@
+﻿.tableRow > td{
+    border: 2px solid black;
+}
+
+.tableRow > td:nth-child(odd){
+    background-color:darkorange;
+}
+.tableRow{
+ 
+}
