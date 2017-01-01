@@ -117,19 +117,14 @@
             "transpiler": false,
             "packages": {
                 "app": { defaultExtension: "js" },
-                //"cart": { defaultExtension: "js" },
                 "lib": { defaultExtension: "js" }
             }
         });
 
-        System.import("./app/main").then(
+        System.import("./app/app-ts/main").then(
             null,
             console.error.bind(console)
         );
-        //System.import("./cart/main").then(
-        //        null,
-        //        console.error.bind(console)
-        //    );
     </script>
     @RenderSection("ownScript", required: false)
 

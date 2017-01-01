@@ -17,7 +17,7 @@ var paths = {
 var paths2 = {
     ts: {
         src: ["cart-ts/*.ts", "typings/main.d.ts"],
-        dest: "wwwroot/cart"
+        dest: "wwwroot/app"
     },
     npm: "node_modules/",
     libDest: "wwwroot",
@@ -27,21 +27,23 @@ var paths2 = {
 gulp.task("build1", function () {
 
     var tsProject = tsc.createProject("tsConfig.json");
-
-    return gulp.src(paths.ts.src)
-            .pipe(tsc(tsProject))
-            .pipe(gulp.dest(paths.ts.dest));
-
-
+    return tsProject.src(paths.ts.src)
+        .pipe(tsProject())
+        .js.pipe(gulp.dest(paths.ts.dest));
+    //return gulp.src(paths.ts.src)
+    //        .pipe(tsc(tsProject))
+    //        .pipe(gulp.dest(paths.ts.dest));
 });
+
 gulp.task("build2", function () {
 
     var tsProject = tsc.createProject("tsConfig.json");
-
-    return gulp.src(paths2.ts.src)
-            .pipe(tsc(tsProject))
-            .pipe(gulp.dest(paths2.ts.dest));
-
+    //return gulp.src(paths2.ts.src)
+    //        .pipe(tsc(tsProject))
+    //        .pipe(gulp.dest(paths2.ts.dest));
+    return tsProject.src(paths2.ts.src)
+       .pipe(tsProject())
+       .js.pipe(gulp.dest(paths2.ts.dest));
 
 });
 gulp.task("bundle", function () {
@@ -78,8 +80,8 @@ gulp.task("bundle:css", function () {
 
 gulp.task("watch", function () {
 
-    gulp.watch('paths.ts.src', ['build1']);
-    gulp.watch('paths2.ts.src', ['build2']);
+    gulp.watch(paths.ts.src, ['build1']);
+    gulp.watch(paths2.ts.src, ['build2']);
 });
 
 

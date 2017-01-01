@@ -4,8 +4,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 
 @Component({
     selector: "my-cart",
-    template: `
-    cart components!`,
+    template: `Good !!****`,
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS
