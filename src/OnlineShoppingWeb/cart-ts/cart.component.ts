@@ -3,7 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 import { Product } from './Product.model';
 import { Cart } from './Cart.model';
 import { HTTP_PROVIDERS } from 'angular2/http';
-
+import { SaveForLater } from './SaveForLater.model';
 import { CartService } from './cart.service';
 
 
@@ -20,10 +20,11 @@ import { CartService } from './cart.service';
 
 export class CartComponent {
     data: Cart;
+    saveForLaters: Array<SaveForLater>;
     errorMessage: string;
     constructor(private cartService: CartService) { }
     ngOnInit(): void {
-        this.cartService.getCartData().subscribe(data => { this.data = data; console.log(data); },
+        this.cartService.getCartData().subscribe(data => { this.data = data; this.saveForLaters = data.saveForLaters; console.log(data); },
             error => this.errorMessage = <any>error);
     }
 }

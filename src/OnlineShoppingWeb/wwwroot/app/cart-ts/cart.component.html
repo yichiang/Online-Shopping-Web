@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Cart Details with Angular2 +Web API</div>
+    <div class="panel-heading">Cart Details with Angular2 +Web API</div>
     <div class="panel-body">
         <table class="table" *ngIf="data?.products">
             <tr *ngFor="#currentV of data.products" class="tableRow">
@@ -7,7 +7,20 @@
                 <td>{{currentV.title}}</td>
                 <td>Price</td>
                 <td>{{currentV.price}}</td>
-            </tr>            
+            </tr>
         </table>
-   </div>
- </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Save For Laters Details with Angular2 +Web API</div>
+    <div class="panel-body">
+        <table class="table" *ngIf="data?.saveForLaters">
+            <tr *ngFor="#currentV of data?.saveForLaters" class="tableRow">
+                <td>Title</td>
+                <td>{{currentV.proudct?.title}}</td>
+                <td>Price</td>
+                <td>{{currentV.proudct?.price}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
