@@ -7,6 +7,16 @@
                 <td>{{currentV.title}}</td>
                 <td>Price</td>
                 <td>{{currentV.price}}</td>
+                <td>Quantity</td>
+                <td>{{currentV.quantity}}</td>
+                <!--<td>Save For Latar</td>-->
+                <td>
+                    <form class="">
+                        <button class="add-button btn btn-primary btn-block" (click)="toSaveForLater(currentV.productId)">Save For Later</button>
+                    </form>
+                </td>
+                <td>Delete</td>
+                <td>{{currentV.quantity}}</td>
             </tr>
         </table>
     </div>

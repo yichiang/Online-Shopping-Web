@@ -20,6 +20,10 @@ var CartComponent = (function () {
         var _this = this;
         this.cartService.getCartData().subscribe(function (data) { _this.data = data; _this.saveForLaters = data.saveForLaters; console.log(data); }, function (error) { return _this.errorMessage = error; });
     };
+    CartComponent.prototype.toSaveForLater = function (productId) {
+        console.log("Save");
+        this.cartService.toSaveForLater(productId);
+    };
     return CartComponent;
 }());
 CartComponent = __decorate([

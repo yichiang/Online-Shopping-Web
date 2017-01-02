@@ -27,4 +27,8 @@ export class CartComponent {
         this.cartService.getCartData().subscribe(data => { this.data = data; this.saveForLaters = data.saveForLaters; console.log(data); },
             error => this.errorMessage = <any>error);
     }
+    toSaveForLater(productId: number) {
+        console.log("Save");
+        this.cartService.toSaveForLater(productId)
+    }
 }

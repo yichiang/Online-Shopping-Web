@@ -1,5 +1,5 @@
 ﻿
-import { Http, Response } from 'angular2/http';
+import { Http, Response, Headers, RequestOptions  } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 //import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
@@ -11,7 +11,19 @@ import { Cart } from './Cart.model';
 export class CartService {
     constructor(private _http: Http) { }
     getCartData(): Observable<Cart> {
-        return this._http.get('http://localhost:49186/api/cart').map((response: Response) => <Cart>response.json())
+        return this._http.get('/api/cart')
+            .map((response: Response) => <Cart>response.json())
+            .catch(this.handleError);
+    }
+
+    toSaveForLater(productId: number): Observable<Cart> {
+        let body = JSON.stringify({"productId": productId});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        console.log("Try to save", productId);
+        return this._http.post('/api/saveForLater', body , options)
+            .map((response: Response) => { <Cart>response.json(); console.log("response", response); })
+            //.do(console.log("Try to save", productId))
             .catch(this.handleError);
     }
     private handleError(error: Response) {
@@ -21,6 +33,5 @@ export class CartService {
         let body = res.json();
         return body.data || {};
     }
-
    
 }

@@ -18,7 +18,17 @@ var CartService = (function () {
         this._http = _http;
     }
     CartService.prototype.getCartData = function () {
-        return this._http.get('http://localhost:49186/api/cart').map(function (response) { return response.json(); })
+        return this._http.get('/api/cart')
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    CartService.prototype.toSaveForLater = function (productId) {
+        var body = JSON.stringify({ "productId": productId });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        console.log("Try to save", productId);
+        return this._http.post('/api/saveForLater', body, options)
+            .map(function (response) { response.json(); console.log("response", response); })
             .catch(this.handleError);
     };
     CartService.prototype.handleError = function (error) {

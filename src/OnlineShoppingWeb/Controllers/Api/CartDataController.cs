@@ -42,6 +42,28 @@ namespace OnlineShoppingWeb.Controllers.Api
             vm.SaveForLaters = _shoppingCartData.GetAllSaveForLaterByUserId(userId);
             return Json(vm);
         }
+        [HttpPost("api/saveForLater")]
+        public async Task<IActionResult> SaveForLater([FromBody]string productId)
+        {
+           
+            //var vm = new CartModel();
+            //var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            //if (_shoppingCartData.CheckIsExistedInList(productId, userId))
+            //{
+            //    return Json(new { success = false, responseText = "The attached file is not supported." });
+            //}
+            //else
+            //{
+            //    var foundShoppingProduct = _shoppingCartData.FindCartProductById(productId, userId);
+
+            //    Product foundProduct = _productData.FindProductById(productId);
+            //    _shoppingCartData.Delete(foundShoppingProduct);
+            //    SaveForLater foundSaveForLater = _shoppingCartData.SaveForLater(productId, userId);
+            //    return Json(vm);
+            //}
+            return Json( new {id= productId });
+        }
     }
 }
       
