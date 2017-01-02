@@ -42,8 +42,8 @@ namespace OnlineShoppingWeb.Controllers.Api
             vm.SaveForLaters = _shoppingCartData.GetAllSaveForLaterByUserId(userId);
             return Json(vm);
         }
-        [HttpPost("api/saveForLater")]
-        public async Task<IActionResult> SaveForLater([FromBody]string productId)
+        [HttpPost("api/saveForLater/{productId}")]
+        public async Task<IActionResult> SaveForLater(int productId)
         {
            
             //var vm = new CartModel();

@@ -5,4 +5,3 @@ var Cart = (function () {
     return Cart;
 }());
 exports.Cart = Cart;
-//# sourceMappingURL=Cart.model.js.map

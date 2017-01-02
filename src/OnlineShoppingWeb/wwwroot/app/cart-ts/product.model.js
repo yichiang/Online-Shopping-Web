@@ -33,4 +33,3 @@ var HardDriveType;
     HardDriveType[HardDriveType["SSD"] = 2] = "SSD";
     HardDriveType[HardDriveType["Hybrid"] = 3] = "Hybrid";
 })(HardDriveType || (HardDriveType = {}));
-//# sourceMappingURL=Product.model.js.map

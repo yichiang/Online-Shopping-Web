@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("angular2/core");
-var router_1 = require("angular2/router");
-var http_1 = require("angular2/http");
-var cart_service_1 = require("./cart.service");
+var core_1 = require('angular2/core');
+var router_1 = require('angular2/router');
+var http_1 = require('angular2/http');
+var cart_service_1 = require('./cart.service');
 var CartComponent = (function () {
     function CartComponent(cartService) {
         this.cartService = cartService;
@@ -24,19 +24,18 @@ var CartComponent = (function () {
         console.log("Save");
         this.cartService.toSaveForLater(productId);
     };
+    CartComponent = __decorate([
+        core_1.Component({
+            selector: "my-cart",
+            templateUrl: 'app/cart-ts/cart.component.html',
+            styleUrls: ['app/cart-ts/cart.component.css'],
+            directives: [router_1.ROUTER_DIRECTIVES],
+            providers: [
+                http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, cart_service_1.CartService
+            ]
+        }), 
+        __metadata('design:paramtypes', [cart_service_1.CartService])
+    ], CartComponent);
     return CartComponent;
 }());
-CartComponent = __decorate([
-    core_1.Component({
-        selector: "my-cart",
-        templateUrl: 'app/cart-ts/cart.component.html',
-        styleUrls: ['app/cart-ts/cart.component.css'],
-        directives: [router_1.ROUTER_DIRECTIVES],
-        providers: [
-            http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, cart_service_1.CartService
-        ]
-    }),
-    __metadata("design:paramtypes", [cart_service_1.CartService])
-], CartComponent);
 exports.CartComponent = CartComponent;
-//# sourceMappingURL=cart.component.js.map

@@ -17,11 +17,12 @@ export class CartService {
     }
 
     toSaveForLater(productId: number): Observable<Cart> {
-        let body = JSON.stringify({"productId": productId});
+        //let body = JSON.stringify({"productId": productId});
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         console.log("Try to save", productId);
-        return this._http.post('/api/saveForLater', body , options)
+        console.log("Post", '/api/saveForLater/' + productId )
+        return this._http.post('http://localhost:49186/api/saveForLater/' + productId, null, options)
             .map((response: Response) => { <Cart>response.json(); console.log("response", response); })
             //.do(console.log("Try to save", productId))
             .catch(this.handleError);
