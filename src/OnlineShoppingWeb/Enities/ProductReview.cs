@@ -20,6 +20,6 @@ namespace OnlineShoppingWeb.Enities
         public virtual User User { get; set; }
 
         public int ProductId { get; set; }
-        public virtual Product Proudct { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

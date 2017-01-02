@@ -91,23 +91,23 @@
         {
             <div class="row">
                 <div class="col-sm-8">
-                    <h3>@list.Proudct.Title</h3>
+                    <h3>@list.Product.Title</h3>
                     @using (Html.BeginForm("SaveForLaterDelete", "Cart", FormMethod.Post))
                 {
-                        <input type="hidden" name="SaveForLater.ProductId" value="@list.Proudct.ProductId" />
+                        <input type="hidden" name="SaveForLater.ProductId" value="@list.Product.ProductId" />
 
                         <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
                     }
 
                     @using (Html.BeginForm("MoveToCartFromList", "Cart", FormMethod.Post))
                 {
-                        <input type="hidden" name="SaveForLater.ProductId" value="@list.Proudct.ProductId" />
+                        <input type="hidden" name="SaveForLater.ProductId" value="@list.Product.ProductId" />
 
                         <button type="submit"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Move To Cart</button>
                     }
                 </div>
                 <div class="col-sm-4">
-                    <h3>$ @list.Proudct.Price</h3>
+                    <h3>$ @list.Product.Price</h3>
                 </div>
             </div>
 
@@ -193,16 +193,16 @@
 
                             $clickedForm.remove();
 
-                            console.log(result.list.proudct);
+                            console.log(result.list.product);
                             var newTotal = parseInt($(".total-price").text()) + parseInt(result.totalChangePrice);
                             $(".total-price").text(newTotal);
                             $("#SaveForLater").append(
                                 "<div class='row'><div class='col-sm-8'><h3>"
-                                + result.list.proudct.title +
+                                + result.list.product.title +
                                 "</h3><form method='post' action='/Cart/SaveForLaterDelete'><input type='hidden' name='SaveForLater.ProductId' value='"
-                                + result.list.proudct.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Delete</button></form> <form method='post' action='/Cart/MoveToCartFromList'><input type='hidden' name='SaveForLater.ProductId' value='"
-                                + result.list.proudct.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Move To Cart</button></form> </div><div class='col-sm-4'><h3> $"
-                                + result.list.proudct.price +
+                                + result.list.product.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Delete</button></form> <form method='post' action='/Cart/MoveToCartFromList'><input type='hidden' name='SaveForLater.ProductId' value='"
+                                + result.list.product.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Move To Cart</button></form> </div><div class='col-sm-4'><h3> $"
+                                + result.list.product.price +
                                 "</div></div>");
                         } else {
 

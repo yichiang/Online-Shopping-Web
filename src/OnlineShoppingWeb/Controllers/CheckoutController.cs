@@ -40,9 +40,9 @@ namespace OnlineShoppingWeb.Controllers
             List<Product> allSavedProduct = new List<Product>();
             foreach (var item in allSavedProducts)
             {
-                item.Proudct.Quantity = item.Qty;
-                vm.Total += item.Proudct.Quantity * item.Proudct.Price;
-                allSavedProduct.Add(item.Proudct);
+                item.Product.Quantity = item.Qty;
+                vm.Total += item.Product.Quantity * item.Product.Price;
+                allSavedProduct.Add(item.Product);
             }
             vm.Products = allSavedProduct;
             if (!string.IsNullOrEmpty(currentUser.ShippingAddress))
@@ -67,9 +67,9 @@ namespace OnlineShoppingWeb.Controllers
             foreach (var item in allSavedProducts)
             {
                 //Change Item.Product qty to user's intended purchase qty
-                item.Proudct.Quantity = item.Qty;
+                item.Product.Quantity = item.Qty;
                 //add modified-Qty Product to list of products
-                allSavedProduct.Add(item.Proudct);
+                allSavedProduct.Add(item.Product);
             }
             ShoppingOrder newOrder = new ShoppingOrder();
             newOrder.User = currentUser;

@@ -45,13 +45,13 @@ namespace OnlineShoppingWeb.Services
 
         public IEnumerable<ShoppingCart> GetAllByUser(User User)
         {
-            return _context.ShoppingCart.Include(m => m.Proudct). Where(c =>c.User== User).ToList();
+            return _context.ShoppingCart.Include(m => m.Product). Where(c =>c.User== User).ToList();
         }
 
         public IEnumerable<SaveForLater> GetAllSaveForLaterByUserId(string UserId)
         {
 
-            return _context.SaveForLaters.Include(m => m.Proudct).ToList();
+            return _context.SaveForLaters.Include(m => m.Product).ToList();
         }
 
         public SaveForLater GetSaveForLater(int ProductId, string userId)

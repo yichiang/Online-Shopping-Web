@@ -4,7 +4,7 @@ export class SaveForLater {
     public saveForLaterId: string;
     public productId: number;
     public userId: string;
-    public proudct: Product;
+    public product: Product;
     public saveForLaters: Array<Product>;
     constructor() {
     }

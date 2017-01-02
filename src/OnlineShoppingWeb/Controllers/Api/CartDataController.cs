@@ -34,8 +34,8 @@ namespace OnlineShoppingWeb.Controllers.Api
             List<Product> allSavedProduct = new List<Product>();
             foreach (var item in allSavedProducts)
             {
-                item.Proudct.Quantity = item.Qty;
-                allSavedProduct.Add(item.Proudct);
+                item.Product.Quantity = item.Qty;
+                allSavedProduct.Add(item.Product);
             }
             vm.Products = allSavedProduct;
             vm.totalPrice = vm.Products.Sum(p => p.Price * p.Quantity);

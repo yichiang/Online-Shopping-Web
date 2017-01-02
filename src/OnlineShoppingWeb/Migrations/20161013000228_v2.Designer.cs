@@ -445,7 +445,7 @@ namespace OnlineShoppingWeb.Migrations
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ProductReview", b =>
                 {
-                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Proudct")
+                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Product")
                         .WithMany("ProductReviews")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -457,7 +457,7 @@ namespace OnlineShoppingWeb.Migrations
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.SaveForLater", b =>
                 {
-                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Proudct")
+                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -469,7 +469,7 @@ namespace OnlineShoppingWeb.Migrations
 
             modelBuilder.Entity("OnlineShoppingWeb.Enities.ShoppingCart", b =>
                 {
-                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Proudct")
+                    b.HasOne("OnlineShoppingWeb.Enities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
