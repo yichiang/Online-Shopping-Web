@@ -24,11 +24,14 @@ export class CartComponent {
     errorMessage: string;
     constructor(private cartService: CartService) { }
     ngOnInit(): void {
-        this.cartService.getCartData().subscribe(data => { this.data = data; this.saveForLaters = data.saveForLaters; console.log(data); },
+        this.cartService.getCartData().subscribe(data => { this.data = data; this.saveForLaters = data.saveForLaters; console.log("Get", data); },
             error => this.errorMessage = <any>error);
     }
     toSaveForLater(productId: number) {
         console.log("Save");
         this.cartService.toSaveForLater(productId)
-    }
+            .subscribe(data => { this.data = data; console.log("Post", data);},
+                        error => this.errorMessage = <any>error);
+
+}
 }

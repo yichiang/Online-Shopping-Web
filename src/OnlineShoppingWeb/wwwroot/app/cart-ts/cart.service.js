@@ -19,17 +19,15 @@ var CartService = (function () {
     }
     CartService.prototype.getCartData = function () {
         return this._http.get('/api/cart')
-            .map(function (response) { return response.json(); })
+            .map(function (response) { console.log("GET ANGULAR2", response.json()); return response.json(); })
             .catch(this.handleError);
     };
     CartService.prototype.toSaveForLater = function (productId) {
         //let body = JSON.stringify({"productId": productId});
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        console.log("Try to save", productId);
-        console.log("Post", '/api/saveForLater/' + productId);
-        return this._http.post('http://localhost:49186/api/saveForLater/' + productId, null, options)
-            .map(function (response) { response.json(); console.log("response", response); })
+        return this._http.post('/api/saveForLater/' + productId, null, options)
+            .map(function (response) { console.log("POST MAP", response.json()); return response.json(); })
             .catch(this.handleError);
     };
     CartService.prototype.handleError = function (error) {

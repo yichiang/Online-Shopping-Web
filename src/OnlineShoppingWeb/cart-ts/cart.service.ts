@@ -1,5 +1,5 @@
 ﻿
-import { Http, Response, Headers, RequestOptions  } from 'angular2/http';
+import { Http, Response, Headers, RequestOptions } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 //import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
@@ -12,7 +12,7 @@ export class CartService {
     constructor(private _http: Http) { }
     getCartData(): Observable<Cart> {
         return this._http.get('/api/cart')
-            .map((response: Response) => <Cart>response.json())
+            .map((response: Response) => { console.log("GET ANGULAR2", response.json()); return <Cart>response.json(); })
             .catch(this.handleError);
     }
 
@@ -20,11 +20,8 @@ export class CartService {
         //let body = JSON.stringify({"productId": productId});
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        console.log("Try to save", productId);
-        console.log("Post", '/api/saveForLater/' + productId )
-        return this._http.post('http://localhost:49186/api/saveForLater/' + productId, null, options)
-            .map((response: Response) => { <Cart>response.json(); console.log("response", response); })
-            //.do(console.log("Try to save", productId))
+        return this._http.post('/api/saveForLater/' + productId, null, options)
+            .map((response: Response) => { console.log("POST MAP", response.json()); return <Cart>response.json();})
             .catch(this.handleError);
     }
     private handleError(error: Response) {
@@ -34,5 +31,5 @@ export class CartService {
         let body = res.json();
         return body.data || {};
     }
-   
+
 }

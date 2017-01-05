@@ -18,11 +18,13 @@ var CartComponent = (function () {
     }
     CartComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.cartService.getCartData().subscribe(function (data) { _this.data = data; _this.saveForLaters = data.saveForLaters; console.log(data); }, function (error) { return _this.errorMessage = error; });
+        this.cartService.getCartData().subscribe(function (data) { _this.data = data; _this.saveForLaters = data.saveForLaters; console.log("Get", data); }, function (error) { return _this.errorMessage = error; });
     };
     CartComponent.prototype.toSaveForLater = function (productId) {
+        var _this = this;
         console.log("Save");
-        this.cartService.toSaveForLater(productId);
+        this.cartService.toSaveForLater(productId)
+            .subscribe(function (data) { _this.data = data; console.log("Post", data); }, function (error) { return _this.errorMessage = error; });
     };
     CartComponent = __decorate([
         core_1.Component({
