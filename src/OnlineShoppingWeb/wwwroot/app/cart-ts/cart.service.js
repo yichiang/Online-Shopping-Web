@@ -30,6 +30,14 @@ var CartService = (function () {
             .map(function (response) { console.log("POST MAP", response.json()); return response.json(); })
             .catch(this.handleError);
     };
+    CartService.prototype.deleteCartItem = function (productId) {
+        //let body = JSON.stringify({"productId": productId});
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post('/api/delete/' + productId, null, options)
+            .map(function (response) { console.log("POST MAP", response.json()); return response.json(); })
+            .catch(this.handleError);
+    };
     CartService.prototype.handleError = function (error) {
         return Observable_1.Observable.throw(error.json().error || 'Serve error');
     };

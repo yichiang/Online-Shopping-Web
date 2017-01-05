@@ -24,6 +24,14 @@ export class CartService {
             .map((response: Response) => { console.log("POST MAP", response.json()); return <Cart>response.json();})
             .catch(this.handleError);
     }
+    deleteCartItem(productId: number): Observable<any> {
+        //let body = JSON.stringify({"productId": productId});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this._http.post('/api/delete/' + productId, null, options)
+            .map((response: Response) => { console.log("POST MAP", response.json()); return <Cart>response.json(); })
+            .catch(this.handleError);
+    }
     private handleError(error: Response) {
         return Observable.throw(error.json().error || 'Serve error');
     }

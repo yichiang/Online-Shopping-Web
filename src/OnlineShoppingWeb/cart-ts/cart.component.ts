@@ -32,6 +32,12 @@ export class CartComponent {
         this.cartService.toSaveForLater(productId)
             .subscribe(data => { this.data = data; console.log("Post", data);},
                         error => this.errorMessage = <any>error);
-
-}
+    }
+    deleteCartItem(productId: number) {
+        this.cartService.deleteCartItem(productId)
+            .subscribe(data => {
+                if (data.success) { this.data.products = this.data.products.filter(x => x.productId != productId) }
+            },
+            error => this.errorMessage = <any>error);
+    }
 }

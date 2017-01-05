@@ -45,7 +45,7 @@ namespace OnlineShoppingWeb.Controllers.Api
         public async Task<IActionResult> Index(CartModel vm)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            vm =await InitModel(userId);
+            vm = await InitModel(userId);
             //var currentUser = await _userManager.FindByIdAsync(userId);
             //IEnumerable<ShoppingCart> allSavedProducts = _shoppingCartData.GetAllByUser(currentUser);
             //List<Product> allSavedProduct = new List<Product>();
@@ -62,7 +62,7 @@ namespace OnlineShoppingWeb.Controllers.Api
         [HttpPost("api/saveForLater/{productId}")]
         public async Task<IActionResult> SaveForLater(int productId)
         {
-           
+
             var vm = new CartModel();
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -81,6 +81,27 @@ namespace OnlineShoppingWeb.Controllers.Api
                 return Json(vm);
             }
         }
+        [HttpPost("api/delete/{productId}")]
+        public async Task<IActionResult> delteItem(int productId)
+        {
+
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (_shoppingCartData.CheckIsExistedInList(productId, userId))
+            {
+                return Json(new { success = false, responseText = "The attached file is not supported." });
+            }
+            else
+            {
+                var foundShoppingProduct = _shoppingCartData.FindCartProductById(productId, userId);
+
+                Product foundProduct = _productData.FindProductById(productId);
+                _shoppingCartData.Delete(foundShoppingProduct);
+                //will refactor just return sucess and using front-end to delete one item
+                //vm = await InitModel(userId);
+                return Json(new { success = true });
+            }
+        }
     }
 }
-      
+    

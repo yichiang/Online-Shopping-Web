@@ -26,6 +26,15 @@ var CartComponent = (function () {
         this.cartService.toSaveForLater(productId)
             .subscribe(function (data) { _this.data = data; console.log("Post", data); }, function (error) { return _this.errorMessage = error; });
     };
+    CartComponent.prototype.deleteCartItem = function (productId) {
+        var _this = this;
+        this.cartService.deleteCartItem(productId)
+            .subscribe(function (data) {
+            if (data.success) {
+                _this.data.products = _this.data.products.filter(function (x) { return x.productId != productId; });
+            }
+        }, function (error) { return _this.errorMessage = error; });
+    };
     CartComponent = __decorate([
         core_1.Component({
             selector: "my-cart",
