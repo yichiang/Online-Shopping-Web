@@ -40,4 +40,16 @@ export class CartComponent {
             },
             error => this.errorMessage = <any>error);
     }
+    movetoCart(productId: number) {
+        this.cartService.moveToCart(productId)
+            .subscribe(data => { this.data = data; console.log("Post", data); },
+            error => this.errorMessage = <any>error);
+    }
+    deleteSaveForLaterItem(productId: number) {
+        this.cartService.deleteSaveForLaterItem(productId)
+            .subscribe(data => {
+                if (data.success) { this.data.saveForLaters = this.data.saveForLaters.filter(x => x.productId != productId) }
+            },
+            error => this.errorMessage = <any>error);
+    }
 }

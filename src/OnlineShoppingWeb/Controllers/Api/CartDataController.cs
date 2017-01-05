@@ -82,7 +82,7 @@ namespace OnlineShoppingWeb.Controllers.Api
             }
         }
         [HttpPost("api/delete/{productId}")]
-        public async Task<IActionResult> delteItem(int productId)
+        public async Task<IActionResult> DelteItem(int productId)
         {
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -102,6 +102,26 @@ namespace OnlineShoppingWeb.Controllers.Api
                 return Json(new { success = true });
             }
         }
+
+        [HttpPost("api/moveToCart/{productId}")]
+        public async Task<IActionResult> MoveToCart(int productId)
+        {
+
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _productData.SaveToCart(productId, userId);
+            _shoppingCartData.DelteSaveToList(productId, userId);
+            var vm = await InitModel(userId);
+            return Json(vm);
+        }
+
+        [HttpPost("api/deleteItem/{productId}")]
+        public async Task<IActionResult> DelteSaveForLaterItem(int productId)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _shoppingCartData.DelteSaveToList(productId, userId);
+            return Json(new { success = true });
+        }
+
     }
 }
     

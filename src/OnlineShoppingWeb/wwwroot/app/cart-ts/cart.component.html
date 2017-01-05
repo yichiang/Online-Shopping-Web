@@ -34,6 +34,16 @@
                 <td>{{currentV.product?.title}}</td>
                 <td>Price</td>
                 <td>{{currentV.product?.price}}</td>
+                <td>
+                    <form class="">
+                        <button class="add-button btn btn-primary btn-block" (click)="movetoCart(currentV.productId)">Move to Cart</button>
+                    </form>
+                </td>
+                <td>
+                    <form class="">
+                        <button class="add-button btn btn-primary btn-block" (click)="deleteSaveForLaterItem(currentV.productId)">Delete</button>
+                    </form>
+                </td>
             </tr>
         </table>
     </div>

@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var http_1 = require('angular2/http');
-var Observable_1 = require('rxjs/Observable');
+var http_1 = require("angular2/http");
+var Observable_1 = require("rxjs/Observable");
 //import 'rxjs/add/operator/map';
-require('rxjs/Rx');
-var core_1 = require('angular2/core');
+require("rxjs/Rx");
+var core_1 = require("angular2/core");
 var CartService = (function () {
     function CartService(_http) {
         this._http = _http;
@@ -38,6 +38,22 @@ var CartService = (function () {
             .map(function (response) { console.log("POST MAP", response.json()); return response.json(); })
             .catch(this.handleError);
     };
+    CartService.prototype.moveToCart = function (productId) {
+        //let body = JSON.stringify({"productId": productId});
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post('/api/moveToCart/' + productId, null, options)
+            .map(function (response) { console.log("POST MAP", response.json()); return response.json(); })
+            .catch(this.handleError);
+    };
+    CartService.prototype.deleteSaveForLaterItem = function (productId) {
+        //let body = JSON.stringify({"productId": productId});
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post('/api/deleteItem/' + productId, null, options)
+            .map(function (response) { console.log("POST MAP", response.json()); return response.json(); })
+            .catch(this.handleError);
+    };
     CartService.prototype.handleError = function (error) {
         return Observable_1.Observable.throw(error.json().error || 'Serve error');
     };
@@ -45,10 +61,11 @@ var CartService = (function () {
         var body = res.json();
         return body.data || {};
     };
-    CartService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], CartService);
     return CartService;
 }());
+CartService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], CartService);
 exports.CartService = CartService;
+//# sourceMappingURL=cart.service.js.map

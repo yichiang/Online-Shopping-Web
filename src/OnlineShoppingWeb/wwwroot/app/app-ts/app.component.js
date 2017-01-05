@@ -8,22 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('angular2/core');
-var router_1 = require('angular2/router');
+var core_1 = require("angular2/core");
+var router_1 = require("angular2/router");
 var AppComponent = (function () {
+    //@RouteConfig([
+    //    { path: "/events", name: "EventList", component: EventListComponent, useAsDefault: true }
+    //])
     function AppComponent() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: "my-app",
-            template: "Hi Finally set up right gulp!!",
-            directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [
-                router_1.ROUTER_PROVIDERS
-            ]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
     return AppComponent;
 }());
+AppComponent = __decorate([
+    core_1.Component({
+        selector: "my-app",
+        template: "Hi Finally set up right gulp!!",
+        directives: [router_1.ROUTER_DIRECTIVES],
+        providers: [
+            router_1.ROUTER_PROVIDERS
+        ]
+    }),
+    __metadata("design:paramtypes", [])
+], AppComponent);
 exports.AppComponent = AppComponent;
+//# sourceMappingURL=app.component.js.map
