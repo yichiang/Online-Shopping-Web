@@ -29,6 +29,25 @@ For example, you can add Electronic department first and then add Phone or Lapto
 
 ## Technologies Used
  _MVC, .NET core, Angular2, Email, Uploading file, Stripe_
+ 
+## development
+1. install (typescript for visual studio)[https://www.microsoft.com/en-us/download/details.aspx?id=48593]
+2. install gulp `npm install -g gulp`
+3. `typings install`
+3. run `gulp` for building ts to javascript to `wwwroot/app/app-ts` and `wwwroot/app/cart-ts`.
+4. build at `IIS express`
+5. listen `localhost:49186`
+
+## Note for running on Mac
+_I did successfully run my project on Mac_
+Note: I have gulp file to run task before publishing.
+`npm install -g gulp` or `sudo npm install -g gulp`
+
+1. Install .NET Core SDK `version: 1.1.0`
+View details on https://www.microsoft.com/net/core#macos
+2. Use online sql data server. You will need to run migration for database before using.
+3. `dotnet restore` install all packages
+4. `dotnet build` and `dotnet run` to run localhost.
 
 ### License
 

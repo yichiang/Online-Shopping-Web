@@ -105,3 +105,7 @@ gulp.task("watch", function () {
 gulp.task('default', ['build1', 'build1HTMLandCSS', 'build2HTMLandCSS', 'build2', 'bundle', 'bundle:css', 'watch'], function () {
     // place code for your default task here
 });
+
+gulp.task('publish', ['build1', 'build1HTMLandCSS', 'build2HTMLandCSS', 'build2', 'bundle', 'bundle:css'], function () {
+    // place code for your default task here
+});
