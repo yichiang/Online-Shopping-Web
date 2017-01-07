@@ -96,18 +96,13 @@
             @Html.TextBoxFor(model => model.ProductReview.Title, new { @class = "form-control" })
         </div>
         <div class="form-group">
+            @Html.LabelFor(model => model.ProductReview.Score)
+
             @*will add good ux for rating*@
             <div class="ratingSystem">
-                <span class="glyphicon glyphicon-star" id="star-1" aria-hidden="true"></span>
-                <span class="glyphicon glyphicon-star" id="star-2" aria-hidden="true"></span>
-                <span class="glyphicon glyphicon-star" id="star-3" aria-hidden="true"></span>
-                <span class="glyphicon glyphicon-star" id="star-4" aria-hidden="true"></span>
-                <span class="glyphicon glyphicon-star" id="star-5" aria-hidden="true"></span>
             </div>
-          
-
-            @Html.LabelFor(model => model.ProductReview.Score)
-            @Html.TextBoxFor(model => model.ProductReview.Score, new { @class = "form-control" })
+            <input type="hidden" value="5" name="ProductReview.Score" class="rating-score"/>
+            @*@Html.TextBoxFor(model => model.ProductReview.Score, new { @class = "form-control rating-score", @Value = "5" })*@
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.ProductReview.Context)
@@ -120,39 +115,54 @@
     }
 </div>
 
-    @section ownScript{
-        <script>
-            $(document).ready(function () {
-                $(".SaveReviewForm").submit(function (event) {
-                    event.preventDefault();
-                    $.ajax({
-                        url: "@Url.Action("Review")",
-                        type: "Post",
-                        data: $(this).serialize(),
-                        dataType: "json",
-                        success: function (result) {
-                            console.log("Review");
-                            console.log(result);
-                            var star = generateStars(result.review.score);
+@section ownScript{
+    <script>
+        $(document).ready(function () {
+            $(".SaveReviewForm").submit(function (event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "@Url.Action("Review")",
+                    type: "Post",
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function (result) {
+                        console.log("Review");
+                        console.log(result);
+                        var star = generateStars(result.review.score);
 
-                            $(".review-table").prepend(
-                                "<tr><th>" + star + result.review.title + "</th>" +
-                                "<th>" + result.review.context + "</th></tr>");
-                            console.log(generateStars(result.score));
-                            $("#productTotalScore").html(generateStars(result.score));
-                        }
-                    });
+                        $(".review-table").prepend(
+                            "<tr><th>" + star + result.review.title + "</th>" +
+                            "<th>" + result.review.context + "</th></tr>");
+                        console.log(generateStars(result.score));
+                        $("#productTotalScore").html(generateStars(result.score));
+                    }
                 });
             });
+            $(".ratingSystem").append(generateStars(5, "star", true));
+            $(".star").click(function () {
+                console.log("click", $(this).attr("data-star"));
+                $(this).parent().children().removeClass('currentStar');
+                $(this).addClass('currentStar');
+                $(".rating-score").val($(this).attr("data-star"));
+            });
+        });
 
-            var generateStars = function (num) {
+        var generateStars = function (num, className, isHaveAttr) {
 
-                var star = "";
-                for (var i = 1; i <= num; i++) {
-                    star += "<span class='glyphicon glyphicon-star' aria-hidden='true'></span>"
-                }
-                return star;
-            };
+            var star = "";
+            //var attribute= isHaveAttr ? 'data-star ='+i : '';
+            //if(isHaveAttr){ attribute = 'data-star' + i}
 
-        </script>
-    }
+            for (var i = 1; i <= num; i++) {
+                var attribute = isHaveAttr ? 'data-star =' + i : '';
+
+                star +=
+                    "<span class='glyphicon glyphicon-star "
+                    + className +
+                    "' aria-hidden='true' " + attribute + "></span>"
+            }
+            return star;
+        };
+
+    </script>
+}

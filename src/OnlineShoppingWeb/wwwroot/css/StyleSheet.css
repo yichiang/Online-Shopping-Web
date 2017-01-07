@@ -177,10 +177,24 @@ section {
     font-size:1em;
 }
 /*rating stars styling*/
-.ratingSystem {
-    color:#ff4f00;
-    background-color: blue;
+
+.ratingSystem{
+    color: #ff4f00;
 }
+
+.currentStar ~ .star{
+    color: black;
+}
+
+.ratingSystem:hover > .star{
+    color:#ff4f00;
+}
+
+.ratingSystem > .star:hover ~ .star{
+    color: black;
+}
+
+ 
 
 @media screen and (min-width: 831px) {
  
