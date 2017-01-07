@@ -176,6 +176,11 @@ section {
     letter-spacing: 2px;
     font-size:1em;
 }
+/*rating stars styling*/
+.ratingSystem {
+    color:#ff4f00;
+    background-color: blue;
+}
 
 @media screen and (min-width: 831px) {
  

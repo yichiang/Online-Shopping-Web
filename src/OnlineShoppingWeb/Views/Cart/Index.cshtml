@@ -65,12 +65,10 @@
                     </div>
                 </div>
             </div>
-            @if (i % 3 == 0)
-                {
+            @if (i % 3 == 0){
                 @:</div>
 
-
-            }
+         }
             i++;
         }
     }
@@ -135,84 +133,84 @@
                         console.error.bind(console)
                 );
         </script>
-    <script>
-        $(document).ready(function () {
-            $(".change-qty-form").hide();
-            $(".change-qty-cancel-button").hide();
-
-            $(".change-qty-button").click(function () {
-                $(this).next().show();
-                $(".change-qty-cancel-button").show();
-
-                $(this).hide();
-                $(this).prev().hide();
-            });
-            $(".change-qty-cancel-button").click(function () {
-                $(this).prev().prev().prev().show();
-                $(this).prev().hide();
-                $(".change-qty-button").show();
-
-                $(this).hide();
-            });
-
-
-            $(".change-qty-form").submit(function (event) {
-                $qtyDisplay = $(this).prev().prev();
-                $(this).hide();
-                $(this).next().hide();
+        <script>
+            $(document).ready(function () {
+                $(".change-qty-form").hide();
                 $(".change-qty-cancel-button").hide();
-                $(".change-qty-button").show();
-                event.preventDefault();
-                $.ajax({
-                    url: "@Url.Action("ChangeQty")",
-                    type: "Post",
-                    data: $(this).serialize(),
-                    dataType: "json",
-                    success: function (result) {
-                        $(".action-message").text(result.message);
 
-                        $qtyDisplay.text(result.qty).css("color", "green").show();
-                        var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
-                        $(".total-price").text(newTotal);
-                    }
+                $(".change-qty-button").click(function () {
+                    $(this).next().show();
+                    $(".change-qty-cancel-button").show();
+
+                    $(this).hide();
+                    $(this).prev().hide();
                 });
-            });
+                $(".change-qty-cancel-button").click(function () {
+                    $(this).prev().prev().prev().show();
+                    $(this).prev().hide();
+                    $(".change-qty-button").show();
 
-            $(".save-for-later-form").submit(function (event) {
-                console.log("Save TO Later");
-                var $clickedForm = $(this).parent().parent().parent().parent().parent().parent();
-                event.preventDefault();
-                $.ajax({
-                    url: "@Url.Action("SaveForLater")",
-                    type: "Post",
-                    data: $(this).serialize(),
-                    dataType: "json",
+                    $(this).hide();
+                });
 
-                    success: function (result) {
-                        if (result.success) {
 
-                            $clickedForm.remove();
+                $(".change-qty-form").submit(function (event) {
+                    $qtyDisplay = $(this).prev().prev();
+                    $(this).hide();
+                    $(this).next().hide();
+                    $(".change-qty-cancel-button").hide();
+                    $(".change-qty-button").show();
+                    event.preventDefault();
+                    $.ajax({
+                        url: "@Url.Action("ChangeQty")",
+                        type: "Post",
+                        data: $(this).serialize(),
+                        dataType: "json",
+                        success: function (result) {
+                            $(".action-message").text(result.message);
 
-                            console.log(result.list.product);
-                            var newTotal = parseInt($(".total-price").text()) + parseInt(result.totalChangePrice);
+                            $qtyDisplay.text(result.qty).css("color", "green").show();
+                            var newTotal = parseInt($(".total-price").text()) + result.totalChangePrice;
                             $(".total-price").text(newTotal);
-                            $("#SaveForLater").append(
-                                "<div class='row'><div class='col-sm-8'><h3>"
-                                + result.list.product.title +
-                                "</h3><form method='post' action='/Cart/SaveForLaterDelete'><input type='hidden' name='SaveForLater.ProductId' value='"
-                                + result.list.product.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Delete</button></form> <form method='post' action='/Cart/MoveToCartFromList'><input type='hidden' name='SaveForLater.ProductId' value='"
-                                + result.list.product.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Move To Cart</button></form> </div><div class='col-sm-4'><h3> $"
-                                + result.list.product.price +
-                                "</div></div>");
-                        } else {
-
-                            alert("already In save for later list");
                         }
+                    });
+                });
 
-                    }
+                $(".save-for-later-form").submit(function (event) {
+                    console.log("Save TO Later");
+                    var $clickedForm = $(this).parent().parent().parent().parent().parent().parent();
+                    event.preventDefault();
+                    $.ajax({
+                        url: "@Url.Action("SaveForLater")",
+                        type: "Post",
+                        data: $(this).serialize(),
+                        dataType: "json",
+
+                        success: function (result) {
+                            if (result.success) {
+
+                                $clickedForm.remove();
+
+                                console.log(result.list.product);
+                                var newTotal = parseInt($(".total-price").text()) + parseInt(result.totalChangePrice);
+                                $(".total-price").text(newTotal);
+                                $("#SaveForLater").append(
+                                    "<div class='row'><div class='col-sm-8'><h3>"
+                                    + result.list.product.title +
+                                    "</h3><form method='post' action='/Cart/SaveForLaterDelete'><input type='hidden' name='SaveForLater.ProductId' value='"
+                                    + result.list.product.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Delete</button></form> <form method='post' action='/Cart/MoveToCartFromList'><input type='hidden' name='SaveForLater.ProductId' value='"
+                                    + result.list.product.productId + "'><button type='submit'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>Move To Cart</button></form> </div><div class='col-sm-4'><h3> $"
+                                    + result.list.product.price +
+                                    "</div></div>");
+                            } else {
+
+                                alert("already In save for later list");
+                            }
+
+                        }
+                    });
                 });
             });
-        });
-    </script>
-    }
+        </script>
+        }
 </div>

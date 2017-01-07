@@ -1,6 +1,4 @@
-﻿<h1>Product Detail</h1>
-@using OnlineShoppingWeb.ViewModels;
-@using System.Linq;
+﻿@using OnlineShoppingWeb.ViewModels;
 
 @model ClientProductPageViewModel
 <div class="container">
@@ -98,6 +96,16 @@
             @Html.TextBoxFor(model => model.ProductReview.Title, new { @class = "form-control" })
         </div>
         <div class="form-group">
+            @*will add good ux for rating*@
+            <div class="ratingSystem">
+                <span class="glyphicon glyphicon-star" id="star-1" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" id="star-2" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" id="star-3" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" id="star-4" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" id="star-5" aria-hidden="true"></span>
+            </div>
+          
+
             @Html.LabelFor(model => model.ProductReview.Score)
             @Html.TextBoxFor(model => model.ProductReview.Score, new { @class = "form-control" })
         </div>
@@ -112,8 +120,7 @@
     }
 </div>
 
-    @section ownScript
-{
+    @section ownScript{
         <script>
             $(document).ready(function () {
                 $(".SaveReviewForm").submit(function (event) {
@@ -126,19 +133,19 @@
                         success: function (result) {
                             console.log("Review");
                             console.log(result);
-                            var star = generateStart(result.review.score);
+                            var star = generateStars(result.review.score);
 
                             $(".review-table").prepend(
                                 "<tr><th>" + star + result.review.title + "</th>" +
                                 "<th>" + result.review.context + "</th></tr>");
-                            console.log(generateStart(result.score));
-                            $("#productTotalScore").html(generateStart(result.score));
+                            console.log(generateStars(result.score));
+                            $("#productTotalScore").html(generateStars(result.score));
                         }
                     });
                 });
             });
 
-            var generateStart = function (num) {
+            var generateStars = function (num) {
 
                 var star = "";
                 for (var i = 1; i <= num; i++) {
@@ -146,5 +153,6 @@
                 }
                 return star;
             };
+
         </script>
     }

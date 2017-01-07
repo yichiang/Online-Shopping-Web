@@ -98,30 +98,31 @@
         <my-app>Loading...</my-app>
     </div>
 
-    <script src="lib/es6-shim/es6-shim.js"></script>
-    <script src="lib/es6-promise/es6-promise.js"></script>
-    <script src="lib/systemjs/system-polyfills.src.js"></script>
-    <script src="lib/angular2/angular2-polyfills.js"></script>
-    <script src="lib/systemjs/system.src.js"></script>
-    <script src="lib/rxjs/Rx.js"></script>
-    <script src="lib/angular2/angular2.js"></script>
-    <script src="lib/angular2/router.js"></script>
-    <script src="lib/angular2/http.js"></script>
+    <script src="~/lib/es6-shim/es6-shim.js"></script>
+    <script src="~/lib/es6-promise/es6-promise.js"></script>
+    <script src="~/lib/systemjs/system-polyfills.src.js"></script>
+    <script src="~/lib/angular2/angular2-polyfills.js"></script>
+    <script src="~/lib/systemjs/system.src.js"></script>
+    <script src="~/lib/rxjs/Rx.js"></script>
+    <script src="~/lib/angular2/angular2.js"></script>
+    <script src="~/lib/angular2/router.js"></script>
+    <script src="~/lib/angular2/http.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
-    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/bootstrap.js"></script>
 
     <script>
         System.config({
             "transpiler": false,
             "packages": {
                 "app": { defaultExtension: "js" },
+                "./../app/app-ts": { defaultExtension: "js" },
                 "lib": { defaultExtension: "js" }
             }
         });
 
-        System.import("./app/app-ts/main").then(
+        System.import("./../app/app-ts/main").then(
             null,
             console.error.bind(console)
         );
