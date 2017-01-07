@@ -15,7 +15,7 @@
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "Microsoft.NETCore.App": {
-      "version": "1.0.1",
+      "version": "1.1.0",
       "type": "platform"
     },
     "Microsoft.AspNetCore.Routing": "1.0.1",
@@ -80,7 +80,7 @@
   },
 
   "scripts": {
-    "prepublish": [ "npm install", "typings install", "gulp" ],
+    "prepublish": [ "npm install" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }

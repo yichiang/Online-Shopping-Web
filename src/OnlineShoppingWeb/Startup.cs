@@ -90,7 +90,7 @@ namespace OnlineShoppingWeb
             app.UseNodeModules(env);
             app.UseMvc(routes =>
             {
- 
+
                 //routes.MapRoute(
                 //    name: "User",
                 //    template: "{controller}/{action}/{departmentId?}/{subDepartmentId?}/{productId?}",
@@ -102,7 +102,7 @@ namespace OnlineShoppingWeb
                     defaults: new { controller = "Home", action = "Index"}
                 );
             });
-        
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("404 Not found");
