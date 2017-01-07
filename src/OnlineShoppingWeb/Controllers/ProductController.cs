@@ -132,6 +132,7 @@ namespace OnlineShoppingWeb.Controllers
 
                 foreach (var file in usersfiles)
                 {
+                    // TO DO if without "upload" create one 
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     //Make sure File is Jpg
                     if (fileName.EndsWith(".jpg")||fileName.EndsWith(".png")|| fileName.EndsWith(".gif"))

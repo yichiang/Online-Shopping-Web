@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var http_1 = require("angular2/http");
 var Observable_1 = require("rxjs/Observable");
 //import 'rxjs/add/operator/map';
-require("rxjs/Rx");
+require("./rxjs-operators");
+//import 'rxjs/Rx';
 var core_1 = require("angular2/core");
 var CartService = (function () {
     function CartService(_http) {

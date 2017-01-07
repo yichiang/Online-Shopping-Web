@@ -1,19 +1,23 @@
 {
-"compilerOptions": {
-"outDir": "wwwroot/app",
-"target": "ES5",
-"module": "commonjs",
-"sourceMap": true,
-"emitDecoratorMetadata": true,
-"experimentalDecorators": true,
-"moduleResolution": "node",
-"removeComments": false,
-"noImplicitAny": false,
-"suppressImplicitAnyIndexErrors": true
-},
-"exclude": [
-"node_modules",
-"typings/main",
-"typings/main.d.ts"
-]
+  "compilerOptions": {
+    "outDir": "wwwroot/app",
+    "target": "ES5",
+    "module": "commonjs",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "removeComments": false,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "exclude": [
+    "node_modules",
+    "typings/main",
+    "typings/main.d.ts"
+  ],
+  "files": [
+    "app-ts/main.ts",
+    "cart-ts/main.ts"
+  ]
 }

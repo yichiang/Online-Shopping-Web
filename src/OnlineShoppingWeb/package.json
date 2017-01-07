@@ -3,7 +3,7 @@
   "name": "Onlineshoppingweb",
   "private": true,
   "devDependencies": {
-    "@types/core-js": "^0.9.34",
+    "@types/core-js": "^0.9.35",
     "gulp": "3.9.1",
     "gulp-typescript": "3.0.2",
     "rimraf": "2.5.4",

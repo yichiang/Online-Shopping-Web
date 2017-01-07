@@ -2,7 +2,9 @@
 import { Http, Response, Headers, RequestOptions } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 //import 'rxjs/add/operator/map';
-import 'rxjs/Rx';
+import './rxjs-operators';
+
+//import 'rxjs/Rx';
 import { Injectable } from 'angular2/core';
 import { Product } from './Product.model';
 import { Cart } from './Cart.model';
